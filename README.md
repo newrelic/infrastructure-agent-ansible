@@ -35,7 +35,10 @@ All typical interactions with `infra-agent-ansible` will be done through role co
 ### Installing the Infrastructure agent
 
 ```yaml
-- { role: infra-agent-ansible, license_key: YOUR_LICENSE_KEY }
+---
+hosts: ap_ne_1
+roles:
+  - { role: infra-agent-ansible, license_key: YOUR_LICENSE_KEY }
 ```
 
 ## Reference
