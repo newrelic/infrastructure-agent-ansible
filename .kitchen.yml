@@ -1,7 +1,7 @@
 ---
 driver:
   name: vagrant
-  provider: vmware_fusion
+  provider: virtualbox
   customize:
     memory: 2048
     cpus: 2
@@ -19,7 +19,7 @@ platforms:
   - name: ubuntu-12.04
     driver:
       box: bento/ubuntu-12.04
-      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/vmware/opscode_ubuntu-12.04_chef-provisionerless.box
+      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
     provisioner:
       extra_vars:
         os_name: ubuntu
@@ -29,7 +29,7 @@ platforms:
   - name: ubuntu-14.04
     driver:
       box: bento/ubuntu-14.04
-      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/vmware/opscode_ubuntu-14.04_chef-provisionerless.box
+      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
     provisioner:
       extra_vars:
         os_name: ubuntu
@@ -39,7 +39,7 @@ platforms:
   - name: centos-6.8
     driver:
       box: bento/centos-6.8
-      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/vmware/opscode_centos-6.8_chef-provisionerless.box
+      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.8_chef-provisionerless.box
     provisioner:
       extra_vars:
         os_name: el
@@ -49,7 +49,7 @@ platforms:
   - name: centos-7.2
     driver:
       box: bento/centos-7.2
-      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/vmware/opscode_centos-7.2_chef-provisionerless.box
+      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box
     provisioner:
       extra_vars:
         os_name: el
