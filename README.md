@@ -38,7 +38,7 @@ All typical interactions with `infra-agent-ansible` will be done through role co
 ---
 hosts: ap_ne_1
 roles:
-  - { role: infra-agent-ansible, license_key: YOUR_LICENSE_KEY }
+  - { role: infra-agent-ansible, newrelic_infra_license_key: YOUR_LICENSE_KEY }
 ```
 
 ## Reference
@@ -47,7 +47,7 @@ roles:
 
 #### Variables
 
-##### `agent_state` (OPTIONAL)
+##### `newrelic_infra_agent_state` (OPTIONAL)
 
 Describes what you want to do with the agent:
 
@@ -62,22 +62,22 @@ What version of the agent do you want to install:
 * `'*'`       - [default] install the latest version of the agent.
 * `'X.Y.ZZZ'` - string of the specific version number you want to install, e.g.  1.0.280
 
-##### `os_name` (OPTIONAL)
+##### `newrelic_infra_os_name` (OPTIONAL)
 
 Specifies the target OS that the Infrastructure agent will be installed on.
 Defaults to `ansible_os_family`. See list in the `meta/main.yml` file for latest list that is supported.
 
-##### `os_version` (OPTIONAL)
+##### `newrelic_infra_os_version` (OPTIONAL)
 
 Specifies the OS version of the installer package needed for this machine.
 Defaults to `ansible_lsb.major_release`. Mostly used for `RedHat` family OSs. See list in the `meta/main.yml` file for latest list.
 
-##### `os_codename` (OPTIONAL)
+##### `newrelic_infra_os_codename` (OPTIONAL)
 
 Specifies the OS codename of the installer package needed for this machine.
 Defaults to `ansible_lsb.codename`. Mostly used for `Debian` family OSs. See list in the `meta/main.yml` file for latest list.
 
-##### `license_key` (REQUIRED)
+##### `newrelic_infra_license_key` (REQUIRED)
 
 Specifies the New Relic license key to use.
 
