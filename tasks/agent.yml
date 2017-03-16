@@ -25,7 +25,7 @@
 
 - name: setup agent repo reference
   apt_repository:
-    repo: "deb https://download.newrelic.com/infrastructure_agent/linux/apt {{ os_codename }} main"
+    repo: "deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt {{ os_codename }} main"
     state: present
   when: os_name|lower == 'debian'
 
