@@ -99,4 +99,4 @@ Specifies the New Relic license key to use.
   - 8 Jessie
   - 7 Wheezy
 
-Copyright (c) 2016 New Relic, Inc. All rights reserved.
+Copyright (c) 2017 New Relic, Inc. All rights reserved.
