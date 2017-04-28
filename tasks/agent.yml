@@ -54,7 +54,7 @@
   when: os_name|lower == 'debian'
 
 - name: setup agent config
-  template: src=newrelic-infra.yml.j2 dest=/etc/newrelic-infra.yml
+  template: src=newrelic-infra.yml.j2 dest=/etc/newrelic-infra.yml mode=600
   notify: restart newrelic-infra
   when: agent_state != "absent"
 
