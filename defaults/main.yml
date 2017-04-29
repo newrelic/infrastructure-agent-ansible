@@ -4,23 +4,23 @@
 # Repository configs, must be one of the values in meta/main.yml
 #
 
-os_name: "{{ ansible_os_family }}"
-os_version: "{{ ansible_lsb.major_release }}"
-os_codename: "{{ ansible_lsb.codename }}"
+newrelic_infra_os_name: "{{ ansible_os_family }}"
+newrelic_infra_os_version: "{{ ansible_lsb.major_release }}"
+newrelic_infra_os_codename: "{{ ansible_lsb.codename }}"
 
 #
 # New Relic Infrastructure agent configs
 #
 
 # New Relic license key
-license_key: ""
+newrelic_infra_license_key: ""
 
 # Agent package state
 # Values:
 #   "present" or "latest" will install
 #   "absent" will uninstall
-agent_state: "latest"
+newrelic_infra_agent_state: "latest"
 
 # (Optional) Specific Infrastructure agent version to install
-# To install latest use: agent_state="latest" agent_version="*"
-agent_version: "*"
+# To install latest use: newrelic_infra_agent_state="latest" newrelic_infra_agent_version="*"
+newrelic_infra_agent_version: "*"

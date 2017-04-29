@@ -3,4 +3,4 @@
   remote_user: root
   roles:
     - role: infra-agent-ansible
-      license_key: YOUR_NR_LICENSE_KEY
+      newrelic_infra_license_key: YOUR_NR_LICENSE_KEY
