@@ -1,11 +1,11 @@
-# infra-agent-ansible
+# nrinfragent
 
 #### Table of Contents
 
 1. [Description](#description)
-2. [Setup - The basics of getting started with infra-agent-ansible](#setup)
-    * [What infra-agent-ansible affects](#what-infra-agent-ansible-affects)
-    * [Beginning with infra-agent-ansible](#beginning-with-infra-agent-ansible)
+2. [Setup - The basics of getting started with nrinfragent](#setup)
+    * [What nrinfragent affects](#what-nrinfragent-affects)
+    * [Beginning with nrinfragent](#beginning-with-nrinfragent)
 3. [Usage - Configuration options and additional functionality](#usage)
 4. [Reference - An under-the-hood peek at what the role is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
@@ -19,18 +19,18 @@ place for your own customized workflow.
 
 ## Setup
 
-### What infra-agent-ansible affects
+### What nrinfragent affects
 
 - Adds the New Relic Infrastructure package repository source
 - Installs and configures the New Relic Infrastructure agent
 
-### Beginning with infra-agent-ansible
+### Beginning with nrinfragent
 
 Include the role in your playbook. Customize the required variables.
 
 ## Usage
 
-All typical interactions with `infra-agent-ansible` will be done through role configuration.
+All typical interactions with `nrinfragent` will be done through role configuration.
 
 ### Installing the Infrastructure agent
 
@@ -38,7 +38,7 @@ All typical interactions with `infra-agent-ansible` will be done through role co
 ---
 hosts: ap_ne_1
 roles:
-  - { role: infra-agent-ansible, license_key: YOUR_LICENSE_KEY }
+  - { role: nrinfragent, nrinfragent_license_key: YOUR_LICENSE_KEY }
 ```
 
 ## Reference
@@ -47,7 +47,7 @@ roles:
 
 #### Variables
 
-##### `agent_state` (OPTIONAL)
+##### `nrinfragent_state` (OPTIONAL)
 
 Describes what you want to do with the agent:
 
@@ -55,29 +55,29 @@ Describes what you want to do with the agent:
 * `'absent'` - Uninstall the agent.
 
 
-##### `agent_version` (OPTIONAL)
+##### `nrinfragent_version` (OPTIONAL)
 
 What version of the agent do you want to install:
 
 * `'*'`       - [default] install the latest version of the agent.
 * `'X.Y.ZZZ'` - string of the specific version number you want to install, e.g.  1.0.280
 
-##### `os_name` (OPTIONAL)
+##### `nrinfragent_os_name` (OPTIONAL)
 
 Specifies the target OS that the Infrastructure agent will be installed on.
 Defaults to `ansible_os_family`. See list in the `meta/main.yml` file for latest list that is supported.
 
-##### `os_version` (OPTIONAL)
+##### `nrinfragent_os_version` (OPTIONAL)
 
 Specifies the OS version of the installer package needed for this machine.
 Defaults to `ansible_lsb.major_release`. Mostly used for `RedHat` family OSs. See list in the `meta/main.yml` file for latest list.
 
-##### `os_codename` (OPTIONAL)
+##### `nrinfragent_os_codename` (OPTIONAL)
 
 Specifies the OS codename of the installer package needed for this machine.
 Defaults to `ansible_lsb.codename`. Mostly used for `Debian` family OSs. See list in the `meta/main.yml` file for latest list.
 
-##### `license_key` (REQUIRED)
+##### `nrinfragent_license_key` (REQUIRED)
 
 Specifies the New Relic license key to use.
 
