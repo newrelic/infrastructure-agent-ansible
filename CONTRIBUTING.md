@@ -17,4 +17,5 @@ Copyright (c) 2017 New Relic, Inc. All rights reserved.
 
 # Contributors
 
-* Abed Kassis (@abedk)
+* [Abed Kassis](https://github.com/abedk)
+* [danvaida](https://github.com/danvaida)
