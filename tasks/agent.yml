@@ -23,6 +23,12 @@
     state: present
   when: nrinfragent_os_name|lower == 'redhat'
 
+- name: Confirm Debian apt-transport-https is present
+  apt:
+    name: apt-transport-https
+    state: present
+  when: nrinfragent_os_name|lower == 'debian'
+
 - name: setup agent repo reference
   apt_repository:
     repo: "deb https://download.newrelic.com/infrastructure_agent/linux/apt {{ nrinfragent_os_codename }} main"
