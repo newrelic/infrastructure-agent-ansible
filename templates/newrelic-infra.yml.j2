@@ -1,1 +1,4 @@
 license_key: {{ nrinfragent_license_key }}
+{% if nrinfragent_custom_attributes is defined %}
+{{ {'custom_attributes': nrinfragent_custom_attributes} | to_nice_yaml }}
+{% endif %}

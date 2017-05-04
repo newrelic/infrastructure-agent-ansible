@@ -81,6 +81,19 @@ Defaults to `ansible_lsb.codename`. Mostly used for `Debian` family OSs. See lis
 
 Specifies the New Relic license key to use.
 
+##### `nrinfragent_custom_attributes` (OPTIONAL)
+
+Specifies a list of custom attributes to annotate the data from the agent.
+
+For example:
+
+```
+nrinfragent_custom_attributes:
+  environment: production
+  service: login service
+  team: alpha-team
+```
+
 
 ## Limitations
 
