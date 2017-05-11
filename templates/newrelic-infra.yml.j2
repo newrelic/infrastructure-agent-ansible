@@ -1,1 +1,23 @@
+{{ ansible_managed | comment }}
+
 license_key: {{ nrinfragent_license_key }}
+{% if nrinfragent_display_name is defined %}
+display_name: {{ nrinfragent_display_name }}
+{% else %}
+# display_name: localhost
+{% endif %}
+{% if nrinfragent_proxy is defined %}
+proxy: {{ nrinfragent_proxy }}
+{% else %}
+# proxy: https://user:password@hostname:port
+{% endif %}
+{% if nrinfragent_verbose is defined %}
+verbose: {{ nrinfragent_verbose }}
+{% else %}
+# verbose: 0
+{% endif %}
+{% if nrinfragent_log_file is defined %}
+log_file: {{ nrinfragent_log_file }}
+{% else %}
+# log_file: /var/log/messages
+{% endif %}
