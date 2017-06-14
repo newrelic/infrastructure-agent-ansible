@@ -28,7 +28,12 @@ All typical interactions with `nrinfragent` will be done through role configurat
 ---
 hosts: ap_ne_1
 roles:
-  - { role: nrinfragent, nrinfragent_license_key: YOUR_LICENSE_KEY }
+  - name: nrinfragent
+    vars: 
+      nrinfragent_config: 
+        license_key: YOUR_LICENSE_KEY
+        log_file: /var/log/newrelic/nr-infra.log
+        log_to_stdout: false
 ```
 
 ## Reference
@@ -67,9 +72,12 @@ Defaults to `ansible_lsb.major_release`. Mostly used for `RedHat` family OSs. Se
 Specifies the OS codename of the installer package needed for this machine.
 Defaults to `ansible_lsb.codename`. Mostly used for `Debian` family OSs. See list in the `meta/main.yml` file for latest list.
 
-##### `nrinfragent_license_key` (REQUIRED)
+##### `nrinfragent_config` (REQUIRED)
 
-Specifies the New Relic license key to use.
+Used to populate agent configuration. At a minimum you must provide `license_key`.
+See the NewRelic documentation for current configuration options: 
+https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent)
+
 
 ## Limitations
 

@@ -27,7 +27,6 @@ installed as well.
 Use `bundle exec kitchen` to run commands.
 
 ## Contributors
-
 - [Rutger de Knijf](https://github.com/rdeknijf)
 - [Abed Kassis](https://github.com/abedk)
 - [danvaida](https://github.com/danvaida)
@@ -35,3 +34,4 @@ Use `bundle exec kitchen` to run commands.
 - [Koen Punt](https://github.com/koenpunt)
 - [Nathan Smith](https://github.com/smith)
 - [Alexander Merkulov](https://github.com/merqlove)
+* [Brent Walker](https://github.com/tacchino)
