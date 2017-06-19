@@ -21,4 +21,4 @@ Copyright (c) 2017 New Relic, Inc. All rights reserved.
 * [danvaida](https://github.com/danvaida)
 * [Ryan Pineo](https://github.com/ryanpineo)
 * [Koen Punt](https://github.com/koenpunt)
-
+* [jamlen](http://github.com/jamlen)
