@@ -1,5 +1,5 @@
 license_key: {{ nrinfragent_license_key }}
-{% if nrinfragent_use_static_collector is equalto true %}
+{% if nrinfragent_use_static_collector | bool %}
 collector_url: https://static-infra-api.newrelic.com
 {% endif %}
 {% if nrinfragent_proxy is defined %}
