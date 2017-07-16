@@ -33,6 +33,7 @@
   apt_repository:
     repo: "deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt {{ nrinfragent_os_codename }} main"
     state: present
+    update_cache: yes
   when: nrinfragent_os_name|lower == 'debian'
 
 - name: setup agent repo reference
@@ -56,7 +57,6 @@
   apt:
     name: "newrelic-infra{{ nrinfragent_version }}"
     state: "{{ nrinfragent_state }}"
-    update_cache: yes
   when: nrinfragent_os_name|lower == 'debian'
 
 - name: setup agent config
