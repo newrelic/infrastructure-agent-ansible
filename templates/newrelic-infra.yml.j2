@@ -5,3 +5,6 @@ collector_url: https://static-infra-api.newrelic.com
 {% if nrinfragent_proxy is defined %}
 proxy: {{ nrinfragent_proxy }}
 {% endif %}
+{% if nrinfragent_custom_attributes is defined %}
+{{ {'custom_attributes': nrinfragent_custom_attributes} | to_nice_yaml }}
+{% endif %}
