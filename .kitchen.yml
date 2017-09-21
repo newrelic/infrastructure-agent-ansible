@@ -35,6 +35,16 @@ platforms:
         os_name: ubuntu
         os_version: trusty
 
+  # Ubuntu 16.04 LTS Xenial Xerus
+  - name: ubuntu-16.04
+    driver:
+      box: bento/ubuntu-16.04
+      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-16.04_chef-provisionerless.box
+    provisioner:
+      extra_vars:
+        os_name: ubuntu
+        os_version: xenial
+
   # CentOS 6.8
   - name: centos-6.8
     driver:
