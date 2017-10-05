@@ -45,6 +45,11 @@
     state: present
     description: New Relic Infrastructure
   when: nrinfragent_os_name|lower == 'redhat'
+  register: setup_agent_repo
+
+- name: run make cache to actually import gpg key
+  command: "yum -q makecache -y --disablerepo='*' --enablerepo='New-Relic-Infrastructure'"
+  when: nrinfragent_os_name|lower == 'redhat' and setup_agent_repo.changed
 
 - name: install agent
   yum:
