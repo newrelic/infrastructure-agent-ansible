@@ -1,14 +1,4 @@
-# nrinfragent
-
-#### Table of Contents
-
-1. [Description](#description)
-2. [Setup - The basics of getting started with nrinfragent](#setup)
-    * [What nrinfragent affects](#what-nrinfragent-affects)
-    * [Beginning with nrinfragent](#beginning-with-nrinfragent)
-3. [Usage - Configuration options and additional functionality](#usage)
-4. [Reference - An under-the-hood peek at what the role is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
+# nrinfragent Ansible role
 
 ## Description
 
@@ -21,8 +11,8 @@ place for your own customized workflow.
 
 ### What nrinfragent affects
 
-- Adds the New Relic Infrastructure package repository source
-- Installs and configures the New Relic Infrastructure agent
+* Adds the New Relic Infrastructure package repository source
+* Installs and configures the New Relic Infrastructure agent
 
 ### Beginning with nrinfragent
 
@@ -81,22 +71,21 @@ Defaults to `ansible_lsb.codename`. Mostly used for `Debian` family OSs. See lis
 
 Specifies the New Relic license key to use.
 
-
 ## Limitations
 
 ### Platforms
 
-- RHEL
-  - CentOS 7
-  - CentOS 6
-- Ubuntu
-  - 16 Xenial
-  - 14 Trusty
-  - 12 Precise
-- Debian
-  - 10 Buster
-  - 9 Stretch
-  - 8 Jessie
-  - 7 Wheezy
+* RHEL
+  * CentOS 7
+  * CentOS 6
+* Ubuntu
+  * 16 Xenial
+  * 14 Trusty
+  * 12 Precise
+* Debian
+  * 10 Buster
+  * 9 Stretch
+  * 8 Jessie
+  * 7 Wheezy
 
 Copyright (c) 2017 New Relic, Inc. All rights reserved.
