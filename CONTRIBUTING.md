@@ -28,6 +28,7 @@ Use `bundle exec kitchen` to run commands.
 
 ## Contributors
 
+- [Rutger de Knijf](https://github.com/rdeknijf)
 - [Abed Kassis](https://github.com/abedk)
 - [danvaida](https://github.com/danvaida)
 - [Ryan Pineo](https://github.com/ryanpineo)
