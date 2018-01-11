@@ -33,6 +33,7 @@
   apt_repository:
     repo: "deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt {{ nrinfragent_os_codename }} main"
     state: present
+    update_cache: yes
   when: nrinfragent_os_name|lower == 'debian'
 
 - name: setup agent repo reference
@@ -45,6 +46,11 @@
     state: present
     description: New Relic Infrastructure
   when: nrinfragent_os_name|lower == 'redhat'
+  register: setup_agent_repo
+
+- name: run make cache to actually import gpg key
+  command: "yum -q makecache -y --disablerepo='*' --enablerepo='New-Relic-Infrastructure'"
+  when: nrinfragent_os_name|lower == 'redhat' and setup_agent_repo.changed
 
 - name: install agent
   yum:
@@ -56,7 +62,6 @@
   apt:
     name: "newrelic-infra{{ nrinfragent_version }}"
     state: "{{ nrinfragent_state }}"
-    update_cache: yes
   when: nrinfragent_os_name|lower == 'debian'
 
 - name: setup agent config
