@@ -71,6 +71,29 @@ Defaults to `ansible_lsb.codename`. Mostly used for `Debian` family OSs. See lis
 
 Specifies the New Relic license key to use.
 
+##### `nrinfragent_use_static_collectors` BOOL (OPTIONAL)
+
+Specifies to use the static collectors as described in the [Infrastructure agents](https://docs.newrelic.com/docs/apm/new-relic-apm/getting-started/networks#infrastructure) documentation.
+Undefined by default.
+
+##### `nrinfragent_proxy` STRING (OPTIONAL)
+
+Specifies to use the http proxy as described in the [Configuring the Infrastructure agents](https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent#proxy) documentation.
+
+##### `nrinfragent_custom_attributes` (OPTIONAL)
+
+Specifies a list of custom attributes to annotate the data from the agent.
+
+For example:
+
+```
+nrinfragent_custom_attributes:
+  environment: production
+  service: login service
+  team: alpha-team
+```
+
+
 ## Limitations
 
 ### Platforms

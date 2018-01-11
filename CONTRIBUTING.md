@@ -35,3 +35,4 @@ Use `bundle exec kitchen` to run commands.
 - [Koen Punt](https://github.com/koenpunt)
 - [Nathan Smith](https://github.com/smith)
 - [Alexander Merkulov](https://github.com/merqlove)
+* [jamlen](http://github.com/jamlen)
