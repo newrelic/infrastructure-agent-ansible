@@ -6,11 +6,11 @@ Note that PR's and issues are reviewed every ~2 weeks. If your PR or issue is cr
 
 Pull requests should:
 
-- Clearly state their intent in the title
-- Have a description that explains the need for the changes
-- Include tests! (Make sure the scripts complete in your test environment)
-- Not break the public API
-- Add yourself to the CONTRIBUTING file
+* Clearly state their intent in the title
+* Have a description that explains the need for the changes
+* Include tests! (Make sure the scripts complete in your test environment)
+* Not break the public API
+* Add yourself to the CONTRIBUTING file
 
 By contributing to this project you agree that you are granting New Relic a non-exclusive, non-revokable, no-cost license to use the code, algorithms, patents, and ideas in that code in our products if we so choose. You also agree the code is provided as-is and you provide no warranties as to its fitness or correctness for any purpose
 
@@ -27,11 +27,12 @@ installed as well.
 Use `bundle exec kitchen` to run commands.
 
 ## Contributors
-- [Rutger de Knijf](https://github.com/rdeknijf)
-- [Abed Kassis](https://github.com/abedk)
-- [danvaida](https://github.com/danvaida)
-- [Ryan Pineo](https://github.com/ryanpineo)
-- [Koen Punt](https://github.com/koenpunt)
-- [Nathan Smith](https://github.com/smith)
-- [Alexander Merkulov](https://github.com/merqlove)
+
+* [Abed Kassis](https://github.com/abedk)
+* [Alexander Merkulov](https://github.com/merqlove)
 * [Brent Walker](https://github.com/tacchino)
+* [danvaida](https://github.com/danvaida)
+* [Koen Punt](https://github.com/koenpunt)
+* [Nathan Smith](https://github.com/smith)
+* [Rutger de Knijf](https://github.com/rdeknijf)
+* [Ryan Pineo](https://github.com/ryanpineo)
