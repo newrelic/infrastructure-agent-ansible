@@ -29,8 +29,8 @@ All typical interactions with `nrinfragent` will be done through role configurat
 hosts: ap_ne_1
 roles:
   - name: nrinfragent
-    vars: 
-      nrinfragent_config: 
+    vars:
+      nrinfragent_config:
         license_key: YOUR_LICENSE_KEY
         log_file: /var/log/newrelic/nr-infra.log
         log_to_stdout: false
@@ -49,13 +49,12 @@ Describes what you want to do with the agent:
 * `'latest'` - [default] install the latest version of the agent. Also `present`.
 * `'absent'` - Uninstall the agent.
 
-
 ##### `nrinfragent_version` (OPTIONAL)
 
 What version of the agent do you want to install:
 
-* `'*'`       - [default] install the latest version of the agent.
-* `'X.Y.ZZZ'` - string of the specific version number you want to install, e.g.  1.0.280
+* `'*'` - [default] install the latest version of the agent.
+* `'X.Y.ZZZ'` - string of the specific version number you want to install, e.g. 1.0.280
 
 ##### `nrinfragent_os_name` (OPTIONAL)
 
@@ -75,9 +74,16 @@ Defaults to `ansible_lsb.codename`. Mostly used for `Debian` family OSs. See lis
 ##### `nrinfragent_config` (REQUIRED)
 
 Used to populate agent configuration. At a minimum you must provide `license_key`.
-See the NewRelic documentation for current configuration options: 
-https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent)
+See the NewRelic documentation for current configuration options:
+[https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent](https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent)
 
+##### `nrinfragent_license_key`
+
+###### DEPRECATED
+
+Specify the license key. For backward compatibility. Use `license_key` in
+`nrinfragent_config` instead. If both are specified the one in
+`nrinfragent_config` will be used.
 
 ## Limitations
 
