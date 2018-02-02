@@ -1,5 +1,7 @@
 # nrinfragent Ansible role
 
+[![Build Status](https://travis-ci.org/newrelic/infrastructure-agent-ansible.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-ansible)
+
 ## Description
 
 This role installs and configures the New Relic Infrastructure agent.
