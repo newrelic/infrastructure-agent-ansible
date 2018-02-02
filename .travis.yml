@@ -1,0 +1,15 @@
+branches:
+  only:
+    - master
+cache: pip
+dist: trusty
+env:
+  global:
+    ANSIBLE_ROLES_PATH: ..
+install: pip install ansible
+language: python
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+python: 2.7
+sudo: false
+script: ansible-playbook --inventory=test/integration/default/inventory --syntax-check test/integration/default/default.yml
