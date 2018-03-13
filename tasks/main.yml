@@ -19,6 +19,12 @@
     state: present
   when: nrinfragent_os_name|lower == 'redhat'
 
+- name: setup agent repo keys
+  rpm_key:
+    key: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
+    state: present
+  when: nrinfragent_os_name|lower == 'suse'
+
 - name: Confirm Debian apt-transport-https is present
   apt:
     name: apt-transport-https
@@ -44,6 +50,17 @@
   when: nrinfragent_os_name|lower == 'redhat'
   register: setup_agent_repo
 
+- name: setup agent repo reference
+  zypper_repository:
+    name: newrelic-infra
+    description: New Relic Infrastructure Agent
+    repo: http://download.newrelic.com/infrastructure_agent/beta/linux/zypp/sles/{{ansible_distribution_version}}/{{ansible_machine}}/
+    runrefresh: yes
+    auto_import_keys: yes
+    disable_gpg_check: yes
+  when: nrinfragent_os_name|lower == 'suse'
+  register: infra_agent_zypper_repo
+
 - name: run make cache to actually import gpg key
   command: "yum -q makecache -y --disablerepo='*' --enablerepo='New-Relic-Infrastructure'"
   when: nrinfragent_os_name|lower == 'redhat' and setup_agent_repo.changed
@@ -59,6 +76,12 @@
     name: "newrelic-infra{{ nrinfragent_version }}"
     state: "{{ nrinfragent_state }}"
   when: nrinfragent_os_name|lower == 'debian'
+
+- name: install agent
+  zypper:
+    name: newrelic-infra
+    state: "{{ nrinfragent_state }}"
+  when: nrinfragent_os_name|lower == 'suse'
 
 - name: setup agent config
   template:
