@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
+## 0.3.0 (2018-03-12)
+
+IMPROVEMENTS:
+
+* SUSE Linux support
+
 ## 0.2.0 (2018-01-29)
 
 IMPROVEMENTS:
