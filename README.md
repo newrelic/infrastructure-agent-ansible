@@ -34,7 +34,7 @@ roles:
     vars:
       nrinfragent_config:
         license_key: YOUR_LICENSE_KEY
-        log_file: /var/log/newrelic/nr-infra.log
+        log_file: /var/log/nr-infra.log
         log_to_stdout: false
 ```
 
