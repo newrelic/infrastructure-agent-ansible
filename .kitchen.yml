@@ -7,6 +7,7 @@ provisioner:
   hosts: test-kitchen
   ansible_verbose: true
   ansible_verbosity: 2
+  require_ansible_omnibus: true
   require_chef_for_busser: false
   require_chef_omnibus: false
   playbook: test/integration/default/default.yml
@@ -21,6 +22,9 @@ platforms:
   - name: ubuntu-12.04
   - name: ubuntu-14.04
   - name: ubuntu-16.04
+  - name: amazon
+    driver:
+      box: winky/amazonlinux-2
 
 suites:
   - name: default
