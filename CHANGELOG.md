@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
+## 0.3.1 (2018-04-03)
+
+BUG FIXES:
+
+* Fix Yum repository URL for Amazon Linux
+
 ## 0.3.0 (2018-03-12)
 
 IMPROVEMENTS:
