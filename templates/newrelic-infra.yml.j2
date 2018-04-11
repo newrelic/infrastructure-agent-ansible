@@ -2,5 +2,18 @@
 {% if nrinfragent_license_key is defined %}
 license_key: {{ nrinfragent_license_key }}
 {% endif %}
+{% if nrinfragent_display_name is defined %}
+display_name: {{ nrinfragent_display_name }}
+{% endif %}
+{% if nrinfragent_proxy is defined %}
+proxy: {{ nrinfragent_proxy }}
+{% endif %}
+{% if nrinfragent_verbose is defined %}
+verbose: {{ nrinfragent_verbose }}
+{% endif %}
+{% if nrinfragent_payload_compression_level is defined %}
+payload_compression_level: {{ nrinfragent_payload_compression_level }}
+{% endif %}
+
 
 {{ nrinfragent_config | to_nice_yaml }}
