@@ -79,13 +79,28 @@ Used to populate agent configuration. At a minimum you must provide `license_key
 See the NewRelic documentation for current configuration options:
 [https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent](https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent)
 
-##### `nrinfragent_license_key`
+##### `nrinfragent_license_key` (REQUIRED)
+
+Specifies the license key for your New Relic account. The agent uses this key to associate your server's metrics with your New Relic account. This setting is created as part of the standard installation process.
 
 ###### DEPRECATED
 
 Specify the license key. For backward compatibility. Use `license_key` in
 `nrinfragent_config` instead. If both are specified the one in
 `nrinfragent_config` will be used.
+
+##### `nrinfragent_display_name` (OPTIONAL)
+Override the auto-generated hostname for reporting. This is useful when you have multiple hosts with the same name, since Infrastructure uses the hostname as the unique identifier for each host.
+
+##### `nrinfragent_proxy` (OPTIONAL)
+Your system may have firewall rules that require the agent to use a proxy to communicate with New Relic. If so, set the proxy URL in the form https://user:password@hostname:port. Can be HTTP or HTTPS.
+
+##### `nrinfragent_verbose` (OPTIONAL)
+When verbose is set to 0, verbose logging is off, but the agent still creates logs. Set this to 1 to create verbose logs to use in troubleshooting the agent.
+
+##### `nrinfragent_payload_compression` (OPTIONAL)
+In Infrastructure agent version 1.0.804 or higher, data sent from the agent is compressed by default. New Relic recommends not changing this setting. However, you can disable payload compression by setting either the payload_compression_level configuration setting or the NRIA_PAYLOAD_COMPRESSION environment variable to 0.
+
 
 ## Limitations
 
