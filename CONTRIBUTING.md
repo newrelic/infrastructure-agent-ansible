@@ -18,13 +18,18 @@ Copyright (c) 2017 New Relic, Inc. All rights reserved.
 
 ## Testing
 
-[Test Kitchen](http://kitchen.ci/) can be used run integration tests on the
-module. The default driver uses [Vagrant](https://www.vagrantup.com/) and
-[VirtualBox](https://www.virtualbox.org/). You'll need
-[Ruby](https://www.ruby-lang.org/en/) and [Bundler](http://bundler.io/)
-installed as well.
+[Molecule](https://molecule.readthedocs.io/) can be used run integration tests
+on the module. The default driver uses [Docker](https://www.docker.com/community-edition)
 
-Use `bundle exec kitchen` to run commands.
+To install and run Molecule run:
+
+```bash
+virtualenv --no-site-packages .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Once Molecule is installed, use `molecule test` to run the tests.
 
 ## Contributors
 
