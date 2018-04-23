@@ -6,24 +6,24 @@ galaxy_info:
   license: All components of this product are Copyright (c) 2016 New Relic, Inc.  All rights reserved.
   min_ansible_version: 2.1
   platforms:
-  - name: EL
-    versions:
-      - 6
-      - 7
-  - name: Amazon
-    versions:
-      - all
-  - name: Debian
-    versions:
-      - wheezy
-      - jessie
-      - stretch
-      - buster
-  - name: Ubuntu
-    versions:
-      - precise
-      - trusty
-      - xenial
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Amazon
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - wheezy
+        - jessie
+        - stretch
+        - buster
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+        - xenial
   categories:
     - cloud:ec2
     - monitoring
