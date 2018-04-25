@@ -1,8 +1,8 @@
 ---
-- hosts: test-kitchen
-  remote_user: root
+- name: Converge
+  hosts: all
   roles:
-    - name: infrastructure-agent-ansible
+    - role: infrastructure-agent-ansible
       # Deprecated, here for backward compatibility
       nrinfragent_license_key: A000000000000000000000000000000000000000
       vars:

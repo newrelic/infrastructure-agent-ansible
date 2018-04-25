@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
+## master (unreleased)
+
+IMPROVEMENTS:
+
+* Replace Test Kitchen with Molecule
+
 ## 0.3.1 (2018-04-03)
 
 BUG FIXES:
