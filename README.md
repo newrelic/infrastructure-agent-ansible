@@ -1,4 +1,4 @@
-# nrinfragent Ansible role
+# newrelic-infra Ansible role
 
 [![Build Status](https://travis-ci.org/newrelic/infrastructure-agent-ansible.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-ansible)
 
@@ -11,31 +11,31 @@ place for your own customized workflow.
 
 ## Setup
 
-### What nrinfragent affects
+### What newrelic-infra affects
 
 * Adds the New Relic Infrastructure package repository source
 * Installs and configures the New Relic Infrastructure agent
 
-### Beginning with nrinfragent
+### Beginning with newrelic-infra
 
 Include the role in your playbook. Customize the required variables.
 
 ## Usage
 
-All typical interactions with `nrinfragent` will be done through role configuration.
+All typical interactions with newrelic-infra will be done through role configuration.
 
 ### Installing the Infrastructure agent
 
 ```yaml
 ---
-hosts: ap_ne_1
-roles:
-  - name: nrinfragent
-    vars:
-      nrinfragent_config:
-        license_key: YOUR_LICENSE_KEY
-        log_file: /var/log/nr-infra.log
-        log_to_stdout: false
+- hosts: ap_ne_1
+  roles:
+    - name: newrelic.newrelic-infra
+      vars:
+        nrinfragent_config:
+          license_key: YOUR_LICENSE_KEY
+          log_file: /var/log/nr-infra.log
+          log_to_stdout: false
 ```
 
 ## Reference
