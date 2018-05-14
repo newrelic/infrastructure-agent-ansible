@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
+## 0.3.3 (2018-05-14)
+
+BUG FIXES:
+
+* Set default for license key
+
 ## 0.3.2 (2018-04-30)
 
 IMPROVEMENTS:
