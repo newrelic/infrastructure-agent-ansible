@@ -43,7 +43,7 @@
     baseurl: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/{{ (ansible_distribution == 'Amazon') | ternary('6', nrinfragent_os_version) }}/x86_64"
     gpgcheck: "yes"
     gpgkey: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
-    name: 'New-Relic-Infrastructure'
+    name: 'newrelic-infra'
     repo_gpgcheck: "yes"
     state: present
     description: New Relic Infrastructure
@@ -62,7 +62,7 @@
   register: infra_agent_zypper_repo
 
 - name: run make cache to actually import gpg key
-  command: "yum -q makecache -y --disablerepo='*' --enablerepo='New-Relic-Infrastructure'"
+  command: "yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'"
   when: nrinfragent_os_name|lower == 'redhat' and setup_agent_repo.changed
   tags:
     - skip_ansible_lint
