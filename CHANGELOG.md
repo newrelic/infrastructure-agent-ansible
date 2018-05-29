@@ -2,11 +2,13 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
-## master (unreleased)
+## 0.4.0 (2018-05-29)
 
 IMPROVEMENTS:
 
 * Update README with better instructions for usage with Ansible Galaxy
+* Change the name of the yum repository to comply with installation instructions
+  provided by New Relic
 
 ## 0.3.3 (2018-05-14)
 
