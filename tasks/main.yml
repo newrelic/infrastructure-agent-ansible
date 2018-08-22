@@ -71,37 +71,49 @@
 
 - name: install agent
   yum:
-    name: "newrelic-infra{{ nrinfragent_version }}"
+    name: "newrelic-infra-{{ nrinfragent_version }}"
     state: "{{ nrinfragent_state }}"
   when: nrinfragent_os_name|lower == 'redhat'
 
 - name: install agent
   apt:
-    name: "newrelic-infra{{ nrinfragent_version }}"
+    name: "newrelic-infra"
     state: "{{ nrinfragent_state }}"
-  when: nrinfragent_os_name|lower == 'debian'
+  when: nrinfragent_os_name|lower == 'debian' and nrinfragent_version == "*"
+
+- name: install agent
+  apt:
+    name: "newrelic-infra={{ nrinfragent_version }}"
+    state: "{{ nrinfragent_state }}"
+  when: nrinfragent_os_name|lower == 'debian' and nrinfragent_version != "*"
 
 - name: install agent
   zypper:
-    name: "newrelic-infra{{ nrinfragent_version }}"
+    name: "newrelic-infra-{{ nrinfragent_version }}"
     state: "{{ nrinfragent_state }}"
   when: nrinfragent_os_name|lower == 'suse'
 
 - name: install integrations
   yum:
-    name: "newrelic-infra-integrations{{ nrinfraintegrations_version }}"
+    name: "newrelic-infra-integrations-{{ nrinfraintegrations_version }}"
     state: "{{ nrinfraintegrations_state }}"
   when: nrinfragent_os_name|lower == 'redhat'
 
 - name: install integrations
   apt:
-    name: "newrelic-infra-integrations{{ nrinfraintegrations_version }}"
+    name: "newrelic-infra-integrations"
     state: "{{ nrinfraintegrations_state }}"
-  when: nrinfragent_os_name|lower == 'debian'
+  when: nrinfragent_os_name|lower == 'debian' and nrinfraintegrations_version == "*"
+
+- name: install integrations
+  apt:
+    name: "newrelic-infra-integrations={{ nrinfraintegrations_version }}"
+    state: "{{ nrinfraintegrations_state }}"
+  when: nrinfragent_os_name|lower == 'debian' and nrinfraintegrations_version != "*"
 
 - name: install integrations
   zypper:
-    name: "newrelic-infra-integrations{{ nrinfraintegrations_version }}"
+    name: "newrelic-infra-integrations-{{ nrinfraintegrations_version }}"
     state: "{{ nrinfraintegrations_state }}"
   when: nrinfragent_os_name|lower == 'suse'
 
