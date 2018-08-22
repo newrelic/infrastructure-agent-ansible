@@ -1,4 +1,6 @@
 ---
+nrinfraintegrations_state: "latest"
+nrinfraintegrations_version: "*"
 nrinfragent_state: "latest"
 nrinfragent_version: "*"
 nrinfragent_config:

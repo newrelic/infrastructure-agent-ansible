@@ -87,6 +87,24 @@
     state: "{{ nrinfragent_state }}"
   when: nrinfragent_os_name|lower == 'suse'
 
+- name: install integrations
+  yum:
+    name: "newrelic-infra-integrations{{ nrinfraintegrations_version }}"
+    state: "{{ nrinfraintegrations_state }}"
+  when: nrinfragent_os_name|lower == 'redhat'
+
+- name: install integrations
+  apt:
+    name: "newrelic-infra-integrations{{ nrinfraintegrations_version }}"
+    state: "{{ nrinfraintegrations_state }}"
+  when: nrinfragent_os_name|lower == 'debian'
+
+- name: install integrations
+  zypper:
+    name: "newrelic-infra-integrations{{ nrinfraintegrations_version }}"
+    state: "{{ nrinfraintegrations_state }}"
+  when: nrinfragent_os_name|lower == 'suse'
+
 - name: setup agent config
   template:
     src: newrelic-infra.yml.j2
