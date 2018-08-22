@@ -83,7 +83,7 @@
 
 - name: install agent
   zypper:
-    name: newrelic-infra
+    name: "newrelic-infra{{ nrinfragent_version }}"
     state: "{{ nrinfragent_state }}"
   when: nrinfragent_os_name|lower == 'suse'
 

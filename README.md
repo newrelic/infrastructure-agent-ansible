@@ -103,5 +103,8 @@ Specify the license key. For backward compatibility. Use `license_key` in
   * 9 Stretch
   * 8 Jessie
   * 7 Wheezy
+* SUSE Linux Enterprise
+  * 11
+  * 12
 
 Copyright (c) 2017 New Relic, Inc. All rights reserved.
