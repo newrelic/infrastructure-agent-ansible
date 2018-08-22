@@ -1,5 +1,5 @@
 ---
-nrinfraintegrations_state: "latest"
+nrinfraintegrations_state: "absent"
 nrinfraintegrations_version: "*"
 nrinfragent_state: "latest"
 nrinfragent_version: "*"

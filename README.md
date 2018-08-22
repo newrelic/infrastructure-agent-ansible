@@ -81,6 +81,21 @@ See the NewRelic documentation for current configuration options:
 
 ##### `nrinfragent_license_key`
 
+##### `nrinfraintegrations_state` (OPTIONAL)
+
+The state of the infrastructure integrations version pacakge. By default it's
+`absent`, which doesn't install the package; to install the latest version set
+it to `latest` or you can also set it to `present` and specify a version number
+with `nrinfraintegrations_version`.
+
+##### `nrinfraintegrations_version` (OPTIONAL)
+
+What version of the infrastructure integrations version package do you want to install:
+
+* `'*'` - [default] install the latest version of the agent.
+* `'X.Y.ZZZ'` - string of the specific version number you want to install, e.g. 1.4.0-1
+
+
 ###### DEPRECATED
 
 Specify the license key. For backward compatibility. Use `license_key` in
