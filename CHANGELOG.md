@@ -7,6 +7,8 @@ This file is used to list changes made in each version of the `nrinfragent` Ansi
 IMPROVEMENTS:
 
 * Update README with better instructions for usage with Ansible Galaxy
+* Installs the on-host integrations package for the Infrastructure agent
+* Adds support for SUSE Linux Enterprise
 
 ## 0.3.3 (2018-05-14)
 
