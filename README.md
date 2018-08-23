@@ -51,13 +51,6 @@ Describes what you want to do with the agent:
 * `'latest'` - [default] install the latest version of the agent. Also `present`.
 * `'absent'` - Uninstall the agent.
 
-##### `nrinfragent_version` (OPTIONAL)
-
-What version of the agent do you want to install:
-
-* `'*'` - [default] install the latest version of the agent.
-* `'X.Y.ZZZ'` - string of the specific version number you want to install, e.g. 1.0.280
-
 ##### `nrinfragent_os_name` (OPTIONAL)
 
 Specifies the target OS that the Infrastructure agent will be installed on.
@@ -84,17 +77,8 @@ See the NewRelic documentation for current configuration options:
 ##### `nrinfraintegrations_state` (OPTIONAL)
 
 The state of the infrastructure integrations version pacakge. By default it's
-`absent`, which doesn't install the package; to install the latest version set
-it to `latest` or you can also set it to `present` and specify a version number
-with `nrinfraintegrations_version`.
-
-##### `nrinfraintegrations_version` (OPTIONAL)
-
-What version of the infrastructure integrations version package do you want to install:
-
-* `'*'` - [default] install the latest version of the agent.
-* `'X.Y.ZZZ'` - string of the specific version number you want to install, e.g. 1.4.0-1
-
+`absent`, which doesn't install the package; you can change it to `latest` or
+`present`.
 
 ###### DEPRECATED
 
@@ -119,7 +103,6 @@ Specify the license key. For backward compatibility. Use `license_key` in
   * 8 Jessie
   * 7 Wheezy
 * SUSE Linux Enterprise
-  * 11
   * 12
 
 Copyright (c) 2017 New Relic, Inc. All rights reserved.
