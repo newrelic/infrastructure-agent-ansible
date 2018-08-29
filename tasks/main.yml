@@ -54,7 +54,7 @@
   zypper_repository:
     name: newrelic-infra
     description: New Relic Infrastructure Agent
-    repo: "http://download.newrelic.com/infrastructure_agent/beta/linux/zypp/sles/{{ ansible_distribution_version }}/{{ ansible_machine }}/"
+    repo: "http://download.newrelic.com/infrastructure_agent/linux/zypp/sles/{{ ansible_distribution_version }}/{{ ansible_machine }}/"
     runrefresh: "yes"
     auto_import_keys: "yes"
     disable_gpg_check: "yes"
