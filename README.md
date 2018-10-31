@@ -30,7 +30,7 @@ All typical interactions with newrelic-infra will be done through role configura
 ---
 - hosts: ap_ne_1
   roles:
-    - name: newrelic.newrelic-infra
+    - name: infrastructure-agent-ansible
       vars:
         nrinfragent_config:
           license_key: YOUR_LICENSE_KEY
@@ -94,6 +94,7 @@ Specify the license key. For backward compatibility. Use `license_key` in
   * CentOS 7
   * CentOS 6
 * Ubuntu
+  * 18 Bionic
   * 16 Xenial
   * 14 Trusty
   * 12 Precise
@@ -105,4 +106,4 @@ Specify the license key. For backward compatibility. Use `license_key` in
 * SUSE Linux Enterprise
   * 12
 
-Copyright (c) 2017 New Relic, Inc. All rights reserved.
+Copyright (c) 2018 New Relic, Inc. All rights reserved.
