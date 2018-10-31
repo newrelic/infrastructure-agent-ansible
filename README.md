@@ -30,7 +30,7 @@ All typical interactions with newrelic-infra will be done through role configura
 ---
 - hosts: ap_ne_1
   roles:
-    - name: infrastructure-agent-ansible
+    - name: newrelic.newrelic-infra
       vars:
         nrinfragent_config:
           license_key: YOUR_LICENSE_KEY
