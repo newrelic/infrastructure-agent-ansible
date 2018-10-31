@@ -9,6 +9,7 @@ IMPROVEMENTS:
 * Update README with better instructions for usage with Ansible Galaxy
 * Installs the on-host integrations package for the Infrastructure agent
 * Adds support for SUSE Linux Enterprise
+* Adds support for Ubuntu Bionic
 * Fix error when specifying version number for the agent with
 `nrinfragent_version`, it only worked with `nrinfragent_version: "*"` and
 `nrinfragent_state: "latest"`
