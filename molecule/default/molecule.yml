@@ -6,13 +6,6 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: centos-5
-    image: dokken/centos-5
-    privileged: true
-    volume_mounts:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
-    command: "/sbin/init"
-    environment: { container: docker }
   - name: centos-6
     image: dokken/centos-6
     privileged: true
@@ -43,13 +36,6 @@ platforms:
     environment: { container: docker }
   - name: ubuntu-1604
     image: ubuntu:16.04
-    privileged: true
-    volume_mounts:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
-    command: "/sbin/init"
-    environment: { container: docker }
-  - name: ubuntu-1804
-    image: ubuntu:18.04
     privileged: true
     volume_mounts:
       - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
