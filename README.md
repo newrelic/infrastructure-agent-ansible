@@ -93,6 +93,7 @@ Specify the license key. For backward compatibility. Use `license_key` in
 * RHEL
   * CentOS 7
   * CentOS 6
+  * CentOS 5
 * Ubuntu
   * 18 Bionic
   * 16 Xenial

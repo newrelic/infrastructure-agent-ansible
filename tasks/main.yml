@@ -44,7 +44,7 @@
     gpgcheck: "yes"
     gpgkey: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     name: 'newrelic-infra'
-    repo_gpgcheck: "yes"
+    repo_gpgcheck: "{{ (nrinfragent_os_version == '5') | ternary('no', 'yes') }}"
     state: present
     description: New Relic Infrastructure
   when: nrinfragent_os_name|lower == 'redhat'

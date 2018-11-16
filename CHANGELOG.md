@@ -10,6 +10,7 @@ IMPROVEMENTS:
 * Installs the on-host integrations package for the Infrastructure agent
 * Adds support for SUSE Linux Enterprise
 * Adds support for Ubuntu Bionic
+* Adds support for RHEL 5
 * Fix error when specifying version number for the agent with
 `nrinfragent_version`, it only worked with `nrinfragent_version: "*"` and
 `nrinfragent_state: "latest"`
