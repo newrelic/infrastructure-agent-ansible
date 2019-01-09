@@ -44,10 +44,10 @@
     gpgcheck: "yes"
     gpgkey: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     name: 'newrelic-infra'
-    repo_gpgcheck: "{{ (nrinfragent_os_version == '5') | ternary('no', 'yes') }}"
+    repo_gpgcheck: 'yes'
     state: present
     description: New Relic Infrastructure
-  when: nrinfragent_os_name|lower == 'redhat' and ansible_distribution|lower == 'amazon'
+  when: ansible_distribution|lower == 'amazon'
   register: setup_agent_repo
 
 - name: setup agent repo reference
