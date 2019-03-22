@@ -80,6 +80,14 @@ The state of the infrastructure integrations version pacakge. By default it's
 `absent`, which doesn't install the package; you can change it to `latest` or
 `present`.
 
+##### `nrinfragent_service_state` (OPTIONAL)
+Specifies the state of the newrelic-infra service after installation.
+Defaults to `started` which ensures the service will be running. You can change it to `stopped` to just install it but don't start it in this moment.
+
+##### `nrinfragent_service_enabled` (OPTIONAL)
+Specifies if the service will be enabled (start during boot).
+Defauts to `yes`, you can change it to `no` to prevent the service to automatically start on boot.
+
 ###### DEPRECATED
 
 Specify the license key. For backward compatibility. Use `license_key` in
