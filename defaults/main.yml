@@ -1,5 +1,7 @@
 ---
 nrinfraintegrations_state: "absent"
 nrinfragent_state: "latest"
+nrinfragent_service_enabled: "yes"
+nrinfragent_service_state: "started"
 nrinfragent_config:
   license_key: YOUR_LICENSE_KEY
