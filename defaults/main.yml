@@ -4,10 +4,4 @@ nrinfragent_service_enabled: "yes"
 nrinfragent_service_state: "started"
 nrinfragent_config:
   license_key: YOUR_LICENSE_KEY
-nrinfragent_integrations:
-  - { name: nri-nginx, state: "absent" }
-  - { name: nri-mysql, state: "absent" }
-  - { name: nri-cassandra, state: "absent" }
-  - { name: nri-apache, state: "absent" }
-  - { name: nri-redis, state: "absent" }
-  - { name: newrelic-infra-integrations, state: "absent" }
+nrinfragent_integrations: []
