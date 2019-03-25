@@ -7,3 +7,7 @@ nrinfragent_config:
 nrinfragent_integrations:
   - { name: nri-nginx, state: "absent" }
   - { name: nri-mysql, state: "absent" }
+  - { name: nri-cassandra, state: "absent" }
+  - { name: nri-apache, state: "absent" }
+  - { name: nri-redis, state: "absent" }
+  - { name: newrelic-infra-integrations, state: "absent" }
