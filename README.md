@@ -74,8 +74,6 @@ See the NewRelic documentation for current configuration options:
 
 ##### `nrinfragent_license_key`
 
-##### `nrinfraintegrations_state` (OPTIONAL)
-
 The state of the infrastructure integrations version pacakge. By default it's
 `absent`, which doesn't install the package; you can change it to `latest` or
 `present`.
