@@ -74,6 +74,13 @@ See the NewRelic documentation for current configuration options:
 
 ##### `nrinfragent_license_key`
 
+##### `nrinfragent_service_state` (OPTIONAL)
+Specifies the state of the newrelic-infra service after installation.
+Defaults to `started` which ensures the service will be running. You can change it to `stopped` to just install it but don't start it in this moment.
+
+##### `nrinfragent_service_enabled` (OPTIONAL)
+Specifies if the service will be enabled (start during boot).
+Defauts to `yes`, you can change it to `no` to prevent the service to automatically start on boot.
 ##### `nrinfragent_integrations` (OPTIONAL)
 
 List of the infrastructure integrations to be installed. Each package sould provide
