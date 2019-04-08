@@ -88,8 +88,9 @@
 
 - name: install integrations
   package:
-    name: "newrelic-infra-integrations"
-    state: "{{ nrinfraintegrations_state }}"
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ nrinfragent_integrations }}"
 
 - name: setup agent config
   template:

@@ -74,12 +74,6 @@ See the NewRelic documentation for current configuration options:
 
 ##### `nrinfragent_license_key`
 
-##### `nrinfraintegrations_state` (OPTIONAL)
-
-The state of the infrastructure integrations version pacakge. By default it's
-`absent`, which doesn't install the package; you can change it to `latest` or
-`present`.
-
 ##### `nrinfragent_service_state` (OPTIONAL)
 Specifies the state of the newrelic-infra service after installation.
 Defaults to `started` which ensures the service will be running. You can change it to `stopped` to just install it but don't start it in this moment.
@@ -87,6 +81,52 @@ Defaults to `started` which ensures the service will be running. You can change 
 ##### `nrinfragent_service_enabled` (OPTIONAL)
 Specifies if the service will be enabled (start during boot).
 Defauts to `yes`, you can change it to `no` to prevent the service to automatically start on boot.
+
+##### `nrinfragent_integrations` (OPTIONAL)
+
+Specifies the infrastructure integrations to be installed. The list of available
+integrations can be found [here][1].
+
+Each package sould provide the `name` and `state`. The integrations package name is located
+in the **Install and activate** section of the individual integrations docs. They use the
+following convention: name of the service with the `nri-` prefix (`nri-apache`, `nri-redis`, ...). 
+By default the state it's `absent`, which doesn't install the package; you can change it to
+`latest` or `present`.
+
+configuration e.g.
+
+```
+nrinfragent_integrations:
+  - { name: nri-nginx, state: "latest" }
+  - { name: nri-mysql, state: "absent" }
+```
+
+The source code for each integration is available on [newrelic's github organization][2].
+
+#### Removing newrelic-infra-integrations package and its bundled integrations
+
+**NOTE** *This only applies if you have the `newrelic-infra-integrations` 
+package installed*
+
+If you had installed the `newrelic-infra-integrations` package, 
+could be because you were using the previous versions of this module, or you 
+installed it some other way; and you want to do some cleanup by
+removing it or any of the following integrations (the ones that came bundle
+with it):
+
+- nri-redis
+- nri-cassandra
+- nri-apache
+- nri-nginx
+- nri-mysql
+
+You have to add `newrelic-infra-integrations` as the first item of the 
+`nrinfragent_integrations` with e desired state `absent`.
+
+```
+nrinfragent_integrations:
+  - { name: newrelic-infra-integrations, state: "absent" }
+```
 
 ###### DEPRECATED
 
@@ -116,3 +156,6 @@ Specify the license key. For backward compatibility. Use `license_key` in
   * 12
 
 Copyright (c) 2018 New Relic, Inc. All rights reserved.
+
+[1]: https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list
+[2]: https://github.com/search?l=&p=1&q=nri-+user%3Anewrelic&ref=advsearch&type=Repositories&utf8=%E2%9C%93
