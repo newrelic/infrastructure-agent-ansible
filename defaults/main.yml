@@ -5,6 +5,7 @@ nrinfragent_service_state: "started"
 nrinfragent_config:
   license_key: YOUR_LICENSE_KEY
 nrinfragent_integrations: []
+nrinfragent_custom_version: ""
 nrinfragent_custom_installation:
   "{{ nrinfragent_custom_bin_dir is defined
   or nrinfragent_custom_user is defined
@@ -12,4 +13,7 @@ nrinfragent_custom_installation:
   or nrinfragent_custom_pid_file is defined
   or nrinfragent_custom_agent_dir is defined
   or nrinfragent_custom_plugin_dir is defined
-  or nrinfragent_custom_log_file is defined }}"
+  or nrinfragent_custom_log_file is defined
+  or nrinfragent_custom_targz is defined
+  or nrinfragent_custom_version != ''}}"
+nrinfragent_custom_targz: "http://download.newrelic.com/infrastructure_agent/binaries/linux/amd64/newrelic-infra_linux_{{ nrinfragent_custom_version }}_amd64.tar.gz"
