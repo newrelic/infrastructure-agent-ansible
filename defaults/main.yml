@@ -5,3 +5,11 @@ nrinfragent_service_state: "started"
 nrinfragent_config:
   license_key: YOUR_LICENSE_KEY
 nrinfragent_integrations: []
+nrinfragent_custom_installation:
+  "{{ nrinfragent_custom_bin_dir is defined
+  or nrinfragent_custom_user is defined
+  or nrinfragent_custom_config_file is defined
+  or nrinfragent_custom_pid_file is defined
+  or nrinfragent_custom_agent_dir is defined
+  or nrinfragent_custom_plugin_dir is defined
+  or nrinfragent_custom_log_file is defined }}"
