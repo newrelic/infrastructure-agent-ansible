@@ -1,0 +1,8 @@
+---
+- name: check mandatory nrinfragent_custom_version
+  fail:
+    msg: "nrinfragent_custom_version variable must be defined (e.g. \"1.3.18\")"
+  when: nrinfragent_custom_version == ''
+- name: petar
+  fail:
+    msg: "catapunchinpun: {{ nrinfragent_custom_targz }}"
