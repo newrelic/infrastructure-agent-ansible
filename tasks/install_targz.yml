@@ -3,6 +3,32 @@
   fail:
     msg: "nrinfragent_custom_version variable must be defined (e.g. \"1.3.18\")"
   when: nrinfragent_custom_version == ''
-- name: petar
+- name: check mandatory nrinfragent_license_key
   fail:
-    msg: "catapunchinpun: {{ nrinfragent_custom_targz }}"
+    msg: "nrinfragent_license_key variable must be defined"
+  when: nrinfragent_license_key is undefined
+- name: downloading bundled agent file
+  get_url:
+    url: "{{ nrinfragent_custom_targz }}"
+    dest: "{{ nrinfragent_custom_tmpdir }}/newrelic-infra.tar.gz"
+    force: yes
+- name: uncompressing bundled agent file
+  unarchive:
+    src: "{{ nrinfragent_custom_tmpdir }}/newrelic-infra.tar.gz"
+    dest: "/opt"
+    remote_src: yes
+- name: running installer
+  command: ./installer.sh
+  args:
+    chdir: /opt/newrelic-infra
+  environment:
+    NRIA_BIN_DIR: "{{ nrinfragent_custom_bin_dir | default('') }}"
+    NRIA_MODE: "{{ nrinfragent_custom_mode | default('') }}"
+    NRIA_USER: "{{ nrinfragent_custom_user | default('') }}"
+    NRIA_CONFIG_FILE: "{{ nrinfragent_custom_config_file | default('') }}"
+    NRIA_PID_FILE: "{{ nrinfragent_custom_pid_file | default('') }}"
+    NRIA_AGENT_DIR: "{{ nrinfragent_custom_agent_dir | default('') }}"
+    NRIA_PLUGIN_DIR: "{{ nrinfragent_custom_plugin_dir | default('') }}"
+    NRIA_LOG_FILE: "{{ nrinfragent_custom_log_file | default('') }}"
+    NRIA_LICENSE_KEY: "{{ nrinfragent_license_key | default('') }}"
+  become: true
