@@ -5,7 +5,7 @@ nrinfragent_service_state: "started"
 nrinfragent_config:
   license_key: YOUR_LICENSE_KEY
 nrinfragent_integrations: []
-nrinfragent_custom_version: ""
+nrinfragent_custom_version: "latest"
 nrinfragent_custom_installation:
   "{{ nrinfragent_custom_bin_dir is defined
   or nrinfragent_custom_mode is defined
