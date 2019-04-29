@@ -8,6 +8,7 @@ nrinfragent_integrations: []
 nrinfragent_custom_version: ""
 nrinfragent_custom_installation:
   "{{ nrinfragent_custom_bin_dir is defined
+  or nrinfragent_custom_mode is defined
   or nrinfragent_custom_user is defined
   or nrinfragent_custom_config_file is defined
   or nrinfragent_custom_pid_file is defined
@@ -17,3 +18,5 @@ nrinfragent_custom_installation:
   or nrinfragent_custom_targz is defined
   or nrinfragent_custom_version != ''}}"
 nrinfragent_custom_targz: "http://download.newrelic.com/infrastructure_agent/binaries/linux/amd64/newrelic-infra_linux_{{ nrinfragent_custom_version }}_amd64.tar.gz"
+nrinfragent_custom_tmpdir: "/tmp"
+nrinfragent_custom_user: "root"
