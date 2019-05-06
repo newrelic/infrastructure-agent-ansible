@@ -1,26 +1,28 @@
 ---
+- name: validate agent tarball version
+  fail:
+    msg: "Required variable {{item}} has not been provided or it's null"
+  when: vars[item] is undefined or not vars[item]
+  loop:
+    - nrinfragent_custom_version
+    - nrinfragent_license_key
+
 - name: downloading bundled agent file
   get_url:
     url: "{{ nrinfragent_custom_targz }}"
-    dest: "{{ nrinfragent_custom_tmpdir }}/newrelic-infra.tar.gz"
-    force: yes
+    dest: "{{ nrinfragent_custom_download_dir }}/newrelic-infra_linux_{{ nrinfragent_custom_version }}_{{ nrinfragent_architecture }}.tar.gz"
+
+- name: create agent destination directory
+  file:
+    path: "{{ nrinfragent_custom_download_dir }}/newrelic_infra/linux_{{ nrinfragent_custom_version }}_{{ nrinfragent_architecture }}"
+    state: directory
+    recurse: true
+
 - name: uncompressing bundled agent file
   unarchive:
-    src: "{{ nrinfragent_custom_tmpdir }}/newrelic-infra.tar.gz"
-    dest: "/opt"
+    src: "{{ nrinfragent_custom_download_dir }}/newrelic-infra_linux_{{ nrinfragent_custom_version }}_{{ nrinfragent_architecture }}.tar.gz"
+    dest: "{{ nrinfragent_custom_download_dir }}/newrelic_infra/linux_{{ nrinfragent_custom_version }}_{{ nrinfragent_architecture }}/"
     remote_src: yes
-- name: running installer
-  command: ./installer.sh
-  args:
-    chdir: /opt/newrelic-infra
-  environment:
-    NRIA_BIN_DIR: "{{ nrinfragent_custom_bin_dir | default('') }}"
-    NRIA_MODE: "{{ nrinfragent_custom_mode | default('') }}"
-    NRIA_USER: "{{ nrinfragent_custom_user | default('') }}"
-    NRIA_CONFIG_FILE: "{{ nrinfragent_custom_config_file | default('') }}"
-    NRIA_PID_FILE: "{{ nrinfragent_custom_pid_file | default('') }}"
-    NRIA_AGENT_DIR: "{{ nrinfragent_custom_agent_dir | default('') }}"
-    NRIA_PLUGIN_DIR: "{{ nrinfragent_custom_plugin_dir | default('') }}"
-    NRIA_LOG_FILE: "{{ nrinfragent_custom_log_file | default('') }}"
-    NRIA_LICENSE_KEY: "{{ nrinfragent_license_key | default('') }}"
-  become: true
+    creates: "{{ nrinfragent_custom_download_dir }}/newrelic_infra/linux_{{ nrinfragent_custom_version }}_{{ nrinfragent_architecture }}/newrelic-infra/"
+  notify:
+    - running installer
