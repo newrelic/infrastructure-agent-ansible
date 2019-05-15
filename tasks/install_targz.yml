@@ -1,28 +1,28 @@
 ---
-- name: validate agent tarball version
+- name: validate agent tarball required variables
   fail:
-    msg: "Required variable {{item}} has not been provided or it's null"
+    msg: "Required variable {{ item }} has not been provided or it's null"
   when: vars[item] is undefined or not vars[item]
   loop:
-    - nrinfragent_custom_version
+    - nrinfragent_tarball_version
     - nrinfragent_license_key
 
 - name: downloading bundled agent file
   get_url:
-    url: "{{ nrinfragent_custom_targz }}"
-    dest: "{{ nrinfragent_custom_download_dir }}/newrelic-infra_linux_{{ nrinfragent_custom_version }}_{{ nrinfragent_architecture }}.tar.gz"
+    url: "{{ nrinfragent_tarball_url }}"
+    dest: "{{ nrinfragent_tarball_download_dir }}/newrelic-infra_linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}.tar.gz"
 
 - name: create agent destination directory
   file:
-    path: "{{ nrinfragent_custom_download_dir }}/newrelic_infra/linux_{{ nrinfragent_custom_version }}_{{ nrinfragent_architecture }}"
+    path: "{{ nrinfragent_tarball_download_dir }}/newrelic_infra/linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}"
     state: directory
     recurse: true
 
 - name: uncompressing bundled agent file
   unarchive:
-    src: "{{ nrinfragent_custom_download_dir }}/newrelic-infra_linux_{{ nrinfragent_custom_version }}_{{ nrinfragent_architecture }}.tar.gz"
-    dest: "{{ nrinfragent_custom_download_dir }}/newrelic_infra/linux_{{ nrinfragent_custom_version }}_{{ nrinfragent_architecture }}/"
+    src: "{{ nrinfragent_tarball_download_dir }}/newrelic-infra_linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}.tar.gz"
+    dest: "{{ nrinfragent_tarball_download_dir }}/newrelic_infra/linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}/"
     remote_src: yes
-    creates: "{{ nrinfragent_custom_download_dir }}/newrelic_infra/linux_{{ nrinfragent_custom_version }}_{{ nrinfragent_architecture }}/newrelic-infra/"
+    creates: "{{ nrinfragent_tarball_download_dir }}/newrelic_infra/linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}/newrelic-infra/"
   notify:
     - running installer

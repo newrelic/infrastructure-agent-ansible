@@ -1,8 +1,8 @@
 ---
-- name: custom installation from tar package
+- name: installation from tarball package
   import_tasks: install_targz.yml
-  when: nrinfragent_custom_installation|bool
+  when: nrinfragent_tarball_version is defined
 
 - name: install from standard distribution packages
   import_tasks: install_dist_pkgs.yml
-  when: not (nrinfragent_custom_installation|bool)
+  when: nrinfragent_tarball_version is undefined
