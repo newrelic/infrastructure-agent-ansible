@@ -3,3 +3,19 @@
 - name: restart newrelic-infra
   service: name=newrelic-infra state=restarted
   when: nrinfragent_service_state != "stopped"
+
+- name: running installer
+  command: ./installer.sh
+  args:
+    chdir: "/opt/newrelic_infra/linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}/newrelic-infra/"
+  environment:
+    NRIA_BIN_DIR: "{{ nrinfragent_tarball_bin_dir | default('') }}"
+    NRIA_MODE: "{{ nrinfragent_tarball_mode | default('') }}"
+    NRIA_USER: "{{ nrinfragent_tarball_user | default('') }}"
+    NRIA_CONFIG_FILE: "{{ nrinfragent_tarball_config_file | default('') }}"
+    NRIA_PID_FILE: "{{ nrinfragent_tarball_pid_file | default('') }}"
+    NRIA_AGENT_DIR: "{{ nrinfragent_tarball_agent_dir | default('') }}"
+    NRIA_PLUGIN_DIR: "{{ nrinfragent_tarball_plugin_dir | default('') }}"
+    NRIA_LOG_FILE: "{{ nrinfragent_tarball_log_file | default('') }}"
+    NRIA_LICENSE_KEY: "{{ nrinfragent_license_key | default('') }}"
+  become: true
