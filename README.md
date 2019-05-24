@@ -138,10 +138,11 @@ Specify the license key. For backward compatibility. Use `license_key` in
 
 ### Platforms
 
-* RHEL
-  * CentOS 7
-  * CentOS 6
-  * CentOS 5
+* RHEL/CentOS
+  * RHEL/CentOS 8
+  * RHEL/CentOS 7
+  * RHEL/CentOS 6
+  * RHEL/CentOS 5
 * Ubuntu
   * 18 Bionic
   * 16 Xenial
