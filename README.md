@@ -162,8 +162,8 @@ To release a new version to [Ansible Galaxy][3] follow this steps:
 
 * Update the [CHANGELOG.md](CHANGELOG.md)
 * Create a new Github release.
-* Publish it in Ansible Galaxy[3], if you don't have access to it, ask one of 
-  the owners.
+* Make sure the version is imported into [Ansible Galaxy][3], if there is any issue, ask one of 
+  the project owners.
 
 Copyright (c) 2018 New Relic, Inc. All rights reserved.
 
