@@ -121,7 +121,7 @@ with it):
 - nri-mysql
 
 You have to add `newrelic-infra-integrations` as the first item of the 
-`nrinfragent_integrations` with e desired state `absent`.
+`nrinfragent_integrations` with the desired state `absent`.
 
 ```
 nrinfragent_integrations:
@@ -156,7 +156,17 @@ Specify the license key. For backward compatibility. Use `license_key` in
 * SUSE Linux Enterprise
   * 12
 
+# Release to Ansible Galaxe
+
+To release a new version to [Ansible Galaxy][3] follow this steps:
+
+* Update the [CHANGELOG.md](CHANGELOG.md)
+* Create a new Github release.
+* Publish it in Ansible Galaxy[3], if you don't have access to it, ask one of 
+  the owners.
+
 Copyright (c) 2018 New Relic, Inc. All rights reserved.
 
 [1]: https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list
 [2]: https://github.com/search?l=&p=1&q=nri-+user%3Anewrelic&ref=advsearch&type=Repositories&utf8=%E2%9C%93
+[3]: https://galaxy.ansible.com/newrelic/newrelic-infra

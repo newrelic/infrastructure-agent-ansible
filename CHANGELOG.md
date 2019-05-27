@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
+## 0.8.0 (2019-05-27)
+
+IMPROVEMENTS:
+
+* Add support for installing the agent in different linux architecture from the
+  tarballs. For this purppose a new attribute was added `nrinfragent_tarball_version`.
+
 ## 0.7.0 (2019-04-08)
 
 IMPROVEMENTS:
