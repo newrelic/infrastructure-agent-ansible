@@ -1,9 +1,9 @@
 ---
-- name: Confirm RedHat lsb util is present
+- name: confirm RedHat lsb util is present
   yum: name=redhat-lsb-core state=present
   when: nrinfragent_os_name|lower == 'redhat'
 
-- name: Reread ansible_lsb facts
+- name: reread ansible_lsb facts
   setup: filter=ansible_lsb*
   when: nrinfragent_os_name|lower == 'redhat'
 
@@ -25,7 +25,7 @@
     state: present
   when: nrinfragent_os_name|lower == 'suse'
 
-- name: Confirm Debian apt-transport-https is present
+- name: confirm Debian apt-transport-https is present
   apt:
     name: apt-transport-https
     state: present
