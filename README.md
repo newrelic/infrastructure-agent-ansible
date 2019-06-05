@@ -156,7 +156,7 @@ Specify the license key. For backward compatibility. Use `license_key` in
 * SUSE Linux Enterprise
   * 12
 
-# Release to Ansible Galaxe
+# Release to Ansible Galaxy
 
 To release a new version to [Ansible Galaxy][3] follow this steps:
 
