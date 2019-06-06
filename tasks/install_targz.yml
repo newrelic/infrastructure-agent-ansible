@@ -5,7 +5,6 @@
   when: vars[item] is undefined or not vars[item]
   loop:
     - nrinfragent_tarball_version
-    - nrinfragent_license_key
 
 - name: downloading bundled agent file
   get_url:
