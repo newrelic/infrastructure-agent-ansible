@@ -72,8 +72,6 @@ Used to populate agent configuration. At a minimum you must provide `license_key
 See the NewRelic documentation for current configuration options:
 [https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent](https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent)
 
-##### `nrinfragent_license_key`
-
 ##### `nrinfragent_service_state` (OPTIONAL)
 Specifies the state of the newrelic-infra service after installation.
 Defaults to `started` which ensures the service will be running. You can change it to `stopped` to just install it but don't start it in this moment.
