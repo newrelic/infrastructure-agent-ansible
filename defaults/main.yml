@@ -5,6 +5,7 @@ nrinfragent_service_state: "started"
 nrinfragent_config:
   license_key: YOUR_LICENSE_KEY
 nrinfragent_integrations: []
+#nrinfragent_tarball_version: "1.3.27"
 nrinfragent_tarball_url: "http://download.newrelic.com/infrastructure_agent/binaries/linux/{{ nrinfragent_architecture }}/newrelic-infra_linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}.tar.gz"
 nrinfragent_tarball_download_dir: "/opt"
 nrinfragent_tarball_user: "root"

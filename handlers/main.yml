@@ -3,11 +3,3 @@
 - name: restart newrelic-infra
   service: name=newrelic-infra state=restarted
   when: nrinfragent_service_state != "stopped"
-
-- name: running installer
-  command: ./installer.sh
-  args:
-    chdir: "/opt/newrelic_infra/linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}/newrelic-infra/"
-  environment:
-    NRIA_LICENSE_KEY: "{{ nrinfragent_config['license_key'] | default('') }}"
-  become: true
