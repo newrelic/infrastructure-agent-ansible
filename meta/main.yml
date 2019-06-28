@@ -26,7 +26,11 @@ galaxy_info:
         - trusty
         - xenial
         - bionic
-  categories:
-    - cloud:ec2
+    - name: Windows
+      versions:
+        - all
+  galaxy_tags:
+    - cloud
+    - ec2
     - monitoring
     - system

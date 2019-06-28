@@ -1,7 +1,15 @@
 ---
 
 - name: restart newrelic-infra
-  service: name=newrelic-infra state=restarted
+  service:
+    name: newrelic-infra
+    state: restarted
+  when: nrinfragent_service_state != "stopped"
+
+- name: restart newrelic-infra (windows)
+  win_service:
+    name: newrelic-infra
+    state: restarted
   when: nrinfragent_service_state != "stopped"
 
 - name: running installer
