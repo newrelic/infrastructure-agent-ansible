@@ -5,7 +5,6 @@
   when: vars[item] is undefined or not vars[item]
   loop:
     - nrinfragent_tarball_version
-    - nrinfragent_license_key
 
 - name: downloading bundled agent file
   get_url:
@@ -24,5 +23,26 @@
     dest: "{{ nrinfragent_tarball_download_dir }}/newrelic_infra/linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}/"
     remote_src: true
     creates: "{{ nrinfragent_tarball_download_dir }}/newrelic_infra/linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}/newrelic-infra/"
-  notify:
-    - running installer
+  register: archive_contents
+
+- name: running installer
+  command: ./installer.sh
+  args:
+    chdir: "/opt/newrelic_infra/linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}/newrelic-infra/"
+  environment:
+    NRIA_BIN_DIR: "{{ nrinfragent_tarball_bin_dir | default('') }}"
+    NRIA_MODE: "{{ nrinfragent_tarball_mode | default('') }}"
+    NRIA_USER: "{{ nrinfragent_tarball_user | default('') }}"
+    NRIA_CONFIG_FILE: "{{ nrinfragent_tarball_config_file | default('') }}"
+
+    NRIA_LICENSE_KEY: "{{ nrinfragent_config['license_key'] | default('') }}"
+  become: true
+  when: archive_contents is defined and archive_contents.changed == True
+
+- name: save config options to file
+  lineinfile:
+    'dest=/etc/newrelic-infra.yml
+    regexp="^{{ item.key }}: "
+    line="{{ item.key }}: {{ item.value }}"'
+  with_items: "{{ lookup('dict', nrinfragent_config) }}"
+  notify: restart newrelic-infra
