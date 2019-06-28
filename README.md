@@ -72,8 +72,6 @@ Used to populate agent configuration. At a minimum you must provide `license_key
 See the NewRelic documentation for current configuration options:
 [https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent](https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent)
 
-##### `nrinfragent_license_key`
-
 ##### `nrinfragent_choco_version` (OPTIONAL)
 Specifies the version of newrelice infra chocolatey package to install on Windows. Can be used to pin the version or upgrade the agent.
 
