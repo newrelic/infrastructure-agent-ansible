@@ -74,6 +74,9 @@ See the NewRelic documentation for current configuration options:
 
 ##### `nrinfragent_license_key`
 
+##### `nrinfragent_choco_version` (OPTIONAL)
+Specifies the version of newrelice infra chocolatey package to install on Windows. Can be used to pin the version or upgrade the agent.
+
 ##### `nrinfragent_service_state` (OPTIONAL)
 Specifies the state of the newrelic-infra service after installation.
 Defaults to `started` which ensures the service will be running. You can change it to `stopped` to just install it but don't start it in this moment.
@@ -89,7 +92,7 @@ integrations can be found [here][1].
 
 Each package sould provide the `name` and `state`. The integrations package name is located
 in the **Install and activate** section of the individual integrations docs. They use the
-following convention: name of the service with the `nri-` prefix (`nri-apache`, `nri-redis`, ...). 
+following convention: name of the service with the `nri-` prefix (`nri-apache`, `nri-redis`, ...).
 By default the state it's `absent`, which doesn't install the package; you can change it to
 `latest` or `present`.
 
@@ -105,11 +108,11 @@ The source code for each integration is available on [newrelic's github organiza
 
 #### Removing newrelic-infra-integrations package and its bundled integrations
 
-**NOTE** *This only applies if you have the `newrelic-infra-integrations` 
+**NOTE** *This only applies if you have the `newrelic-infra-integrations`
 package installed*
 
-If you had installed the `newrelic-infra-integrations` package, 
-could be because you were using the previous versions of this module, or you 
+If you had installed the `newrelic-infra-integrations` package,
+could be because you were using the previous versions of this module, or you
 installed it some other way; and you want to do some cleanup by
 removing it or any of the following integrations (the ones that came bundle
 with it):
@@ -120,7 +123,7 @@ with it):
 - nri-nginx
 - nri-mysql
 
-You have to add `newrelic-infra-integrations` as the first item of the 
+You have to add `newrelic-infra-integrations` as the first item of the
 `nrinfragent_integrations` with the desired state `absent`.
 
 ```
@@ -155,6 +158,8 @@ Specify the license key. For backward compatibility. Use `license_key` in
   * 7 Wheezy
 * SUSE Linux Enterprise
   * 12
+* Windows
+  * All
 
 # Release to Ansible Galaxy
 
@@ -162,7 +167,7 @@ To release a new version to [Ansible Galaxy][3] follow this steps:
 
 * Update the [CHANGELOG.md](CHANGELOG.md)
 * Create a new Github release.
-* Make sure the version is imported into [Ansible Galaxy][3], if there is any issue, ask one of 
+* Make sure the version is imported into [Ansible Galaxy][3], if there is any issue, ask one of
   the project owners.
 
 Copyright (c) 2018 New Relic, Inc. All rights reserved.
