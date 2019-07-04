@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
+## 0.9.0 (2019-06-27)
+
+IMPROVEMENTS:
+
+* Add support for Windows
+
 ## 0.8.0 (2019-05-27)
 
 IMPROVEMENTS:
@@ -13,12 +19,12 @@ IMPROVEMENTS:
 
 IMPROVEMENTS:
 
-* Add support for installing individual integrations. The role 
-  switches from the deprecated `newrelic-infra-integrations` package (which 
-  only included 5 integrations), to the `nri-*` individual integration 
+* Add support for installing individual integrations. The role
+  switches from the deprecated `newrelic-infra-integrations` package (which
+  only included 5 integrations), to the `nri-*` individual integration
   packages. The `nrinfraintegrations_state` variable was removed, a new
-  `nrinfragent_integrations` variable was added for specifying individual 
-  integrations. 
+  `nrinfragent_integrations` variable was added for specifying individual
+  integrations.
 
 ## 0.6.1 (2019-01-09)
 

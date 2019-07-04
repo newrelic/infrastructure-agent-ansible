@@ -21,7 +21,7 @@
   unarchive:
     src: "{{ nrinfragent_tarball_download_dir }}/newrelic-infra_linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}.tar.gz"
     dest: "{{ nrinfragent_tarball_download_dir }}/newrelic_infra/linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}/"
-    remote_src: yes
+    remote_src: true
     creates: "{{ nrinfragent_tarball_download_dir }}/newrelic_infra/linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}/newrelic-infra/"
   register: archive_contents
 

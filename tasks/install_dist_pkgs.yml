@@ -1,10 +1,13 @@
 ---
-- name: confirm RedHat lsb util is present
-  yum: name=redhat-lsb-core state=present
+- name: confirm redhat lsb util is present
+  yum:
+    name: redhat-lsb-core
+    state: present
   when: nrinfragent_os_name|lower == 'redhat'
 
 - name: reread ansible_lsb facts
-  setup: filter=ansible_lsb*
+  setup:
+    filter: ansible_lsb*
   when: nrinfragent_os_name|lower == 'redhat'
 
 - name: setup agent repo keys
@@ -85,12 +88,22 @@
   package:
     name: "newrelic-infra"
     state: "{{ nrinfragent_state }}"
+  when: nrinfragent_os_name|lower != 'windows'
 
 - name: install integrations
   package:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   with_items: "{{ nrinfragent_integrations }}"
+  when: nrinfragent_os_name|lower != 'windows'
+
+- name: install agent (windows)
+  win_chocolatey:
+    name: newrelic-infra
+    state: "{{ nrinfragent_state }}"
+    version: "{{ nrinfragent_choco_version | default(omit) }}"
+  when:
+    - nrinfragent_os_name|lower == 'windows'
 
 - name: setup agent config
   template:
@@ -98,11 +111,33 @@
     dest: /etc/newrelic-infra.yml
     mode: 0600
   notify: restart newrelic-infra
-  when: nrinfragent_state != "absent"
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name|lower != 'windows'
+
+- name: setup agent config
+  win_template:
+    src: newrelic-infra.yml.j2
+    dest: '%ProgramFiles%\New Relic\newrelic-infra\newrelic-infra.yml'
+  notify: restart newrelic-infra (windows)
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name|lower == 'windows'
 
 - name: setup agent service
   service:
     name: newrelic-infra
     state: "{{ nrinfragent_service_state }}"
     enabled: "{{ nrinfragent_service_enabled }}"
-  when: nrinfragent_state != "absent"
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name|lower != 'windows'
+
+- name: setup agent service
+  win_service:
+    name: newrelic-infra
+    state: "{{ nrinfragent_service_state }}"
+    enabled: "{{ nrinfragent_service_enabled }}"
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name|lower == 'windows'
