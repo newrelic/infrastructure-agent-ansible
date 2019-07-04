@@ -158,6 +158,10 @@ Specify the license key. For backward compatibility. Use `license_key` in
   * 12
 * Windows
   * All
+  * _Disclaimer_: the Windows support is a third-party contribution that depends on the
+    [newrelic-infra Chocolatey package](https://chocolatey.org/packages/newrelic-infra), which
+    is maintained by @ripclawffb and @xandrellas. It is distributed without any guarantee
+    nor support from New Relic.
 
 # Release to Ansible Galaxy
 
