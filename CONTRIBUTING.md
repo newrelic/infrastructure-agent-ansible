@@ -44,3 +44,4 @@ Once Molecule is installed, use `molecule test` to run the tests.
 * [Ruben Hervas](https://github.com/xino12)
 * [Johannes Hartmann](https://github.com/jojo221119)
 * [Alejandro Do Nascimento](https://github.com/alejandrodnm)
+* [Asif Shaikh](https://github.com/ripclawffb)
