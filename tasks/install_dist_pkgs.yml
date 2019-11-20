@@ -115,7 +115,7 @@
     - nrinfragent_state != "absent"
     - nrinfragent_os_name|lower != 'windows'
 
-- name: setup agent config
+- name: setup agent config (windows)
   win_template:
     src: newrelic-infra.yml.j2
     dest: '%ProgramFiles%\New Relic\newrelic-infra\newrelic-infra.yml'
@@ -133,11 +133,11 @@
     - nrinfragent_state != "absent"
     - nrinfragent_os_name|lower != 'windows'
 
-- name: setup agent service
+- name: setup agent service (windows)
   win_service:
     name: newrelic-infra
     state: "{{ nrinfragent_service_state }}"
-    enabled: "{{ nrinfragent_service_enabled }}"
+    start_mode: "{{ nrinfragent_service_enabled }}"
   when:
     - nrinfragent_state != "absent"
     - nrinfragent_os_name|lower == 'windows'

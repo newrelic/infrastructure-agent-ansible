@@ -81,7 +81,7 @@ Defaults to `started` which ensures the service will be running. You can change 
 
 ##### `nrinfragent_service_enabled` (OPTIONAL)
 Specifies if the service will be enabled (start during boot).
-Defauts to `yes`, you can change it to `no` to prevent the service to automatically start on boot.
+Defauts to `yes`, you can change it to `no` to prevent the service to automatically start on boot. For windows hosts, it needs to be set to `disabled` to prevent automatic start on boot.
 
 ##### `nrinfragent_integrations` (OPTIONAL)
 
