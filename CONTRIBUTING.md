@@ -1,47 +1,30 @@
 # Contributing
 
-Contributions are more than welcome. Bug reports with specific reproduction steps are great. If you have a code contribution you'd like to make, open a pull request with suggested code.
+Contributions are always welcome. Before contributing please read the
+[code of conduct](./CODE_OF_CONDUCT.md) and [search the issue tracker](issues); your issue may have already been discussed or fixed in `main`. To contribute,
+[fork](https://help.github.com/articles/fork-a-repo/) this repository, commit your changes, and [send a Pull Request](https://help.github.com/articles/using-pull-requests/).
 
-Note that PR's and issues are reviewed every ~2 weeks. If your PR or issue is critical in nature, please reflect that in the description so that it receives faster attention.
+Note that our [code of conduct](./CODE_OF_CONDUCT.md) applies to all platforms and venues related to this project; please follow it in all your interactions with the project and its participants.
 
-Pull requests should:
+## Feature Requests
 
-* Clearly state their intent in the title
-* Have a description that explains the need for the changes
-* Include tests! (Make sure the scripts complete in your test environment)
-* Not break the public API
-* Add yourself to the CONTRIBUTING file
+Feature requests should be submitted in the [Issue tracker](../../issues), with a description of the expected behavior & use case, where they’ll remain closed until sufficient interest, [e.g. :+1: reactions](https://help.github.com/articles/about-discussions-in-issues-and-pull-requests/), has been [shown by the community](../../issues?q=label%3A%22votes+needed%22+sort%3Areactions-%2B1-desc).
+Before submitting an Issue, please search for similar ones in the
+[closed issues](../../issues?q=is%3Aissue+is%3Aclosed+label%3Aenhancement).
 
-By contributing to this project you agree that you are granting New Relic a non-exclusive, non-revokable, no-cost license to use the code, algorithms, patents, and ideas in that code in our products if we so choose. You also agree the code is provided as-is and you provide no warranties as to its fitness or correctness for any purpose
+## Pull Requests
 
-Copyright (c) 2017 New Relic, Inc. All rights reserved.
+1. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+2. Increase the version numbers in any examples files and the README.md to the new version that this Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
+3. You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
-## Testing
+## Contributor License Agreement
 
-[Molecule](https://molecule.readthedocs.io/) can be used run integration tests
-on the module. The default driver uses [Docker](https://www.docker.com/community-edition)
+Keep in mind that when you submit your Pull Request, you'll need to sign the CLA via the click-through using CLA-Assistant. If you'd like to execute our corporate CLA, or if you have any questions, please drop us an email at opensource@newrelic.com.
 
-To install and run Molecule run:
+For more information about CLAs, please check out Alex Russell’s excellent post,
+[“Why Do I Need to Sign This?”](https://infrequently.org/2008/06/why-do-i-need-to-sign-this/).
 
-```bash
-virtualenv --no-site-packages .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
+## Slack
 
-Once Molecule is installed, use `molecule test` to run the tests.
-
-## Contributors
-
-* [Abed Kassis](https://github.com/abedk)
-* [Alexander Merkulov](https://github.com/merqlove)
-* [Brent Walker](https://github.com/tacchino)
-* [danvaida](https://github.com/danvaida)
-* [Koen Punt](https://github.com/koenpunt)
-* [Nathan Smith](https://github.com/smith)
-* [Rutger de Knijf](https://github.com/rdeknijf)
-* [Ryan Pineo](https://github.com/ryanpineo)
-* [Ruben Hervas](https://github.com/xino12)
-* [Johannes Hartmann](https://github.com/jojo221119)
-* [Alejandro Do Nascimento](https://github.com/alejandrodnm)
-* [Asif Shaikh](https://github.com/ripclawffb)
+We host a public Slack with a dedicated channel for contributors and maintainers of open source projects hosted by New Relic.  If you are contributing to this project, you're welcome to request access to the #oss-contributors channel in the newrelicusers.slack.com workspace.  To request access, see https://newrelicusers-signup.herokuapp.com/.
