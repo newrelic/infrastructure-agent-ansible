@@ -1,11 +1,10 @@
 [![Community Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
 
-# New Relic infrastructure agent Ansible role [![Build Status](https://travis-ci.org/newrelic/infrastructure-agent-ansible.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-ansible)
+# Ansible role for the New Relic infrastructure agent [![Build Status](https://travis-ci.org/newrelic/infrastructure-agent-ansible.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-ansible)
 
 This role installs and configures the New Relic infrastructure agent.
 
-Note that this is a simple role and is intended for you to use as a starting
-place for your own customized workflow.
+Note that this is a simple role and is intended for you to use as a starting place for your own customized workflow.
 
 ## Installing and using the Ansible role for New Relic infrastructure
 
