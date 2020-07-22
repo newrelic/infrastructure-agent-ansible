@@ -7,20 +7,22 @@ This role installs and configures the New Relic infrastructure agent.
 Note that this is a simple role and is intended for you to use as a starting
 place for your own customized workflow.
 
-## Installing and using New Relic infrastructure agent Ansible role
+## Installing and using the Ansible role for New Relic infrastructure
 
-### What newrelic-infra affects
+### What `newrelic-infra` affects
 
-* Adds the New Relic Infrastructure package repository source
-* Installs and configures the New Relic Infrastructure agent
+* Adds the New Relic Infrastructure package repository source.
+* Installs and configures the New Relic Infrastructure agent.
 
-### Beginning with New Relic infrastructure agent Ansible role
+### Getting started with the role
 
-Include the role in your playbook. Customize the required variables.
+Start by including the role in your playbook and customize the required variables.
 
-All typical interactions with newrelic-infra will be done through role configuration.
+All typical interactions with `newrelic-infra` are done through role configuration.
 
-### Installing the Infrastructure agent using the Ansible role
+### Install the infrastructure agent using the role
+
+Use the following snippet to install the agent.
 
 ```yaml
 ---
@@ -36,61 +38,52 @@ All typical interactions with newrelic-infra will be done through role configura
 
 ## Reference
 
-### Role Configuration
+### Role configuration
 
 #### Variables
 
-##### `nrinfragent_state` (OPTIONAL)
+##### `nrinfragent_config` (Required)
+
+Used to populate the agent configuration. At a minimum you must provide `license_key`. For current configuration options, see the [New Relic documentation](https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent).
+
+##### `nrinfragent_state` (Optional)
 
 Describes what you want to do with the agent:
 
 * `'latest'` - [default] install the latest version of the agent. Also `present`.
 * `'absent'` - Uninstall the agent.
 
-##### `nrinfragent_os_name` (OPTIONAL)
+##### `nrinfragent_os_name` (Optional)
 
-Specifies the target OS that the Infrastructure agent will be installed on.
-Defaults to `ansible_os_family`. See list in the `meta/main.yml` file for latest list that is supported.
+Specifies the target OS that the infrastructure agent will be installed on. Defaults to `ansible_os_family`. For a list of supported operating systems, see the `meta/main.yml` file.
 
-##### `nrinfragent_os_version` (OPTIONAL)
+##### `nrinfragent_os_version` (Optional)
 
-Specifies the OS version of the installer package needed for this machine.
-Defaults to `ansible_lsb.major_release`. Mostly used for `RedHat` family OSs. See list in the `meta/main.yml` file for latest list.
+Specifies the OS version of the installer package needed for this machine. Defaults to `ansible_lsb.major_release`. Mostly used for `RedHat` family OSs. For a list of supported operating systems, see the `meta/main.yml` file.
 
-##### `nrinfragent_os_codename` (OPTIONAL)
+##### `nrinfragent_os_codename` (Optional)
 
-Specifies the OS codename of the installer package needed for this machine.
-Defaults to `ansible_lsb.codename`. Mostly used for `Debian` family OSs. See list in the `meta/main.yml` file for latest list.
+Specifies the OS codename of the installer package needed for this machine. Defaults to `ansible_lsb.codename`. Mostly used for `Debian` family OSs. For a list of supported operating systems, see the `meta/main.yml` file.
 
-##### `nrinfragent_config` (REQUIRED)
+##### `nrinfragent_choco_version` (Optional)
 
-Used to populate agent configuration. At a minimum you must provide `license_key`.
-See the NewRelic documentation for current configuration options:
-[https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent](https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/configuration/configure-infrastructure-agent)
+Specifies the version of the Chocolatey package to install `newrelic-infra` on Windows. Can be used to pin the version or upgrade the agent.
 
-##### `nrinfragent_choco_version` (OPTIONAL)
-Specifies the version of newrelice infra chocolatey package to install on Windows. Can be used to pin the version or upgrade the agent.
+##### `nrinfragent_service_state` (Optional)
 
-##### `nrinfragent_service_state` (OPTIONAL)
-Specifies the state of the newrelic-infra service after installation.
-Defaults to `started` which ensures the service will be running. You can change it to `stopped` to just install it but don't start it in this moment.
+Specifies the state of the `newrelic-infra` service after install. Defaults to `started`, which ensures the service will be running. You can change it to `stopped` to just install it, without starting it right away.
 
-##### `nrinfragent_service_enabled` (OPTIONAL)
-Specifies if the service will be enabled (start during boot).
-Defauts to `yes`, you can change it to `no` to prevent the service to automatically start on boot.
+##### `nrinfragent_service_enabled` (Optional)
 
-##### `nrinfragent_integrations` (OPTIONAL)
+Specifies if the service will start during boot. Defauts to `yes`; change it to `no` to prevent the service to automatically start on boot.
 
-Specifies the infrastructure integrations to be installed. The list of available
-integrations can be found [here][1].
+##### `nrinfragent_integrations` (Optional)
 
-Each package sould provide the `name` and `state`. The integrations package name is located
-in the **Install and activate** section of the individual integrations docs. They use the
-following convention: name of the service with the `nri-` prefix (`nri-apache`, `nri-redis`, ...).
-By default the state it's `absent`, which doesn't install the package; you can change it to
-`latest` or `present`.
+Specifies the infrastructure integrations to be installed. The list of available integrations can be found [here][1].
 
-configuration e.g.
+Each package should provide its `name` and `state`. The integrations package name is located in the **Install and activate** section of the [individual integrations docs](https://docs.newrelic.com/docs/integrations). As a convention, their name is the name of the service with the `nri-` prefix (`nri-apache`, `nri-redis`, etc.).
+
+By default the state it's `absent`, which doesn't install the package; you can change it to `latest` or `present`. For example:
 
 ```
 nrinfragent_integrations:
@@ -98,40 +91,24 @@ nrinfragent_integrations:
   - { name: nri-mysql, state: "absent" }
 ```
 
-The source code for each integration is available on [newrelic's github organization][2].
+The source code for each integration is available on [newrelic's GitHub organization][2].
 
-#### Removing newrelic-infra-integrations package and its bundled integrations
+#### Removing the `newrelic-infra-integrations` package and its bundled integrations
 
-**NOTE** *This only applies if you have the `newrelic-infra-integrations`
-package installed*
+> This only applies if you have the `newrelic-infra-integrations` package installed
 
-If you had installed the `newrelic-infra-integrations` package,
-could be because you were using the previous versions of this module, or you
-installed it some other way; and you want to do some cleanup by
-removing it or any of the following integrations (the ones that came bundle
-with it):
-
-- nri-redis
-- nri-cassandra
-- nri-apache
-- nri-nginx
-- nri-mysql
-
-You have to add `newrelic-infra-integrations` as the first item of the
-`nrinfragent_integrations` with the desired state `absent`.
+If you want to remove the `newrelic-infra-integrations` package or any of the bundled integrations (nri-redis, nri-cassandra, nri-apache, nri-nginx, nri-mysql), add `newrelic-infra-integrations` as the first item of `nrinfragent_integrations` with the state `absent`.
 
 ```
 nrinfragent_integrations:
   - { name: newrelic-infra-integrations, state: "absent" }
 ```
 
-###### DEPRECATED
+###### Deprecated
 
-Specify the license key. For backward compatibility. Use `license_key` in
-`nrinfragent_config` instead. If both are specified the one in
-`nrinfragent_config` will be used.
+You can specify the license key for backward compatibility. We recommend that you use `license_key` in `nrinfragent_config` instead. If both are specified, the one in `nrinfragent_config` takes precedence.
 
-## Limitations
+## Compatibility
 
 ### Platforms
 
@@ -154,19 +131,16 @@ Specify the license key. For backward compatibility. Use `license_key` in
   * 12
 * Windows
   * All
-  * _Disclaimer_: the Windows support is a third-party contribution that depends on the
-    [newrelic-infra Chocolatey package](https://chocolatey.org/packages/newrelic-infra), which
-    is maintained by @ripclawffb and @xandrellas. It is distributed without any guarantee
-    nor support from New Relic.
+  * _Disclaimer_: Windows support depends on the third-party [newrelic-infra Chocolatey package](https://chocolatey.org/packages/newrelic-infra), which
+    is maintained by @ripclawffb and @xandrellas. It is distributed without any guarantee or support from New Relic.
 
 ### Release to Ansible Galaxy
 
 To release a new version to [Ansible Galaxy][3] follow this steps:
 
 * Update the [CHANGELOG.md](CHANGELOG.md)
-* Create a new Github release.
-* Make sure the version is imported into [Ansible Galaxy][3], if there is any issue, ask one of
-  the project owners.
+* Create a new GitHub release.
+* Make sure the version is imported into [Ansible Galaxy][3], if there is any issue, ask one of the project owners.
 
 ## Support
 
