@@ -1,4 +1,4 @@
-[![Community Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
+[![New Relic Community Plus header](https://raw.githubusercontent.com/newrelic/open-source-office/master/examples/categories/images/Community_Plus.png)](https://opensource.newrelic.com/oss-category/#community-plus)
 
 # Ansible role for the New Relic infrastructure agent [![Build Status](https://travis-ci.org/newrelic/infrastructure-agent-ansible.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-ansible)
 
@@ -6,12 +6,12 @@ This role installs and configures the New Relic infrastructure agent.
 
 Note that this is a simple role and is intended for you to use as a starting place for your own customized workflow.
 
-## Installing and using the Ansible role for New Relic infrastructure
+## Installing and using the Ansible role
 
 ### What `newrelic-infra` affects
 
-* Adds the New Relic Infrastructure package repository source.
-* Installs and configures the New Relic Infrastructure agent.
+* Adds New Relic's package repository source.
+* Installs and configures the New Relic infrastructure agent.
 
 ### Getting started with the role
 
@@ -143,18 +143,45 @@ To release a new version to [Ansible Galaxy][3] follow this steps:
 
 ## Support
 
-New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorers Hub. You can find this project's topic/threads here:
+Should you need assistance with New Relic products, you are in good hands with several support diagnostic tools and support channels.
 
-https://discuss.newrelic.com/c/support-products-agents/new-relic-infrastructure
+If the issue has been confirmed as a bug or is a feature request, file a GitHub issue.
 
+**Support Channels**
 
-## Contributing
+* [New Relic Documentation](https://docs.newrelic.com): Comprehensive guidance for using our platform
+* [New Relic Community](https://discuss.newrelic.com/c/support-products-agents/new-relic-infrastructure): The best place to engage in troubleshooting questions
+* [New Relic Developer](https://developer.newrelic.com/): Resources for building a custom observability applications
+* [New Relic University](https://learn.newrelic.com/): A range of online training for New Relic users of every level
+* [New Relic Technical Support](https://support.newrelic.com/) 24/7/365 ticketed support. Read more about our [Technical Support Offerings](https://docs.newrelic.com/docs/licenses/license-information/general-usage-licenses/support-plan).
 
-We encourage contributions to improve New Relic infrastructure agent Ansible role! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
-If you have any questions, or to execute our corporate CLA, required if your contribution is on behalf of a company,  please drop us an email at opensource@newrelic.com.
+## Privacy
+
+At New Relic we take your privacy and the security of your information seriously, and are committed to protecting your information. We must emphasize the importance of not sharing personal data in public forums, and ask all users to scrub logs and diagnostic information for sensitive information, whether personal, proprietary, or otherwise.
+
+We define “Personal Data” as any information relating to an identified or identifiable individual, including, for example, your name, phone number, post code or zip code, Device ID, IP address, and email address.
+
+For more information, review [New Relic’s General Data Privacy Notice](https://newrelic.com/termsandconditions/privacy).
+
+## Contribute
+
+We encourage your contributions to improve this project! Keep in mind that when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
+
+If you have any questions, or to execute our corporate CLA (which is required if your contribution is on behalf of a company), drop us an email at opensource@newrelic.com.
+
+**A note about vulnerabilities**
+
+As noted in our [security policy](../../security/policy), New Relic is committed to the privacy and security of our customers and their data. We believe that providing coordinated disclosure by security researchers and engaging with the security community are important means to achieve our security goals.
+
+If you believe you have found a security vulnerability in this project or any of New Relic's products or websites, we welcome and greatly appreciate you reporting it to New Relic through [HackerOne](https://hackerone.com/newrelic).
+
+If you would like to contribute to this project, review [these guidelines](./CONTRIBUTING.md).
+
+To all contributors, we thank you!  Without your contribution, this project would not be what it is today.
 
 ## License
-New Relic infrastructure agent Ansible role is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
+
+infrastructure-agent-ansible is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
 
 [1]: https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list
 [2]: https://github.com/search?l=&p=1&q=nri-+user%3Anewrelic&ref=advsearch&type=Repositories&utf8=%E2%9C%93
