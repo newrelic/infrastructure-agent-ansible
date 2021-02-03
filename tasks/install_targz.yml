@@ -37,7 +37,7 @@
 
     NRIA_LICENSE_KEY: "{{ nrinfragent_config['license_key'] | default('') }}"
   become: true
-  when: archive_contents is defined and archive_contents.changed == True
+  when: archive_contents is defined and archive_contents.changed
 
 - name: save config options to file
   lineinfile:
