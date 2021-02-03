@@ -137,7 +137,7 @@
   win_service:
     name: newrelic-infra
     state: "{{ nrinfragent_service_state }}"
-    start_mode: "{{ ( when nrinfragent_service_enabled ) | ternary('auto','manual') }}"
+    start_mode: "{{ nrinfragent_service_enabled | ternary('auto','manual') }}"
   when:
     - nrinfragent_state != "absent"
     - nrinfragent_os_name|lower == 'windows'
