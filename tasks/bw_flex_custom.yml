@@ -1,0 +1,23 @@
+---
+
+- name: Copying chrony flex file
+  copy:
+    src:   "files/flex/clock-drift-chrony.yml"
+    dest:  "{{ bw_ansible_role_nrifraagent_integration_path }}/clock-drift-chrony.yml"
+    owner: 'root'
+    group: 'root'
+    mode:   0644
+  become: true
+  notify: restart newrelic-infra
+  when: ansible_facts['distribution_major_version'] == '7'
+
+- name: Copying ntp flex file
+  copy:
+    src:   "files/flex/clock-drift-ntp.yml"
+    dest:  "{{ bw_ansible_role_nrifraagent_integration_path }}/clock-drift-ntp.yml"
+    owner: 'root'
+    group: 'root'
+    mode:   0644
+  become: true
+  notify: restart newrelic-infra
+  when: ansible_facts['distribution_major_version'] == '6'

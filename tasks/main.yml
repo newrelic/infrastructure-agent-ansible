@@ -6,3 +6,7 @@
 - name: install from standard distribution packages
   import_tasks: install_dist_pkgs.yml
   when: nrinfragent_tarball_version is undefined
+
+- name: add bw flex custom
+  import_tasks: bw_flex_custom.yml
+  when: nrinfragent_tarball_version is undefined

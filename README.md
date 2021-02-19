@@ -177,3 +177,8 @@ Copyright (c) 2018 New Relic, Inc. All rights reserved.
 [1]: https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list
 [2]: https://github.com/search?l=&p=1&q=nri-+user%3Anewrelic&ref=advsearch&type=Repositories&utf8=%E2%9C%93
 [3]: https://galaxy.ansible.com/newrelic/newrelic-infra
+
+
+BW Notes 
+- develop branch was a copy from tag 0.8.2
+- added flex config - bw_flex_custom.yml
