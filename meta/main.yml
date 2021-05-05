@@ -4,7 +4,7 @@ galaxy_info:
   description: Role to install New Relic Infrastructure agent
   company: New Relic, Inc.
   license: All components of this product are Copyright (c) 2016 New Relic, Inc.  All rights reserved.
-  min_ansible_version: 2.1
+  min_ansible_version: 2.5
   platforms:
     - name: EL
       versions:
