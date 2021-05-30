@@ -25,12 +25,14 @@
       register: platforms
 
     - name: Discover local Docker images
+      no_log: false
       docker_image_info:
         name: "molecule_local/{{ item.item.name }}"
       with_items: "{{ platforms.results }}"
       register: docker_images
 
     - name: Build an Ansible compatible image
+      no_log: false
       docker_image:
         path: "{{ molecule_ephemeral_directory }}"
         name: "molecule_local/{{ item.item.image }}"
