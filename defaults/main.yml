@@ -4,6 +4,7 @@ nrinfragent_service_enabled: "yes"
 nrinfragent_service_state: "started"
 nrinfragent_config:
   license_key: YOUR_LICENSE_KEY
+  proxy: ""
 nrinfragent_integrations: []
 nrinfragent_tarball_url: "http://download.newrelic.com/infrastructure_agent/binaries/linux/{{ nrinfragent_architecture }}/newrelic-infra_linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}.tar.gz"
 nrinfragent_tarball_download_dir: "/opt"
