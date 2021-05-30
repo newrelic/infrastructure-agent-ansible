@@ -37,9 +37,9 @@
         source: build
         build:
           path: "{{ molecule_ephemeral_directory }}"
+          force_source: "{{ item.item.force | default(true) }}"
+          dockerfile: "{{ item.item.dockerfile | default(item.invocation.module_args.dest) }}"
         name: "molecule_local/{{ item.item.image }}"
-        dockerfile: "{{ item.item.dockerfile | default(item.invocation.module_args.dest) }}"
-        force: "{{ item.item.force | default(true) }}"
       with_items: "{{ platforms.results }}"
       when: platforms.changed or docker_images.results | map(attribute='images') | select('equalto', []) | list | count >= 0
 
