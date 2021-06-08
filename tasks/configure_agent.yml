@@ -1,0 +1,38 @@
+---
+- name: ensure python-yaml is installed
+  package:
+    name: python-yaml
+    state: "{{ nrinfragent_state }}"
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name != 'windows'
+    - ansible_python_version is version('3.0', '<')
+
+- name: ensure python3-yaml is installed
+  package:
+    name: python3-yaml
+    state: "{{ nrinfragent_state }}"
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name != 'windows'
+    - ansible_python_version is version('3.0', '>=')
+
+- name: setup agent config *NIX
+  yedit:
+    src: "{{ nrinfragent_config_path }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  loop: "{{ lookup('ansible.utils.to_paths', nrinfragent_config) | dict2items }}"
+  notify: restart newrelic-infra
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name != 'windows'
+
+- name: setup agent config
+  win_template:
+    src: newrelic-infra.yml.j2
+    dest: "{{ nrinfragent_config_path }}"
+  notify: restart newrelic-infra (windows)
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name == 'windows'
