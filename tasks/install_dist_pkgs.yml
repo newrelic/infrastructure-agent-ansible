@@ -3,43 +3,44 @@
   yum:
     name: redhat-lsb-core
     state: present
-  when: nrinfragent_os_name|lower == 'redhat'
+  when: nrinfragent_os_name == 'redhat'
 
 - name: reread ansible_lsb facts
   setup:
     filter: ansible_lsb*
-  when: nrinfragent_os_name|lower == 'redhat'
+  when: nrinfragent_os_name == 'redhat'
 
 - name: setup agent repo keys
   apt_key:
     url: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     state: present
-  when: nrinfragent_os_name|lower == 'debian'
+  when: nrinfragent_os_name == 'debian'
 
 - name: setup agent repo keys
   rpm_key:
     key: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     state: present
-  when: nrinfragent_os_name|lower == 'redhat'
+  when: nrinfragent_os_name == 'redhat'
 
 - name: setup agent repo keys
   rpm_key:
     key: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     state: present
-  when: nrinfragent_os_name|lower == 'suse'
+  when: nrinfragent_os_name == 'suse'
 
 - name: confirm Debian apt-transport-https is present
   apt:
     name: apt-transport-https
     state: present
-  when: nrinfragent_os_name|lower == 'debian'
+    update_cache: yes
+  when: nrinfragent_os_name == 'debian'
 
 - name: setup agent repo reference
   apt_repository:
     repo: "deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt {{ nrinfragent_os_codename }} main"
     state: present
     update_cache: "yes"
-  when: nrinfragent_os_name|lower == 'debian'
+  when: nrinfragent_os_name == 'debian'
 
 - name: setup agent repo reference
   yum_repository:
@@ -50,7 +51,7 @@
     repo_gpgcheck: 'yes'
     state: present
     description: New Relic Infrastructure
-  when: ansible_distribution|lower == 'amazon'
+  when: nrinfragent_distribution == 'amazon'
   register: setup_agent_repo
 
 - name: setup agent repo reference
@@ -62,7 +63,7 @@
     repo_gpgcheck: "{{ (nrinfragent_os_version == '5') | ternary('no', 'yes') }}"
     state: present
     description: New Relic Infrastructure
-  when: nrinfragent_os_name|lower == 'redhat' and ansible_distribution|lower != 'amazon'
+  when: nrinfragent_os_name == 'redhat' and ansible_distribution|lower != 'amazon'
   register: setup_agent_repo
 
 - name: setup agent repo reference
@@ -73,12 +74,12 @@
     runrefresh: "yes"
     auto_import_keys: "yes"
     disable_gpg_check: "yes"
-  when: nrinfragent_os_name|lower == 'suse'
+  when: nrinfragent_os_name == 'suse'
   register: infra_agent_zypper_repo
 
 - name: run make cache to actually import gpg key
   command: "yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'"
-  when: nrinfragent_os_name|lower == 'redhat' and setup_agent_repo.changed
+  when: nrinfragent_os_name == 'redhat' and setup_agent_repo.changed
   tags:
     - skip_ansible_lint
   args:
@@ -88,14 +89,7 @@
   package:
     name: "newrelic-infra"
     state: "{{ nrinfragent_state }}"
-  when: nrinfragent_os_name|lower != 'windows'
-
-- name: install integrations
-  package:
-    name: "{{ item.name }}"
-    state: "{{ item.state }}"
-  with_items: "{{ nrinfragent_integrations }}"
-  when: nrinfragent_os_name|lower != 'windows'
+  when: nrinfragent_os_name != 'windows'
 
 - name: install agent (windows)
   win_chocolatey:
@@ -103,40 +97,4 @@
     state: "{{ nrinfragent_state }}"
     version: "{{ nrinfragent_choco_version | default(omit) }}"
   when:
-    - nrinfragent_os_name|lower == 'windows'
-
-- name: setup agent config
-  template:
-    src: newrelic-infra.yml.j2
-    dest: /etc/newrelic-infra.yml
-    mode: 0600
-  notify: restart newrelic-infra
-  when:
-    - nrinfragent_state != "absent"
-    - nrinfragent_os_name|lower != 'windows'
-
-- name: setup agent config
-  win_template:
-    src: newrelic-infra.yml.j2
-    dest: '%ProgramFiles%\New Relic\newrelic-infra\newrelic-infra.yml'
-  notify: restart newrelic-infra (windows)
-  when:
-    - nrinfragent_state != "absent"
-    - nrinfragent_os_name|lower == 'windows'
-
-- name: setup agent service
-  service:
-    name: newrelic-infra
-    state: "{{ nrinfragent_service_state }}"
-    enabled: "{{ nrinfragent_service_enabled }}"
-  when:
-    - nrinfragent_state != "absent"
-    - nrinfragent_os_name|lower != 'windows'
-
-- name: setup agent service
-  win_service:
-    name: newrelic-infra
-    state: "{{ nrinfragent_service_state }}"
-  when:
-    - nrinfragent_state != "absent"
-    - nrinfragent_os_name|lower == 'windows'
+    - nrinfragent_os_name == 'windows'

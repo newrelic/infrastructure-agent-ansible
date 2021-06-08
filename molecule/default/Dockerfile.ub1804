@@ -1,0 +1,6 @@
+FROM ubuntu:18.04
+
+RUN apt-get update && apt-get install -y init \
+  && apt-get install -y gpg \
+  && apt-get install -y ca-certificates \
+  && apt-get clean all
