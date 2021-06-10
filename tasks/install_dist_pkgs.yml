@@ -137,7 +137,6 @@
   win_service:
     name: newrelic-infra
     state: "{{ nrinfragent_service_state }}"
-    enabled: "{{ nrinfragent_service_enabled }}"
   when:
     - nrinfragent_state != "absent"
     - nrinfragent_os_name|lower == 'windows'
