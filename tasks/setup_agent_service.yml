@@ -1,5 +1,5 @@
 ---
-- name: setup agent service
+- name: setup agent init service
   service:
     name: newrelic-infra
     state: "{{ nrinfragent_service_state }}"
@@ -8,7 +8,7 @@
     - nrinfragent_state != "absent"
     - nrinfragent_os_name != 'windows'
 
-- name: setup agent service
+- name: setup agent init service
   win_service:
     name: newrelic-infra
     state: "{{ nrinfragent_service_state }}"

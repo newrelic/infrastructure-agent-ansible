@@ -6,35 +6,35 @@ driver:
 lint: |
   yamllint
 platforms:
-#  - name: centos-7
-#    image: centos:7
-#    privileged: true
-#    volume_mounts:
-#     - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
-#    command: "/usr/sbin/init"
-#    environment: { container: docker }
-#  - name: centos-8
-#    image: centos:8
-#    privileged: true
-#    volume_mounts:
-#      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
-#    command: "/usr/sbin/init"
-#    environment: { container: docker }
-#  - name: ubuntu-1604
-#    image: ubuntu:16.04
-#    privileged: true
-#    volume_mounts:
-#      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
-#    command: "/sbin/init"
-#    environment: { container: docker }
-#  - name: ubuntu-1804
-#    image: ubuntu:18.04
-#    dockerfile: Dockerfile.ub1804
-#    privileged: true
-#    volume_mounts:
-#      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
-#    command: "/sbin/init"
-#    environment: { container: docker }
+  - name: centos-7
+    image: centos:7
+    privileged: true
+    volume_mounts:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+    command: "/usr/sbin/init"
+    environment: { container: docker }
+  - name: centos-8
+    image: centos:8
+    privileged: true
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+    command: "/usr/sbin/init"
+    environment: { container: docker }
+  - name: ubuntu-1604
+    image: ubuntu:16.04
+    privileged: true
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+    command: "/sbin/init"
+    environment: { container: docker }
+  - name: ubuntu-1804
+    image: ubuntu:18.04
+    dockerfile: Dockerfile.ub1804
+    privileged: true
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+    command: "/sbin/init"
+    environment: { container: docker }
   - name: ubuntu-2004
     image: ubuntu:20.04
     dockerfile: Dockerfile.ub2004
