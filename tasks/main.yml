@@ -2,12 +2,10 @@
 - name: installation from tarball package
   import_tasks: install_targz.yml
   tags:
-    - install
-    - tarball
+    - install_tarball
   when:
     - nrinfragent_tarball_version is defined
     - nrinfragent_os_name != 'windows'
-
 
 - name: install from standard distribution packages
   import_tasks: install_dist_pkgs.yml
@@ -26,7 +24,7 @@
   tags:
     - configure
 
-- name: install agent os service
-  import_tasks: install_agent_service.yml
+- name: setup agent init service
+  import_tasks: setup_agent_service.yml
   tags:
     - service

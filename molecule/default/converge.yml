@@ -11,7 +11,3 @@
           custom_attributes:
             team: 'newrelic'
             business_unit: 'engineering'
-      tags:
-        - install
-        - configure
-    
