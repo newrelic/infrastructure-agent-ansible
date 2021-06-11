@@ -5,8 +5,8 @@ driver:
   name: docker
 lint: |
   set -e
+  yamllint .
   ansible-lint
-  flake8
 platforms:
   - name: centos-6
     image: dokken/centos-6
