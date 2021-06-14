@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   tags:
-    - configure
+    - nria_configure
   tasks:
     - name: "Add a random attribute to the file to simulate a user edit"
       lineinfile:

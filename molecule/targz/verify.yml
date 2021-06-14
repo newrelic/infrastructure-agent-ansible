@@ -5,7 +5,7 @@
   hosts: all
   gather_facts: false
   tags:
-    - install_tarball
+    - nria_install_tarball
   tasks:
   - name: stat newrelic-infra.yml
     stat:

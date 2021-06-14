@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   tags:
-    - install_tarball
+    - nria_install_tarball
   tasks:
     - name: "Include infrastructure-agent-ansible"
       include_role:
