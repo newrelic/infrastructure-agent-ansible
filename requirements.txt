@@ -1,4 +1,4 @@
 ansible
-docker-py
+docker
 molecule
 molecule-docker
