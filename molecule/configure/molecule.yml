@@ -16,7 +16,7 @@ provisioner:
   lint: |
     ansible-lint
   options:
-    tags: configure
+    tags: nria_configure
   log: True
 verifier:
   name: ansible

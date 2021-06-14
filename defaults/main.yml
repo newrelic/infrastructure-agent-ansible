@@ -3,7 +3,6 @@
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html
 nrinfragent_state: "latest"
 
-
 # newrelic-infra-service startup mode.
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html#parameter-enabled
 nrinfragent_service_enabled: "yes"
@@ -34,12 +33,21 @@ nrinfragent_config:
 # New Relic Infrastructure OHI packages to install (package manager installation).
 # https://docs.newrelic.com/docs/integrations/host-integrations/installation/install-infrastructure-host-integrations/#standard
 #
+# The list of available integrations can be found [here][1]. Each package should
+# provide its `name` and `state`. The integrations package name is located in
+# the **Install and activate** section of the
+# [individual integrations docs](https://docs.newrelic.com/docs/integrations).
+# Asa convention, their name is the name of the service with the `nri-` prefix
+# (`nri-apache`, `nri-redis`, etc.).
+#
+# By default the state it's `absent`, which doesn't install the package; you can
+# change it to `latest` or `present`. For example:
 # Example:
 #  nrinfragent_integrations:
-#  - name: nri-apache
+#  - name: nri-nginx
 #    state: latest
-#  - name: nri-f5
-#    state: latest
+#  - name: nri-mysql
+#    state: absent
 nrinfragent_integrations: []
 
 #
@@ -85,13 +93,13 @@ nrinfragent_integrations: []
 #  nrinfragent_tarball_log_file: /opt/nri-agent/nr.log
 #nrinfragent_tarball_log_file: ""
 
-# Agent home directory: NRIA_MODE
+# Agent privilege level: NRIA_MODE
 # 
 # Example:
 #  nrinfragent_tarball_mode: UNPRIVILEGED
 #nrinfragent_tarball_mode: ""
 
-# Agent home directory: NRIA_PID_FILE
+# Agent PID file path: NRIA_PID_FILE
 # 
 # Example:
 #  nrinfragent_tarball_pid_file: /opt/nri-agent/nr.pid
@@ -103,7 +111,7 @@ nrinfragent_integrations: []
 #  nrinfragent_tarball_plugin_dir: /opt/nri-agent/nr-integrations.d
 #nrinfragent_tarball_plugin_dir: ""
 
-# Agent home directory: NRIA_USER
+# Agent binary "run as" user: NRIA_USER
 # 
 # Example:
 #  nrinfragent_tarball_user: newrelic

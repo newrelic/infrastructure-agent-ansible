@@ -2,6 +2,16 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
+## 0.10.0 (2021-06-14)
+
+* Split apart `main.yml` tasks file into multiple files.
+* Added tags and support for running tasks individually.
+* Updated `default` molecule scenario and added `configure` and `targz`
+  scenarios.
+* Added additional variables for customizing tarball install.
+* Added `nrinfragent_config_file` variable for customizing agent configuration
+  path.
+
 ## 0.9.0 (2019-06-27)
 
 IMPROVEMENTS:

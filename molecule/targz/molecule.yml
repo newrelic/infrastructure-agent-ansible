@@ -11,12 +11,12 @@ platforms:
  - name: ubuntu-1604
  - name: ubuntu-1804
  - name: ubuntu-2004
-provisioner:
+ provisioner:
   name: ansible
   lint: |
     ansible-lint
   options:
-    tags: install_tarball
+    tags: nria_install_tarball
   log: True
 verifier:
   name: ansible
