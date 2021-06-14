@@ -1,3 +1,6 @@
 ---
 roles:
    - name: newrelic.newrelic-infra
+     vars:
+        nrinfragent_config:
+          license_key: B000000000000000000000000000000000000000
