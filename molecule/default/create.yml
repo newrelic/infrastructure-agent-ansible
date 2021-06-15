@@ -34,8 +34,8 @@
       docker_image:
         build:
           path: "{{ molecule_ephemeral_directory }}"
+          dockerfile: "{{ item.item.dockerfile | default(item.invocation.module_args.dest) }}"
         name: "molecule_local/{{ item.item.image }}"
-        dockerfile: "{{ item.item.dockerfile | default(item.invocation.module_args.dest) }}"
         force_source: "{{ item.item.force | default(true) }}"
         source: build
         state: present
