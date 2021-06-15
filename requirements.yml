@@ -4,3 +4,7 @@ roles:
      vars:
         nrinfragent_config:
           license_key: B000000000000000000000000000000000000000
+collections:
+  # Install a collection from Ansible Galaxy.
+  - name: newrelic.newrelic-infra
+    source: https://galaxy.ansible.com
