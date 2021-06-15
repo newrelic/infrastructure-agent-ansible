@@ -12,10 +12,6 @@
         email: "{{ item.registry.credentials.email | default(omit) }}"
         registry: "{{ item.registry.url }}"
       with_items: "{{ molecule_yml.platforms }}"
-      when:
-        - item.registry is defined
-        - item.registry.credentials is defined
-        - item.registry.credentials.username is defined
 
     - name: Create Dockerfiles from image names
       template:
