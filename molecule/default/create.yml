@@ -37,7 +37,8 @@
         name: "molecule_local/{{ item.item.image }}"
         dockerfile: "{{ item.item.dockerfile | default(item.invocation.module_args.dest) }}"
         force_source: "{{ item.item.force | default(true) }}"
-        source: pull
+        source: build
+        state: present
       with_items: "{{ platforms.results }}"
       when: platforms.changed or docker_images.results | map(attribute='images') | select('equalto', []) | list | count >= 0
 
