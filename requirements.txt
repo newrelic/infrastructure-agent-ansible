@@ -1,3 +1,4 @@
+sh == 1.12.14
 ansible==2.8.4
 docker-py
 molecule==2.22
