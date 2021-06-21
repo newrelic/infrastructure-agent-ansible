@@ -18,11 +18,9 @@
     - ansible_python_version is version('3.0', '>=')
 
 - name: setup agent config *NIX
-  yedit:
+  merge_yaml:
     src: "{{ nrinfragent_config_path }}"
-    key: "{{ item.key }}"
-    value: "{{ item.value }}"
-  loop: "{{ lookup('ansible.utils.to_paths', nrinfragent_config) | dict2items }}"
+    value: "{{ nrinfragent_config }}"
   notify: restart newrelic-infra
   when:
     - nrinfragent_state != "absent"

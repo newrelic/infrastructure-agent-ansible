@@ -6,11 +6,11 @@ lint: |
 driver:
   name: docker
 platforms:
- - name: centos-7
- - name: centos-8
- - name: ubuntu-1604
- - name: ubuntu-1804
- - name: ubuntu-2004
+  - name: centos-7
+  - name: centos-8
+  - name: ubuntu-1604
+  - name: ubuntu-1804
+  - name: ubuntu-2004
 provisioner:
   name: ansible
   lint: |
