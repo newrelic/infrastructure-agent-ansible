@@ -51,7 +51,7 @@
     state: present
     description: New Relic Infrastructure
   when: ansible_distribution|lower == 'amazon'
-  register: setup_agent_repo
+  register: setup_agent_repo_amazon
 
 - name: setup agent repo reference
   yum_repository:
@@ -63,7 +63,7 @@
     state: present
     description: New Relic Infrastructure
   when: nrinfragent_os_name|lower == 'redhat' and ansible_distribution|lower != 'amazon'
-  register: setup_agent_repo
+  register: setup_agent_repo_redhat
 
 - name: setup agent repo reference
   zypper_repository:
@@ -78,7 +78,7 @@
   
 - name: run make cache to actually import gpg key
   command: "yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'"
-  when: nrinfragent_os_name|lower == 'redhat' and setup_agent_repo.changed
+  when: nrinfragent_os_name|lower == 'redhat' and (setup_agent_repo_amazon.changed or setup_agent_repo_redhat.changed)
   tags:
     - skip_ansible_lint
   args:
