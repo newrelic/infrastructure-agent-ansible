@@ -3,3 +3,4 @@ nrinfragent_os_name: "{{ ansible_os_family }}"
 nrinfragent_os_version: "{{ ansible_lsb.major_release }}"
 nrinfragent_os_codename: "{{ ansible_lsb.codename }}"
 nrinfragent_architecture: "{{ {'x86_64': 'amd64', 'i386': '386'}[ansible_architecture] | default(ansible_architecture) }}"
+nrinfragent_yum_lock_timeout: 30
