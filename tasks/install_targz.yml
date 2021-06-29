@@ -45,4 +45,5 @@
     regexp="^{{ item.key }}: "
     line="{{ item.key }}: {{ item.value }}"'
   with_items: "{{ lookup('dict', nrinfragent_config) }}"
+  no_log: "{{ nrinfragent_hide_config_values }}"
   notify: restart newrelic-infra
