@@ -92,6 +92,10 @@ nrinfragent_integrations:
 
 The source code for each integration is available on [newrelic's GitHub organization][2].
 
+##### `nrinfragent_yum_lock_timeout` (Optional)
+
+Used to set lock_timeout value for ansible yum module. When it's not set this value defaults to 30. Works only for ansible version >= 2.8.0
+
 #### Removing the `newrelic-infra-integrations` package and its bundled integrations
 
 > This only applies if you have the `newrelic-infra-integrations` package installed
