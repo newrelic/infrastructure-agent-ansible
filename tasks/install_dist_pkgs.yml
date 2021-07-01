@@ -86,9 +86,10 @@
 
 - name: create log destination directory
   file:
-    path: "{{ nrinfragent_config['log_file'] }}"
+    path: "{{ nrinfragent_config['log_file'] | dirname }}"
     state: directory
     recurse: true
+  when: nrinfragent_state != 'absent'
 
 - name: install agent pre2.8.0
   package:
