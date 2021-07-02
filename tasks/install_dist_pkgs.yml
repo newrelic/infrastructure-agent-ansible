@@ -89,7 +89,9 @@
     path: "{{ nrinfragent_config['log_file'] | dirname }}"
     state: directory
     recurse: true
-  when: nrinfragent_state != 'absent'
+  when: 
+    - nrinfragent_state != 'absent'
+    - nrinfragent_config['log_file'] is defined
 
 - name: install agent pre2.8.0
   package:
