@@ -51,7 +51,7 @@
     state: present
     description: New Relic Infrastructure
   when: ansible_distribution|lower == 'amazon'
-  register: setup_agent_repo
+  register: setup_agent_repo_amazon
 
 - name: setup agent repo reference
   yum_repository:
@@ -63,7 +63,7 @@
     state: present
     description: New Relic Infrastructure
   when: nrinfragent_os_name|lower == 'redhat' and ansible_distribution|lower != 'amazon'
-  register: setup_agent_repo
+  register: setup_agent_repo_redhat
 
 - name: setup agent repo reference
   zypper_repository:
@@ -75,27 +75,55 @@
     disable_gpg_check: "yes"
   when: nrinfragent_os_name|lower == 'suse'
   register: infra_agent_zypper_repo
-
+  
 - name: run make cache to actually import gpg key
   command: "yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'"
-  when: nrinfragent_os_name|lower == 'redhat' and setup_agent_repo.changed
+  when: nrinfragent_os_name|lower == 'redhat' and (setup_agent_repo_amazon.changed or setup_agent_repo_redhat.changed)
   tags:
     - skip_ansible_lint
   args:
     warn: false
 
-- name: install agent
+- name: install agent pre2.8.0
   package:
     name: "newrelic-infra"
     state: "{{ nrinfragent_state }}"
-  when: nrinfragent_os_name|lower != 'windows'
+  when: nrinfragent_os_name|lower != 'windows' and ansible_version.full < "2.8.0"
 
-- name: install integrations
+- name: install agent post2.8.0
+  package:
+    name: "newrelic-infra"
+    state: "{{ nrinfragent_state }}"
+  when: nrinfragent_os_name|lower != 'windows' and ansible_version.full >= "2.8.0" and nrinfragent_os_name|lower != 'amazon' and nrinfragent_os_name|lower != 'redhat'
+
+- name: Install agent yum
+  yum:
+    name: "newrelic-infra"
+    state: "{{ nrinfragent_state }}"
+    lock_timeout: 30
+  when: nrinfragent_os_name|lower == 'redhat' and nrinfragent_os_name|lower == 'amazon' and ansible_version.full >= "2.8.0"
+
+- name: install integrations pre2.8.0
   package:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   with_items: "{{ nrinfragent_integrations }}"
-  when: nrinfragent_os_name|lower != 'windows'
+  when: nrinfragent_os_name|lower != 'windows' and ansible_version.full < "2.8.0"
+
+- name: Install integrations post2.8.0
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ nrinfragent_integrations }}"
+  when: nrinfragent_os_name|lower != 'windows' and ansible_version.full >= "2.8.0" and nrinfragent_os_name|lower != 'amazon' and nrinfragent_os_name|lower != 'redhat'
+
+- name: Install integrations yum
+  yum:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    lock_timeout: 30
+  with_items: "{{ nrinfragent_integrations }}"
+  when: nrinfragent_os_name|lower == 'redhat' and nrinfragent_os_name|lower == 'amazon' and ansible_version.full >= "2.8.0"
 
 - name: install agent (windows)
   win_chocolatey:
