@@ -1,9 +1,16 @@
 ---
-- name: confirm redhat lsb util is present
+- name: confirm redhat lsb util is present pre2.8.0
   yum:
     name: redhat-lsb-core
     state: present
   when: nrinfragent_os_name|lower == 'redhat'
+
+- name: confirm redhat lsb util is present post2.8.0
+  yum:
+    name: redhat-lsb-core
+    state: present
+    lock_timeout: "{{ nrinfragent_yum_lock_timeout }}"
+  when: nrinfragent_os_name|lower == 'redhat' and ansible_version.full >= "2.8.0"
 
 - name: reread ansible_lsb facts
   setup:
@@ -100,8 +107,8 @@
   yum:
     name: "newrelic-infra"
     state: "{{ nrinfragent_state }}"
-    lock_timeout: 30
-  when: nrinfragent_os_name|lower == 'redhat' and nrinfragent_os_name|lower == 'amazon' and ansible_version.full >= "2.8.0"
+    lock_timeout: "{{ nrinfragent_yum_lock_timeout }}"
+  when: (nrinfragent_os_name|lower == 'redhat' or nrinfragent_os_name|lower == 'amazon') and ansible_version.full >= "2.8.0"
 
 - name: install integrations pre2.8.0
   package:
@@ -121,9 +128,9 @@
   yum:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
-    lock_timeout: 30
+    lock_timeout: "{{ nrinfragent_yum_lock_timeout }}"
   with_items: "{{ nrinfragent_integrations }}"
-  when: nrinfragent_os_name|lower == 'redhat' and nrinfragent_os_name|lower == 'amazon' and ansible_version.full >= "2.8.0"
+  when: nrinfragent_os_name|lower == 'redhat' or nrinfragent_os_name|lower == 'amazon' and ansible_version.full >= "2.8.0"
 
 - name: install agent (windows)
   win_chocolatey:
