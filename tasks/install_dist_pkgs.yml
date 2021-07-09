@@ -91,6 +91,15 @@
   args:
     warn: false
 
+- name: create log destination directory
+  file:
+    path: "{{ nrinfragent_config['log_file'] | dirname }}"
+    state: directory
+    recurse: true
+  when: 
+    - nrinfragent_state != 'absent'
+    - nrinfragent_config['log_file'] is defined
+
 - name: install agent pre2.8.0
   package:
     name: "newrelic-infra"
