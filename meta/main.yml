@@ -26,6 +26,7 @@ galaxy_info:
         - trusty
         - xenial
         - bionic
+        - focal
     - name: Windows
       versions:
         - all
