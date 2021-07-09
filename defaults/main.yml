@@ -10,3 +10,4 @@ nrinfragent_tarball_url: "http://download.newrelic.com/infrastructure_agent/bina
 nrinfragent_tarball_download_dir: "/opt"
 nrinfragent_tarball_user: "root"
 nrinfragent_hide_config_values: false
+nrinfragent_yum_lock_timeout: 30
