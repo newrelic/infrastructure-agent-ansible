@@ -2,7 +2,26 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
-## 0.9.0 (2019-06-27)
+## 0.9.0 (2021-06-12)
+
+BREAKING CHANGES:
+
+* Minimal required version of ansible 2.5+
+
+IMPROVEMENTS:
+
+* Add support for Lock Timeout for yum (Ansible 2.8+)
+* Allow user to set proxy
+* Allow user to not log config values
+
+BUG FIXES:
+
+* Fix make cache not running on Amazon Linux
+* Prevent errors on tarball install when using default values
+* Ensure that log directory exists to prevent errors
+* Fix installation for Windows Host
+
+## 0.8.2 (2019-06-27)
 
 IMPROVEMENTS:
 
