@@ -5,7 +5,7 @@
     state: "{{ nrinfragent_state }}"
   when:
     - nrinfragent_state != "absent"
-    - nrinfragent_os_name != 'windows'
+    - nrinfragent_os_name|lower != 'windows'
     - ansible_python_version is version('3.0', '<')
 
 - name: ensure python3-yaml is installed
@@ -14,7 +14,7 @@
     state: "{{ nrinfragent_state }}"
   when:
     - nrinfragent_state != "absent"
-    - nrinfragent_os_name != 'windows'
+    - nrinfragent_os_name|lower != 'windows'
     - ansible_python_version is version('3.0', '>=')
 
 - name: setup agent config *NIX
@@ -24,13 +24,13 @@
   notify: restart newrelic-infra
   when:
     - nrinfragent_state != "absent"
-    - nrinfragent_os_name != 'windows'
+    - nrinfragent_os_name|lower != 'windows'
 
-- name: setup agent config
+- name: setup agent config (windows)
   win_template:
     src: newrelic-infra.yml.j2
     dest: "{{ nrinfragent_config_path }}"
   notify: restart newrelic-infra (windows)
   when:
     - nrinfragent_state != "absent"
-    - nrinfragent_os_name == 'windows'
+    - nrinfragent_os_name|lower == 'windows'
