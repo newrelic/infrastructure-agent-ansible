@@ -29,6 +29,12 @@ nrinfragent_service_state: "started"
 # verbose: 1
 nrinfragent_config:
   license_key: YOUR_LICENSE_KEY
+  proxy: ""
+
+# A variable to prevent config values from being displayed
+nrinfragent_hide_config_values: false
+# A variable used to set lock_timeout value for ansible yum module. By default set to 30. Works only for Ansible 2.8+
+nrinfragent_yum_lock_timeout: 30
 
 # New Relic Infrastructure OHI packages to install (package manager installation).
 # https://docs.newrelic.com/docs/integrations/host-integrations/installation/install-infrastructure-host-integrations/#standard
