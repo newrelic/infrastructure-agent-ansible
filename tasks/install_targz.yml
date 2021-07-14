@@ -12,7 +12,7 @@
     nrinfragent_tarball_download_path: "{{ nrinfragent_tarball_download_dir }}/newrelic-infra_linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}"
 
 - name: Create the download directory, including intermediate ones
-  ansible.builtin.file:
+  file:
     path: "{{ nrinfragent_tarball_download_path }}"
     state: directory
 
