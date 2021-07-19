@@ -25,6 +25,11 @@
     creates: "{{ nrinfragent_tarball_download_dir }}/newrelic_infra/linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}/newrelic-infra/"
   register: archive_contents
 
+- name: Stop newrelic-infra if running
+  service:
+    name: newrelic-infra
+    state: stopped
+
 - name: running installer
   command: ./installer.sh
   args:
@@ -46,4 +51,8 @@
     line="{{ item.key }}: {{ item.value }}"'
   with_items: "{{ lookup('dict', nrinfragent_config, wantlist=True) }}"
   no_log: "{{ nrinfragent_hide_config_values }}"
-  notify: restart newrelic-infra
+
+- name: Start newrelic-infra
+  service:
+    name: newrelic-infra
+    state: started
