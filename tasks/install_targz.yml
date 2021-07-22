@@ -39,6 +39,12 @@
   become: true
   when: archive_contents is defined and archive_contents.changed
 
+- name: Ensure newrelic-infra.yml exists
+  file:
+    path: /etc/newrelic-infra.yml
+    state: exists
+    mode: 0600
+    
 - name: save config options to file
   lineinfile:
     'dest=/etc/newrelic-infra.yml
