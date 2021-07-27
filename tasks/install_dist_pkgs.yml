@@ -39,6 +39,7 @@
   apt:
     name: apt-transport-https
     state: present
+    update_cache: yes
   when: nrinfragent_os_name|lower == 'debian'
 
 - name: setup agent repo reference
@@ -149,6 +150,7 @@
   when:
     - nrinfragent_os_name|lower == 'windows'
 
+//Move!!
 - name: Ensure newrelic-infra.yml exists
   file:
     path: /etc/newrelic-infra.yml
