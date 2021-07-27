@@ -3,51 +3,51 @@
   yum:
     name: redhat-lsb-core
     state: present
-  when: nrinfragent_os_name|lower == 'redhat'
+  when: nrinfragent_os_name == 'redhat'
 
 - name: confirm redhat lsb util is present post2.8.0
   yum:
     name: redhat-lsb-core
     state: present
     lock_timeout: "{{ nrinfragent_yum_lock_timeout }}"
-  when: nrinfragent_os_name|lower == 'redhat' and ansible_version.full >= "2.8.0"
+  when: nrinfragent_os_name == 'redhat' and ansible_version.full >= "2.8.0"
 
 - name: reread ansible_lsb facts
   setup:
     filter: ansible_lsb*
-  when: nrinfragent_os_name|lower == 'redhat'
+  when: nrinfragent_os_name == 'redhat'
 
 - name: setup agent repo keys
   apt_key:
     url: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     state: present
-  when: nrinfragent_os_name|lower == 'debian'
+  when: nrinfragent_os_name == 'debian'
 
 - name: setup agent repo keys
   rpm_key:
     key: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     state: present
-  when: nrinfragent_os_name|lower == 'redhat'
+  when: nrinfragent_os_name == 'redhat'
 
 - name: setup agent repo keys
   rpm_key:
     key: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     state: present
-  when: nrinfragent_os_name|lower == 'suse'
+  when: nrinfragent_os_name == 'suse'
 
 - name: confirm Debian apt-transport-https is present
   apt:
     name: apt-transport-https
     state: present
     update_cache: yes
-  when: nrinfragent_os_name|lower == 'debian'
+  when: nrinfragent_os_name == 'debian'
 
 - name: setup agent repo reference
   apt_repository:
     repo: "deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt {{ nrinfragent_os_codename }} main"
     state: present
     update_cache: "yes"
-  when: nrinfragent_os_name|lower == 'debian'
+  when: nrinfragent_os_name == 'debian'
 
 - name: setup agent repo reference
   yum_repository:
@@ -58,7 +58,7 @@
     repo_gpgcheck: 'yes'
     state: present
     description: New Relic Infrastructure
-  when: ansible_distribution|lower == 'amazon'
+  when: nrinfragent_distribution == 'amazon'
   register: setup_agent_repo_amazon
 
 - name: setup agent repo reference
@@ -70,7 +70,7 @@
     repo_gpgcheck: "{{ (nrinfragent_os_version == '5') | ternary('no', 'yes') }}"
     state: present
     description: New Relic Infrastructure
-  when: nrinfragent_os_name|lower == 'redhat' and ansible_distribution|lower != 'amazon'
+  when: nrinfragent_os_name == 'redhat' and ansible_distribution|lower != 'amazon'
   register: setup_agent_repo_redhat
 
 - name: setup agent repo reference
@@ -81,12 +81,12 @@
     runrefresh: "yes"
     auto_import_keys: "yes"
     disable_gpg_check: "yes"
-  when: nrinfragent_os_name|lower == 'suse'
+  when: nrinfragent_os_name == 'suse'
   register: infra_agent_zypper_repo
   
 - name: run make cache to actually import gpg key
   command: "yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'"
-  when: nrinfragent_os_name|lower == 'redhat' and (setup_agent_repo_amazon.changed or setup_agent_repo_redhat.changed)
+  when: nrinfragent_os_name == 'redhat' and (setup_agent_repo_amazon.changed or setup_agent_repo_redhat.changed)
   tags:
     - skip_ansible_lint
   args:
@@ -105,34 +105,34 @@
   package:
     name: "newrelic-infra"
     state: "{{ nrinfragent_state }}"
-  when: nrinfragent_os_name|lower != 'windows' and ansible_version.full < "2.8.0"
+  when: nrinfragent_os_name != 'windows' and ansible_version.full < "2.8.0"
 
 - name: install agent post2.8.0
   package:
     name: "newrelic-infra"
     state: "{{ nrinfragent_state }}"
-  when: nrinfragent_os_name|lower != 'windows' and ansible_version.full >= "2.8.0" and nrinfragent_os_name|lower != 'amazon' and nrinfragent_os_name|lower != 'redhat'
+  when: nrinfragent_os_name != 'windows' and ansible_version.full >= "2.8.0" and nrinfragent_os_name != 'amazon' and nrinfragent_os_name != 'redhat'
 
 - name: Install agent yum
   yum:
     name: "newrelic-infra"
     state: "{{ nrinfragent_state }}"
     lock_timeout: "{{ nrinfragent_yum_lock_timeout }}"
-  when: (nrinfragent_os_name|lower == 'redhat' or nrinfragent_os_name|lower == 'amazon') and ansible_version.full >= "2.8.0"
+  when: (nrinfragent_os_name == 'redhat' or nrinfragent_os_name == 'amazon') and ansible_version.full >= "2.8.0"
 
 - name: install integrations pre2.8.0
   package:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   with_items: "{{ nrinfragent_integrations }}"
-  when: nrinfragent_os_name|lower != 'windows' and ansible_version.full < "2.8.0"
+  when: nrinfragent_os_name != 'windows' and ansible_version.full < "2.8.0"
 
 - name: Install integrations post2.8.0
   package:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   with_items: "{{ nrinfragent_integrations }}"
-  when: nrinfragent_os_name|lower != 'windows' and ansible_version.full >= "2.8.0" and nrinfragent_os_name|lower != 'amazon' and nrinfragent_os_name|lower != 'redhat'
+  when: nrinfragent_os_name != 'windows' and ansible_version.full >= "2.8.0" and nrinfragent_os_name != 'amazon' and nrinfragent_os_name != 'redhat'
 
 - name: Install integrations yum
   yum:
@@ -140,7 +140,7 @@
     state: "{{ item.state }}"
     lock_timeout: "{{ nrinfragent_yum_lock_timeout }}"
   with_items: "{{ nrinfragent_integrations }}"
-  when: nrinfragent_os_name|lower == 'redhat' or nrinfragent_os_name|lower == 'amazon' and ansible_version.full >= "2.8.0"
+  when: nrinfragent_os_name == 'redhat' or nrinfragent_os_name == 'amazon' and ansible_version.full >= "2.8.0"
 
 - name: install agent (windows)
   win_chocolatey:
@@ -148,36 +148,7 @@
     state: "{{ nrinfragent_state }}"
     version: "{{ nrinfragent_choco_version | default(omit) }}"
   when:
-    - nrinfragent_os_name|lower == 'windows'
-
-//Move!!
-- name: Ensure newrelic-infra.yml exists
-  file:
-    path: /etc/newrelic-infra.yml
-    state: exists
-    mode: 0600
-  when: nrinfragent_os_name|lower != 'windows'
-
-- name: save config options to file
-  lineinfile:
-    'dest=/etc/newrelic-infra.yml
-    regexp="^{{ item.key }}: "
-    line="{{ item.key }}: {{ item.value }}"'
-  with_items: "{{ lookup('dict', nrinfragent_config, wantlist=True) }}"
-  no_log: "{{ nrinfragent_hide_config_values }}"
-  notify: restart newrelic-infra
-  when:
-    - nrinfragent_state != "absent"
-    - nrinfragent_os_name|lower != 'windows'
-
-- name: setup agent config (windows)
-  win_template:
-    src: newrelic-infra.yml.j2
-    dest: '%ProgramFiles%\New Relic\newrelic-infra\newrelic-infra.yml'
-  notify: restart newrelic-infra (windows)
-  when:
-    - nrinfragent_state != "absent"
-    - nrinfragent_os_name|lower == 'windows'
+    - nrinfragent_os_name == 'windows'
 
 - name: setup agent service
   service:
@@ -186,7 +157,7 @@
     enabled: "{{ nrinfragent_service_enabled }}"
   when:
     - nrinfragent_state != "absent"
-    - nrinfragent_os_name|lower != 'windows'
+    - nrinfragent_os_name != 'windows'
 
 - name: setup agent service (windows)
   win_service:
@@ -195,4 +166,4 @@
     start_mode: "{{ nrinfragent_service_enabled | ternary('auto','manual') }}"
   when:
     - nrinfragent_state != "absent"
-    - nrinfragent_os_name|lower == 'windows'
+    - nrinfragent_os_name == 'windows'
