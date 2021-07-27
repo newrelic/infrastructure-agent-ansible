@@ -6,7 +6,7 @@
     enabled: "{{ nrinfragent_service_enabled }}"
   when:
     - nrinfragent_state != "absent"
-    - nrinfragent_os_name|lower != 'windows'
+    - nrinfragent_os_name != 'windows'
 
 - name: setup agent init service (windows)
   win_service:
@@ -15,4 +15,4 @@
     start_mode: "{{ nrinfragent_service_enabled | ternary('auto','manual') }}"
   when:
     - nrinfragent_state != "absent"
-    - nrinfragent_os_name|lower == 'windows'
+    - nrinfragent_os_name == 'windows'

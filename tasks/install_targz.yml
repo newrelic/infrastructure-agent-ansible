@@ -59,21 +59,6 @@
   become: true
   when: archive_contents is defined and archive_contents.changed
 
-//Move!
-- name: Ensure newrelic-infra.yml exists
-  file:
-    path: /etc/newrelic-infra.yml
-    state: exists
-    mode: 0600
-    
-- name: save config options to file
-  lineinfile:
-    'dest=/etc/newrelic-infra.yml
-    regexp="^{{ item.key }}: "
-    line="{{ item.key }}: {{ item.value }}"'
-  with_items: "{{ lookup('dict', nrinfragent_config, wantlist=True) }}"
-  no_log: "{{ nrinfragent_hide_config_values }}"
-//Possibly leave
 - name: Start newrelic-infra
   service:
     name: newrelic-infra
