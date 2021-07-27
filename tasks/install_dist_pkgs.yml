@@ -149,3 +149,50 @@
     version: "{{ nrinfragent_choco_version | default(omit) }}"
   when:
     - nrinfragent_os_name|lower == 'windows'
+
+//Move!!
+- name: Ensure newrelic-infra.yml exists
+  file:
+    path: /etc/newrelic-infra.yml
+    state: exists
+    mode: 0600
+  when: nrinfragent_os_name|lower != 'windows'
+
+- name: save config options to file
+  lineinfile:
+    'dest=/etc/newrelic-infra.yml
+    regexp="^{{ item.key }}: "
+    line="{{ item.key }}: {{ item.value }}"'
+  with_items: "{{ lookup('dict', nrinfragent_config, wantlist=True) }}"
+  no_log: "{{ nrinfragent_hide_config_values }}"
+  notify: restart newrelic-infra
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name|lower != 'windows'
+
+- name: setup agent config (windows)
+  win_template:
+    src: newrelic-infra.yml.j2
+    dest: '%ProgramFiles%\New Relic\newrelic-infra\newrelic-infra.yml'
+  notify: restart newrelic-infra (windows)
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name|lower == 'windows'
+
+- name: setup agent service
+  service:
+    name: newrelic-infra
+    state: "{{ nrinfragent_service_state }}"
+    enabled: "{{ nrinfragent_service_enabled }}"
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name|lower != 'windows'
+
+- name: setup agent service (windows)
+  win_service:
+    name: newrelic-infra
+    state: "{{ nrinfragent_service_state }}"
+    start_mode: "{{ nrinfragent_service_enabled | ternary('auto','manual') }}"
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name|lower == 'windows'
