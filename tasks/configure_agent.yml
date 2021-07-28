@@ -20,7 +20,7 @@
 - name: Ensure newrelic-infra.yml exists
   file:
     path: {{ nrinfragent_config_path }}
-    state: exists
+    state: touch
     mode: 0600
   when: nrinfragent_os_name != 'windows'
 
