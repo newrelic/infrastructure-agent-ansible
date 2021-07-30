@@ -149,21 +149,3 @@
     version: "{{ nrinfragent_choco_version | default(omit) }}"
   when:
     - nrinfragent_os_name == 'windows'
-
-- name: setup agent service
-  service:
-    name: newrelic-infra
-    state: "{{ nrinfragent_service_state }}"
-    enabled: "{{ nrinfragent_service_enabled }}"
-  when:
-    - nrinfragent_state != "absent"
-    - nrinfragent_os_name != 'windows'
-
-- name: setup agent service (windows)
-  win_service:
-    name: newrelic-infra
-    state: "{{ nrinfragent_service_state }}"
-    start_mode: "{{ nrinfragent_service_enabled | ternary('auto','manual') }}"
-  when:
-    - nrinfragent_state != "absent"
-    - nrinfragent_os_name == 'windows'
