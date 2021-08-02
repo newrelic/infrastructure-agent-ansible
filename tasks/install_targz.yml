@@ -12,7 +12,7 @@
     nrinfragent_tarball_download_path: "{{ nrinfragent_tarball_download_dir }}/newrelic-infra_linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}"
 
 - name: Create the download directory, including intermediate ones
-  ansible.builtin.file:
+  file:
     path: "{{ nrinfragent_tarball_download_path }}"
     state: directory
 
@@ -35,6 +35,12 @@
     creates: "{{ nrinfragent_tarball_download_path }}/newrelic-infra/"
   register: archive_contents
 
+- name: Stop newrelic-infra if running
+  service:
+    name: newrelic-infra
+    state: stopped
+  failed_when: false
+
 - name: running installer
   command: ./installer.sh
   args:
@@ -49,6 +55,11 @@
     NRIA_PID_FILE: "{{ nrinfragent_tarball_pid_file | default('') }}"
     NRIA_PLUGIN_DIR: "{{ nrinfragent_tarball_plugin_dir | default('') }}"
     NRIA_USER: "{{ nrinfragent_tarball_user | default('') }}"
+    NRIA_PROXY: "{{ nrinfragent_config['proxy'] | default('') }}"
   become: true
-  when: archive_contents is defined and archive_contents.changed == True
+  when: archive_contents is defined and archive_contents.changed
 
+- name: Start newrelic-infra
+  service:
+    name: newrelic-infra
+    state: started
