@@ -155,7 +155,7 @@ valid values in the
 ##### `nrinfragent_config_file` (Optional)
 
 Specifies a custom path on the to the New Relic Infrastructure Agent
-[configuration file](sudo curl -s -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/el/7/x86_64/newrelic-infra.repo) on the target
+[configuration file](https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent/configuration/configure-infrastructure-agent/) on the target
 hosts.  Defaults to `/etc/newrelic-infra.yml` on Linux and
 `%ProgramFiles%\New Relic\newrelic-infra\newrelic-infra.yml` on Windows. This
 can be especially useful on [Linux tarball installs](#tarball-installation-linux-only)

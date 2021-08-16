@@ -118,7 +118,7 @@ def merge_lists(target, source, options):
         return (target + source, changed)
 
     changed = False
-    copy = target.copy()
+    copy = target[:]
     for item in source:
         if not item in copy:
             changed = True
