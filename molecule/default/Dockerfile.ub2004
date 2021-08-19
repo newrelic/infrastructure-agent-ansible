@@ -1,0 +1,7 @@
+FROM ubuntu:20.04
+
+RUN apt-get update && apt-get install -y init \
+  && apt-get install -y gpg \
+  && apt-get install -y ca-certificates \
+  && apt-get install -y sudo \
+  && apt-get clean all
