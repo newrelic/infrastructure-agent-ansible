@@ -2,7 +2,9 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
-## 0.10.0 (2021-07-27)
+## 0.10.0 (2021-08-26)
+
+IMPROVEMENTS:
 
 * Split apart `main.yml` tasks file into multiple files.
 * Added tags and support for running tasks individually.
@@ -11,6 +13,11 @@ This file is used to list changes made in each version of the `nrinfragent` Ansi
 * Added additional variables for customizing tarball install.
 * Added `nrinfragent_config_file` variable for customizing agent configuration
   path.
+* Added support for ansible vault
+
+BUG FIXES:
+
+* Prevent errors on update
 
 ## 0.9.0 (2021-06-12)
 
