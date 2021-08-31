@@ -3,6 +3,10 @@ description: 'Run linter against the code'
 runs:
   using: "composite"
   steps:
+    - name: chmod
+      id: chmod
+      run: chmod 777 .yamllint
+      shell: bash
     - name: Run linter
       id: linter
       run: ansible-lint -c .yamllint --exclude molecule
