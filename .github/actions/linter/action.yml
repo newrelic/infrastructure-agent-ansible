@@ -5,5 +5,5 @@ runs:
   steps:
     - name: Run linter
       id: linter
-      run: ansible-lint -x role-name
+      run: ansible-lint -x role-name --exclude molecule
       shell: bash
