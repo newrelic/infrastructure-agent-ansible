@@ -5,5 +5,5 @@ runs:
   steps:
     - name: Run linter
       id: linter
-      run: ansible-lint tasks
+      run: ansible-lint -x role-name
       shell: bash
