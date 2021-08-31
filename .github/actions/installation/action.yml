@@ -4,11 +4,11 @@ inputs:
   ansible_version:
     description: 'Ansible Version'
     required: false
-    default: '2.11.3'
+    default: '2.9.6'
   ansible_lint_version:
     description: 'Ansible-lint Version'
     required: false
-    default: '5.1.3'
+    default: '5.1.1'
 runs:
   using: 'composite'
   steps:
