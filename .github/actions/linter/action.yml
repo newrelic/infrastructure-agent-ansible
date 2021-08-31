@@ -1,9 +1,9 @@
-name: 'Run litner'
+name: 'Run linter'
 description: 'Run linter against the code'
 runs:
   using: "composite"
   steps:
     - name: Run linter
       id: linter
-      run: ansible-lint
+      run: molecule lint
       shell: bash
