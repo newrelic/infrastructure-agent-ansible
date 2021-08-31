@@ -1,5 +1,5 @@
 ANSIBLE_VERSION=${1:-2.9.6}
-ANSIBLE_LINT_VERSION=${2:-5.0.6}
+ANSIBLE_LINT_VERSION=${2:-4.3.7}
 
 sudo apt-get install update -y
 sudo apt-get install pip3
