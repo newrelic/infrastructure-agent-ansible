@@ -1,14 +1,18 @@
 name: 'Install ansible and linter'
 description: 'Install ansible and ansible-lint'
 inputs:
-  version:
+  ansible_version:
     description: 'Ansible Version'
     required: false
-    default: '2.9.6'
+    default: '2.11.3'
+  ansible_lint_version:
+    description: 'Ansible-lint Version'
+    required: false
+    default: '5.1.3'
 runs:
   using: 'composite'
   steps:
     - name: Install Ansible and Ansible-lint
       id: Install
-      run: ${{ github.action_path }}/install.sh ${{ inputs.version }}
+      run: ${{ github.action_path }}/install.sh ${{ inputs.ansible_version }} ${{ inputs.ansible_lint_version}}
       shell: bash
