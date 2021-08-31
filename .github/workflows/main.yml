@@ -7,7 +7,7 @@ jobs:
     name: Run linter and tests
     steps:
       - uses: actions/checkout@v2
-      - name: Install Ansible and Ansible-lint
+      - name: Install requirements
         uses: newrelic/infrastructure-agent-ansible/.github/actions/installation@github-actions
       - name: Run linter
         uses: newrelic/infrastructure-agent-ansible/.github/actions/linter@github-actions
