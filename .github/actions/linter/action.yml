@@ -5,5 +5,5 @@ runs:
   steps:
     - name: Run linter
       id: linter
-      run: molecule lint
+      run: ansible-lint lintables tasks
       shell: bash
