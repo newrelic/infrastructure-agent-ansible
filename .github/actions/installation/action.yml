@@ -1,5 +1,5 @@
-name: 'Install ansible and linter'
-description: 'Install ansible and ansible-lint'
+name: 'Install requirements'
+description: 'Install requirements'
 inputs:
   ansible_version:
     description: 'Ansible Version'
