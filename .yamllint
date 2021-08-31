@@ -30,4 +30,5 @@ rules:
   new-lines:
     type: unix
   trailing-spaces: disable
+  role-name: disable
   truthy: disable

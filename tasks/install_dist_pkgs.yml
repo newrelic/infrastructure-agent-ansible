@@ -97,7 +97,7 @@
     path: "{{ nrinfragent_config['log_file'] | dirname }}"
     state: directory
     recurse: true
-  when: 
+  when:
     - nrinfragent_state != 'absent'
     - nrinfragent_config['log_file'] is defined
 
