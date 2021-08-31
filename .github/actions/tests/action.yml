@@ -5,5 +5,5 @@ runs:
   steps:
     - name: Run molecule
       id: Molecule
-      run: molecule converge
+      run: molecule test
       shell: bash
