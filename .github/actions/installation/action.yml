@@ -4,7 +4,7 @@ inputs:
   version:
     description: 'Ansible Version'
     required: false
-    default: '2.9.0'
+    default: '2.9.6'
 runs:
   using: 'composite'
   steps:
