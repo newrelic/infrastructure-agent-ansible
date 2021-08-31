@@ -3,7 +3,11 @@ description: 'Run linter against the code'
 runs:
   using: "composite"
   steps:
+    - name: List files
+      id: List
+      run: ls
+      shell: bash
     - name: Run linter
       id: linter
-      run: ansible-lint
+      run: ansible-lint -x role-name -c .yamllint tasks
       shell: bash
