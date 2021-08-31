@@ -8,7 +8,7 @@ inputs:
   ansible_lint_version:
     description: 'Ansible-lint Version'
     required: false
-    default: '5.0.6'
+    default: '4.3.7'
 runs:
   using: 'composite'
   steps:
