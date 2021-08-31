@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
+## 0.10.1 (2021-08-31)
+
+BUG FIXES:
+
+* Added missing when clause for ansible version in confirm redhat lsb util is present pre2.8.0
+
 ## 0.10.0 (2021-08-26)
 
 IMPROVEMENTS:
