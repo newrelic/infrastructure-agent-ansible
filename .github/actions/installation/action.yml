@@ -16,7 +16,7 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Install Ansible and Ansible-lint
+    - name: Install requirements
       id: Install
       run: ${{ github.action_path }}/install.sh ${{ inputs.ansible_version }} ${{ inputs.ansible_lint_version}} ${{ inputs.molecule_version }}
       shell: bash
