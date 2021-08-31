@@ -1,4 +1,4 @@
-VERSION={1:-2.9.0}
+VERSION=${1:-2.9.0}
 
 sudo apt-get install update -y
 sudo apt-get install pip3
