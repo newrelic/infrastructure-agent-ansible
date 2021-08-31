@@ -11,3 +11,5 @@ jobs:
         uses: newrelic/infrastructure-agent-ansible/.github/actions/installation@github-actions
       - name: Run linter
         uses: newrelic/infrastructure-agent-ansible/.github/actions/linter@github-actions
+      - name: Run tests
+        uses: newrelic/infrastructure-agent-ansible/.github/actions/tests@github-actions
