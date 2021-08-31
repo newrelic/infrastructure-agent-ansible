@@ -10,5 +10,5 @@ runs:
   steps:
     - name: Install Ansible and Ansible-lint
       id: Install
-      run: ${{ github.action_path }}/install.sh ${{ inputs.version}}
+      run: ${{ github.action_path }}/install.sh ${{ inputs.version }}
       shell: bash
