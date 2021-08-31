@@ -2,7 +2,7 @@
 dependency:
   name: galaxy
 lint: |
-  yamllint
+  yamllint .
 driver:
   name: docker
 platforms:
