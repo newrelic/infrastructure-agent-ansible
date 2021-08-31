@@ -3,11 +3,7 @@ description: 'Run linter against the code'
 runs:
   using: "composite"
   steps:
-    - name: LS
-      id: ls
-      run: ls -la
-      shell: bash
     - name: Run linter
       id: linter
-      run: ansible-lint -x role-name -c .yamllint --exclude molecule
+      run: ansible-lint -c .yamllint --exclude molecule
       shell: bash
