@@ -1,0 +1,11 @@
+on: [push]
+name: Ansible Workflow
+
+jobs:
+  install_ansible:
+    runs-on: ubuntu-latest
+    name: Install ansible and ansible-lint
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Ansible and Ansible-lint
+        uses: newrelic/infrastructure-agent-ansible/.github/actions/installation@github-actions
