@@ -9,3 +9,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Ansible and Ansible-lint
         uses: newrelic/infrastructure-agent-ansible/.github/actions/installation@github-actions
+      - name: Run linter
+        uses: newrelic/infrastructure-agent-ansible/.github/actions/linter@github-actions
