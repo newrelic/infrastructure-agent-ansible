@@ -1,4 +1,4 @@
-ANSIBLE_VERSION=${1:-2.11.3}
+ANSIBLE_VERSION=${1:-2.9.6}
 ANSIBLE_LINT_VERSION=${2:-5.1.1}
 
 sudo apt-get install update -y
