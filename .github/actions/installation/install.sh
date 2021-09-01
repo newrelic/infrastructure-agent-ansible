@@ -5,7 +5,7 @@ MOLECULE_VERSION=${3:-3.4.0}
 sudo apt-get install update -y
 sudo apt-get install pip
 sudo pip install docker==5.0.0
-sudo pip install ansible-lint==${ANSIBLE_LINT_VERSION} 
+sudo pip install ansible-lint[community]==${ANSIBLE_LINT_VERSION} 
 sudo pip install molecule[docker]==${MOLECULE_VERSION}
 sudo pip install flake8==3.8.4
 
