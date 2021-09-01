@@ -9,5 +9,5 @@ runs:
       shell: bash
     - name: Run linter
       id: linter
-      run: ansible-lint tasks/* -c .yamllint -v
+      run: ansible-lint tasks/* -x 106 -vv -c .yamllint
       shell: bash
