@@ -1,22 +1,9 @@
 name: 'Install requirements'
 description: 'Install requirements'
-inputs:
-  ansible_version:
-    description: 'Ansible Version'
-    required: false
-    default: '4.5.0'
-  ansible_lint_version:
-    description: 'Ansible-lint Version'
-    required: false
-    default: '5.1.3'
-  molecule_version:
-    description: 'Molecule Version'
-    required: false
-    default: '3.4.0'
 runs:
   using: 'composite'
   steps:
     - name: Install requirements
       id: Install
-      run: ${{ github.action_path }}/install.sh ${{ inputs.ansible_version }} ${{ inputs.ansible_lint_version}} ${{ inputs.molecule_version }}
+      run: ${{ github.action_path }}/install.sh
       shell: bash
