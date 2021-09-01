@@ -1,5 +1,4 @@
-sudo apt-get update -y
-sudo pip3 uninstall ansible-core -y
+sudo pipx uninstall ansible-core
 sudo pip3 install ansible-lint[community]==5.1.3
 sudo pip3 install molecule[docker]
 
