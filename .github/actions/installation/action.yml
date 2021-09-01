@@ -4,15 +4,15 @@ inputs:
   ansible_version:
     description: 'Ansible Version'
     required: false
-    default: '4.4.0'
+    default: '4.5.0'
   ansible_lint_version:
     description: 'Ansible-lint Version'
     required: false
-    default: '4.3.7'
+    default: '5.1.3'
   molecule_version:
     description: 'Molecule Version'
     required: false
-    default: '3.2.1'
+    default: '3.4.0'
 runs:
   using: 'composite'
   steps:
