@@ -9,5 +9,5 @@ runs:
       shell: bash
     - name: Run linter
       id: linter
-      run: ansible-lint -c .yamllint --exclude molecule
+      run: ansible-lint -c .yamllint --exclude molecule -v
       shell: bash
