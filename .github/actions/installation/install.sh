@@ -13,3 +13,4 @@ sudo pip install flake8==3.8.4
 
 ansible --version
 ansible-lint --version
+molecule --version
