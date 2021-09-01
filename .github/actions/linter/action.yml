@@ -3,11 +3,7 @@ description: 'Run linter against the code'
 runs:
   using: "composite"
   steps:
-    - name: chmod
-      id: chmod
-      run: chmod 777 .yamllint
-      shell: bash
     - name: Run linter
       id: linter
-      run: ansible-lint tasks/* -x 106 -vv -c .yamllint
+      run: ansible-lint tasks/* -x 106,204 -c .yamllint
       shell: bash
