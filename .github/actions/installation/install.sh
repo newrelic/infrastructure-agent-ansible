@@ -5,7 +5,7 @@ MOLECULE_VERSION=${3:-3.4.0}
 sudo apt-get install update -y
 sudo apt-get install pip
 sudo pip install docker
-sudo pip install ansible-lint[community]
+sudo pip install ansible-lint[community]==5.1.3
 sudo pip install molecule[docker]
 
 
