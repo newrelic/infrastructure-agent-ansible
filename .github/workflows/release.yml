@@ -1,8 +1,11 @@
-on: [push]
+on:
+  release:
+    type: [published]
+    
 name: Ansible Workflow
 
 jobs:
-  test_ansible:
+  pre_release_test:
     runs-on: ubuntu-20.04
     name: Run linter and tests
     steps:
@@ -13,3 +16,12 @@ jobs:
         uses: newrelic/infrastructure-agent-ansible/.github/actions/linter@github-actions
       - name: Run tests
         uses: newrelic/infrastructure-agent-ansible/.github/actions/tests@github-actions
+  release_ansible:
+    runs-on: ubuntu-20.04
+    name: Release package
+    needs: pre_release_test
+    steps:
+      - name: Release ansible
+        uses: newrelic/infrastructure-agent-ansible/.github/actions/release@github-actions
+        with:
+          galaxy_api_key: ${{ secrets.galaxy_api_key }}
