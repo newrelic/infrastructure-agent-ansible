@@ -1,7 +1,7 @@
 on:
   release:
     type: [published]
-    
+
 name: Ansible Workflow
 
 jobs:
@@ -11,17 +11,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install requirements
-        uses: newrelic/infrastructure-agent-ansible/.github/actions/installation@github-actions
+        uses: newrelic/infrastructure-agent-ansible/.github/actions/installation@master
       - name: Run linter
-        uses: newrelic/infrastructure-agent-ansible/.github/actions/linter@github-actions
+        uses: newrelic/infrastructure-agent-ansible/.github/actions/linter@master
       - name: Run tests
-        uses: newrelic/infrastructure-agent-ansible/.github/actions/tests@github-actions
+        uses: newrelic/infrastructure-agent-ansible/.github/actions/tests@master
   release_ansible:
     runs-on: ubuntu-20.04
     name: Release package
     needs: pre_release_test
     steps:
       - name: Release ansible
-        uses: newrelic/infrastructure-agent-ansible/.github/actions/release@github-actions
+        uses: newrelic/infrastructure-agent-ansible/.github/actions/release@master
         with:
           galaxy_api_key: ${{ secrets.galaxy_api_key }}
