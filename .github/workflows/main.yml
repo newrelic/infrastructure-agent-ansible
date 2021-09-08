@@ -8,8 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install requirements
-        uses: newrelic/infrastructure-agent-ansible/.github/actions/installation@github-actions
+        uses: newrelic/infrastructure-agent-ansible/.github/actions/installation@master
       - name: Run linter
-        uses: newrelic/infrastructure-agent-ansible/.github/actions/linter@github-actions
+        uses: newrelic/infrastructure-agent-ansible/.github/actions/linter@master
       - name: Run tests
-        uses: newrelic/infrastructure-agent-ansible/.github/actions/tests@github-actions
+        uses: newrelic/infrastructure-agent-ansible/.github/actions/tests@master
