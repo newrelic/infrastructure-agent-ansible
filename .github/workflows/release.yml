@@ -6,7 +6,7 @@ name: Ansible Workflow
 
 jobs:
   pre_release_test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: Run linter and tests
     steps:
       - uses: actions/checkout@v2
@@ -17,7 +17,7 @@ jobs:
       - name: Run tests
         uses: newrelic/infrastructure-agent-ansible/.github/actions/tests@master
   release_ansible:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: Release package
     needs: pre_release_test
     steps:

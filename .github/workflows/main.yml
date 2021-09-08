@@ -3,7 +3,7 @@ name: Ansible Workflow
 
 jobs:
   test_ansible:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: Run linter and tests
     steps:
       - uses: actions/checkout@v2
