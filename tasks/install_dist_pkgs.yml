@@ -83,7 +83,7 @@
     disable_gpg_check: "yes"
   when: nrinfragent_os_name == 'suse'
   register: infra_agent_zypper_repo
-  
+
 - name: run make cache to actually import gpg key
   command: "yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'"
   when: nrinfragent_os_name == 'redhat' and (setup_agent_repo_amazon.changed or setup_agent_repo_redhat.changed)
@@ -97,7 +97,7 @@
     path: "{{ nrinfragent_config['log_file'] | dirname }}"
     state: directory
     recurse: true
-  when: 
+  when:
     - nrinfragent_state != 'absent'
     - nrinfragent_config['log_file'] is defined
 
