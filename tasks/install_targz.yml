@@ -15,7 +15,7 @@
   file:
     path: "{{ nrinfragent_tarball_download_path }}"
     state: directory
-    mode: 0666
+    mode: 0600
 
 - name: downloading bundled agent file
   get_url:
