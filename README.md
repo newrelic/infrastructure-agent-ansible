@@ -1,6 +1,6 @@
 [![New Relic Community Plus header](https://raw.githubusercontent.com/newrelic/open-source-office/master/examples/categories/images/Community_Plus.png)](https://opensource.newrelic.com/oss-category/#community-plus)
 
-# Ansible role for the New Relic infrastructure agent [![Build Status](https://travis-ci.org/newrelic/infrastructure-agent-ansible.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-ansible)
+# Ansible role for the New Relic infrastructure agent ![test_ansible](https://github.com/newrelic/infrastructure-agent-ansible/actions/workflows/main.yml/badge.svg?branch=master) ![release_ansible](https://github.com/newrelic/infrastructure-agent-ansible/actions/workflows/release.yml/badge.svg?branch=master)
 
 An Ansible role that can be used to install and/or configure the New Relic
 Infrastructure Agent and install New Relic Infrastructure OHIs.

@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
+## 0.10.2 (2021-09-09)
+
+IMPROVEMENTS:
+
+* Added missing permissions to targz folders
+
 ## 0.10.1 (2021-08-31)
 
 BUG FIXES:
