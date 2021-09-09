@@ -2,7 +2,7 @@ on:
   release:
     type: [published]
 
-name: Ansible Workflow
+name: Release
 
 jobs:
   pre_release_test:
