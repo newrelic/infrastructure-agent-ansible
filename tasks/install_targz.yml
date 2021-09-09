@@ -15,6 +15,7 @@
   file:
     path: "{{ nrinfragent_tarball_download_path }}"
     state: directory
+    mode: 0600
 
 - name: downloading bundled agent file
   get_url:
@@ -26,6 +27,7 @@
     path: "{{ nrinfragent_tarball_download_path }}"
     state: directory
     recurse: true
+    mode: 0600
 
 - name: uncompressing bundled agent file
   unarchive:
