@@ -1,7 +1,7 @@
 ---
 - name: ensure python-yaml is installed
   package:
-    name: python-yaml
+    namsadfe: python-yaml
     state: "{{ nrinfragent_state }}"
   when:
     - nrinfragent_state != "absent"
