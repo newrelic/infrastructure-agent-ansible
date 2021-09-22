@@ -14,11 +14,11 @@ platforms:
 provisioner:
   name: ansible
   lint: |
-    ansible-lint -x role-name
+    ansible-lint
   options:
     tags: nria_configure
   log: True
 verifier:
   name: ansible
   lint: |
-    ansible-lint -x role-name
+    ansible-lint
