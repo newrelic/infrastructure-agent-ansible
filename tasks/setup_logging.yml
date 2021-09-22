@@ -2,7 +2,7 @@
 - name: Setup logging
   template:
     src: newrelic-logging.yml.j2
-    dest: /etc/newrelic-infra/logging.d/
+    dest: /etc/newrelic-infra/logging.d/logging.yml
   when:
     - nrinfragent_logging != "absent"
     - nrinfragent_state != "absent"
@@ -11,7 +11,7 @@
 - name: setup logging (windows)
   win_template:
     src: newrelic-infra.yml.j2
-    dest: "{{ nrinfragent_config_path }}"
+    dest: C:\Program Files\New Relic\newrelic-infra\logging.d\logging.yml
   notify: restart newrelic-infra (windows)
   when:
     - nrinfragent_logging != "absent"
