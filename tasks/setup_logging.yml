@@ -10,7 +10,7 @@
 
 - name: setup logging (windows)
   win_template:
-    src: newrelic-infra.yml.j2
+    src: newrelic-logging.yml.j2
     dest: C:\Program Files\New Relic\newrelic-infra\logging.d\logging.yml
   notify: restart newrelic-infra (windows)
   when:
