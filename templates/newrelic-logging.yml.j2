@@ -1,6 +1,40 @@
 {% if nrinfragent_logging is defined %}
 logs:
   - name: {{ nrinfragent_logging.name }}
-  {% if nrinfragent_logging.source_type = file | nrinfragent_logging.source_type = systemd %}
+  {% if nrinfragent_logging.source_type == 'file' or nrinfragent_logging.source_type == 'systemd' %}
     {{ nrinfragent_logging.source_type }}: {{ nrinfragent_logging.source_value }}
+  {% elif nrinfragent_logging.source_type == 'syslog' and nrinfragent_logging.syslog is defined %}
+    syslog:
+      uri: {{ nrinfragent_logging.syslog.uri }}
+      {% if nrinfragent_logging.syslog.parser is defined %}
+      parser: {{ nrinfragent_logging.syslog.parser }}
+      {% endif %}
+      {% if nrinfragent_logging.syslog.unix_permissions is defined %}
+      unix_permissions: {{ nrinfragent_logging.syslog.unix_permissions }}
+      {% endif %}
+  {% elif nrinfragent_logging.source_type == 'tcp' and nrinfragent_logging.tcp is defined %}
+    tcp:
+      uri: {{ nrinfragent_logging.tcp.uri }}
+      {% if nrinfragent_logging.tcp.format is defined %}
+      format: {{ nrinfragent_logging.tcp.format }}
+      {% endif %}
+      {% if nrinfragent_logging.tcp.format == 'none' and nrinfragent_logging.tcp.separator is defined %}
+      separator: {{ nrinfragent_logging.tcp.separator }}
+      {% endif %}
+  {% elif nrinfragent_logging.source_type == 'winlog' and nrinfragent_logging.winlog is defined %}
+    winlog:
+      channel: {{ nrinfragent_logging.winlog.channel }}
+      {% if nrinfragent_logging.winlog.collect_eventids is defined %}
+      collect-eventids: {{ nrinfragent_logging.winlog.collect_eventids }}
+      {% endif %}
+      {% if nrinfragent_logging.winlog.exclude_eventids is defined %}
+      exclude-eventids: {{ nrinfragent_logging.winlog.exclude_eventids }}
+      {% endif %}
+  {% endif %}
+  {% if nrinfragent_logging.max_line_kb is defined %}
+    max_line_kb: {{ nrinfragent_logging.max_line_kb }}
+  {% endif %}
+  {% if nrinfragent_logging.pattern is defined %}
+    pattern: {{ nrinfragent_logging.pattern }}
+  {% endif %}
 {% endif %}
