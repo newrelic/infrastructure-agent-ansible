@@ -1,5 +1,6 @@
 {% if nrinfragent_logging is defined %}
 logs:
   - name: {{ nrinfragent_logging.name }}
+  {% if nrinfragent_logging.source_type = file | nrinfragent_logging.source_type = systemd %}
     {{ nrinfragent_logging.source_type }}: {{ nrinfragent_logging.source_value }}
 {% endif %}
