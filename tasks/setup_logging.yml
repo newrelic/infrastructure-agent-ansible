@@ -12,7 +12,6 @@
   win_template:
     src: newrelic-logging.yml.j2
     dest: C:\Program Files\New Relic\newrelic-infra\logging.d\logging.yml
-  notify: restart newrelic-infra (windows)
   when:
     - nrinfragent_logging != undefined
     - nrinfragent_state != "absent"
