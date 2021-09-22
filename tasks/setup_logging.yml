@@ -4,7 +4,7 @@
     src: newrelic-logging.yml.j2
     dest: /etc/newrelic-infra/logging.d/logging.yml
   when:
-    - nrinfragent_logging != "absent"
+    - nrinfragent_logging != undefined
     - nrinfragent_state != "absent"
     - nrinfragent_os_name != 'windows'
 
@@ -14,6 +14,6 @@
     dest: C:\Program Files\New Relic\newrelic-infra\logging.d\logging.yml
   notify: restart newrelic-infra (windows)
   when:
-    - nrinfragent_logging != "absent"
+    - nrinfragent_logging != undefined
     - nrinfragent_state != "absent"
     - nrinfragent_os_name == 'windows'
