@@ -46,8 +46,8 @@ platforms:
 provisioner:
   name: ansible
   lint: |
-    ansible-lint
+    ansible-lint -x role-name
 verifier:
   name: ansible
   lint: |
-    ansible-lint
+    ansible-lint -x role-name

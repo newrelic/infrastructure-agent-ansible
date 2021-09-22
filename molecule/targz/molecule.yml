@@ -14,11 +14,11 @@ platforms:
 provisioner:
   name: ansible
   lint: |
-    ansible-lint
+    ansible-lint -x role-name
   options:
     tags: nria_install_tarball
   log: True
 verifier:
   name: ansible
   lint: |
-    ansible-lint
+    ansible-lint -x role-name
