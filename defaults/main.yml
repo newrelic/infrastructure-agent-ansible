@@ -122,3 +122,13 @@ nrinfragent_integrations: []
 # Example:
 #  nrinfragent_tarball_user: newrelic
 #nrinfragent_tarball_user: ""
+
+# Add logging to the newrelic infrastructure agent
+#
+# Example: 
+#
+# nrinfragent_logging:
+#   name: name for the logs you want to forward
+#   source_type: type of the logs you want to forward: file/systemd/syslog/tcp/winlog
+#   source_value: value of the source type https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/#log-source-required
+

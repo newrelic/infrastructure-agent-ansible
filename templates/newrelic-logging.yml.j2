@@ -1,0 +1,5 @@
+{% if nrinfragent_logging is defined %}
+logs:
+  - name: file-with-attributes
+    {{ nrinfragent_logging.source_type }}: {{ nrinfragent_logging.source_value }}
+{% endif %}

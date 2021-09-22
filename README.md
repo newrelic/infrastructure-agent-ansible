@@ -287,6 +287,21 @@ on Windows. Can be used to pin the version or upgrade the agent.
 
 Used to set lock_timeout value for ansible yum module. When it's not set this value defaults to 30. Works only for ansible version >= 2.8.0
 
+##### `nrinfragent_logging` (optional)
+
+Used to generate logging file. At a minimum you must provide
+`name`, `source_type`, `source_value`. For current configuration options, see the
+[New Relic documentation](https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/#parameters). For example:
+
+```yml
+vars:
+  nrinfragent_logging:
+    name: Name of the logs that you want to forward to newrelic one
+    source_type: type of the logs you want to forward: file/systemd/syslog/tcp/winlog
+    source_value: value of the source type https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/#log-source-required
+```
+
+
 #### Removing the `newrelic-infra-integrations` package and its bundled integrations
 
 > This only applies if you have the `newrelic-infra-integrations` package
