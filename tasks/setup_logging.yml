@@ -4,7 +4,7 @@
     src: newrelic-logging.yml.j2
     dest: /etc/newrelic-infra/logging.d/logging.yml
   when:
-    - nrinfragent_logging != undefined
+    - nrinfragent_logging
     - nrinfragent_state != "absent"
     - nrinfragent_os_name != 'windows'
 
@@ -13,6 +13,6 @@
     src: newrelic-logging.yml.j2
     dest: C:\Program Files\New Relic\newrelic-infra\logging.d\logging.yml
   when:
-    - nrinfragent_logging != undefined
+    - nrinfragent_logging
     - nrinfragent_state != "absent"
     - nrinfragent_os_name == 'windows'
