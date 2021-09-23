@@ -3,8 +3,9 @@
   template:
     src: newrelic-logging.yml.j2
     dest: /etc/newrelic-infra/logging.d/logging.yml
+    trim_blocks: no
   when:
-    - nrinfragent_logging
+    - nrinfragent_logging is defined
     - nrinfragent_state != "absent"
     - nrinfragent_os_name != 'windows'
 
@@ -12,7 +13,8 @@
   win_template:
     src: newrelic-logging.yml.j2
     dest: C:\Program Files\New Relic\newrelic-infra\logging.d\logging.yml
+    trim_blocks: no
   when:
-    - nrinfragent_logging
+    - nrinfragent_logging is defined
     - nrinfragent_state != "absent"
     - nrinfragent_os_name == 'windows'

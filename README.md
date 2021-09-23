@@ -315,6 +315,17 @@ vars:
       exclude_eventids: a list of Windows Event IDs to be excluded from collection. Event ID ranges are supported.
     pattern: Regular expression for filtering records. Only supported for the tail, systemd, syslog, and tcp (only with format none) sources.
     max_line_kb: Maximum size of log entries/lines in KB. If log entries exceed the limit, they are skipped. Default is 128.
+    fluentbit: External Fluent Bit configuration and parser files.
+      config_file: path to an existing Fluent Bit configuration file. Note that any overlapping source results in duplicate messages in New Relic Logs.
+      parser_file: path to an existing Fluent Bit parsers file. The following parser names are reserved: rfc3164, rfc3164-local and rfc5424.
+    custom_attributes: List of custom attributes as key-value pairs that can be used to send additional data with the logs which you can then query. Add attributes to any log source. Expects data in the following format - 
+    "
+    custom_attributes: [
+      { 'key': 'value'},
+      { 'key2': 'value2'},
+      ...
+    ]
+    "
     
 ```
 
