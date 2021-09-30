@@ -287,6 +287,50 @@ on Windows. Can be used to pin the version or upgrade the agent.
 
 Used to set lock_timeout value for ansible yum module. When it's not set this value defaults to 30. Works only for ansible version >= 2.8.0
 
+##### `nrinfragent_logging` (optional)
+
+Used to generate logging file. At a minimum you must provide
+`name`, `source_type`, `source_value`. For current configuration options, see the
+[New Relic documentation](https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/#parameters). To create multiple log blocks enter additional - name lists. For example:
+
+```yml
+vars:
+  nrinfragent_logging:
+    - name: Name of the logs that you want to forward to newrelic one [required]
+      source_type: type of the logs you want to forward - file/systemd/syslog/tcp/winlog [required]
+      source_value: ONLY FILE/SYSTEMD - value of the source type https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/#log-source-required
+      syslog: [required if source_type is syslog]
+        uri: Syslog socket. Format varies depending on the protocol 
+        TCP/UDP network sockets - [tcp/udp]://LISTEN_ADDRESS:PORT
+        Unix domain sockets unix_[tcp/udp]:// + /socket/path
+        parser: Syslog parser. Default is rfc3164. Use rfc5424 if your messages include fractional seconds. Note - rfc3164 currently does not work on SuSE.
+        permissions: default is 0644 for domain sockets; this limits entries to processes running as root. You can use 0666 to listen for non-root processes, at your own risk.
+      tcp: [required if source_type is tcp]
+        uri: TCP/IP socket to listen for incoming data. The URI format is tcp://LISTEN_ADDRESS:PORT
+        format: format of the data. It can be json or none.
+        separator: If format - none is used, you can define a separator string for splitting records (default - \n).
+      winlog: [required if source_type is winlog]
+        channel: name of the channel logs will be collected from.
+        collect_eventids: a list of Windows Event IDs to be collected and forwarded to New Relic. Event ID ranges are supported.
+        exclude_eventids: a list of Windows Event IDs to be excluded from collection. Event ID ranges are supported.
+      pattern: Regular expression for filtering records. Only supported for the tail, systemd, syslog, and tcp (only with format none) sources.
+      max_line_kb: Maximum size of log entries/lines in KB. If log entries exceed the limit, they are skipped. Default is 128.
+      fluentbit: External Fluent Bit configuration and parser files.
+        config_file: path to an existing Fluent Bit configuration file. Note that any overlapping source results in duplicate messages in New Relic Logs.
+        parser_file: path to an existing Fluent Bit parsers file. The following parser names are reserved: rfc3164, rfc3164-local and rfc5424.
+      custom_attributes: List of custom attributes as key-value pairs that can be used to send additional data with the logs which you can then query. Add attributes to any log source. Expects data in the following format - 
+      "
+      custom_attributes: [
+        { 'key': 'value'},
+        { 'key2': 'value2'},
+        ...
+      ]
+      "
+    - name: Name of the logs that you want to forward to newrelic one [required]
+      source_type: type of the logs you want to forward - file/systemd/syslog/tcp/winlog [required]
+      source_value: ONLY FILE/SYSTEMD - value of the source type https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/#log-source-required
+```
+
 #### Removing the `newrelic-infra-integrations` package and its bundled integrations
 
 > This only applies if you have the `newrelic-infra-integrations` package

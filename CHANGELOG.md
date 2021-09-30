@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
+## 0.10.3 (2021-09-30)
+
+IMPROVEMENTS:
+
+* Add logging template
+
 ## 0.10.2 (2021-09-09)
 
 IMPROVEMENTS:
