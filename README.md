@@ -374,6 +374,7 @@ To release a new version to [Ansible Galaxy][3] follow this steps:
 
 * Update the [CHANGELOG.md](CHANGELOG.md)
 * Create a new GitHub release.
+* Watch the build with the version number in Github Actions: https://github.com/newrelic/infrastructure-agent-ansible/actions
 * Make sure the version is imported into [Ansible Galaxy][3], if there is any
   issue, ask one of the project owners.
 
