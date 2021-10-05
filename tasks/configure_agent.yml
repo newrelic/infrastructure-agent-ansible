@@ -17,12 +17,19 @@
     - nrinfragent_os_name != 'windows'
     - ansible_python_version is version('3.0', '>=')
 
+- name: Stat newrelic-infra.yml config file
+  stat:
+    path: "{{ nrinfragent_config_path }}"
+  register: nrinfragent_config_stat
+
 - name: Ensure newrelic-infra.yml exists
   file:
     path: "{{ nrinfragent_config_path }}"
     state: touch
     mode: 0600
-  when: nrinfragent_os_name != 'windows'
+  when:
+    - nrinfragent_os_name != 'windows'
+    - nrinfragent_config_stat.stat.exists == false or nrinfragent_config_stat.stat.mode != '0600'
 
 - name: Setup agent config *NIX
   merge_yaml:
