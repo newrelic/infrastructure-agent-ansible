@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `nrinfragent` Ansible role.
 
+## 0.10.4 (2021-10-28)
+
+IMPROVEMENTS:
+
+* Add offline support for tarball install
+
 ## 0.10.3 (2021-09-30)
 
 IMPROVEMENTS:

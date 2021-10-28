@@ -88,6 +88,29 @@ specified.
     - name: newrelic.newrelic-infra
       vars:
         nrinfragent_tarball_version: 1.18.0
+        nrinfragent_tarball_download_dir: /opt/newrelic/
+        nrinfragent_config:
+          log_file: /opt/logs/newrelic-infra.log
+          verbose: 0
+          license_key: 12345
+          custom_attributes:
+            environment: dev
+```
+
+#### Tarball installation "offline"
+
+To use a local tarball instead of downloading it from the web you need to set
+`nrinfragent_tarball_local_file_path` variable to a local path of the tarball from 
+`http://download.newrelic.com/infrastructure_agent/binaries/linux/{{ architecture }}/newrelic-infra_linux_{{ version }}_{{ architecture }}.tar.gz`.
+
+```yaml
+- hosts: ap_ne_1
+  roles:
+    - name: newrelic.newrelic-infra
+      vars:
+        nrinfragent_tarball_version: 1.18.0
+        nrinfragent_tarball_download_dir: /opt/newrelic/
+        nrinfragent_tarball_local_file_path: /download/newrelic-infra_linux_1.18.0_amd64.tar.gz
         nrinfragent_config:
           log_file: /opt/logs/newrelic-infra.log
           verbose: 0

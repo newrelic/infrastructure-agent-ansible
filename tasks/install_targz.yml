@@ -21,6 +21,29 @@
   get_url:
     url: "http://download.newrelic.com/infrastructure_agent/binaries/linux/{{ nrinfragent_architecture }}/newrelic-infra_linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}.tar.gz"
     dest: "{{ nrinfragent_tarball_download_path }}.tar.gz"
+  when: nrinfragent_tarball_from_local is undefined
+
+- name: Create temporary file for bundle
+  ansible.builtin.tempfile:
+    state: file
+    suffix: temp
+  register: tarball_local
+  delegate_to: 127.0.0.1
+  when: nrinfragent_tarball_from_local is defined
+
+- name: downloading bundled agent file locally
+  get_url:
+    url: "http://download.newrelic.com/infrastructure_agent/binaries/linux/{{ nrinfragent_architecture }}/newrelic-infra_linux_{{ nrinfragent_tarball_version }}_{{ nrinfragent_architecture }}.tar.gz"
+    dest: "{{ tarball_local.path }}"
+  delegate_to: 127.0.0.1
+  when: nrinfragent_tarball_from_local is defined
+
+
+- name: upload bundled agent file
+  copy:
+    src: "{{ tarball_local.path }}"
+    dest: "{{ nrinfragent_tarball_download_path }}.tar.gz"
+  when: nrinfragent_tarball_from_local is defined
 
 - name: create agent destination directory
   file:
