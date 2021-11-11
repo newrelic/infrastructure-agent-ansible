@@ -3,7 +3,7 @@ logs:
   {%- for log in range(nrinfragent_logging|length) %}
   - name: {{ nrinfragent_logging[log].name -}}
   {% if nrinfragent_logging[log].source_type == 'file' or nrinfragent_logging[log].source_type == 'systemd' %}
-  {{ nrinfragent_logging[log].source_type }}: {{ nrinfragent_logging[log].source_value }}
+    {{ nrinfragent_logging[log].source_type }}: {{ nrinfragent_logging[log].source_value }}
   {% elif nrinfragent_logging[log].source_type == 'syslog' and nrinfragent_logging[log].syslog is defined %}
     syslog:
       uri: {{ nrinfragent_logging[log].syslog.uri }}
