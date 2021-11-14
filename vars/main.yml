@@ -4,4 +4,12 @@ nrinfragent_os_version: "{{ ansible_lsb.major_release }}"
 nrinfragent_os_codename: "{{ ansible_lsb.codename }}"
 nrinfragent_distribution: "{{ ansible_distribution|lower }}"
 nrinfragent_architecture: "{{ {'x86_64': 'amd64', 'i386': '386'}[ansible_architecture] | default(ansible_architecture) }}"
-nrinfragent_config_path: "{{ nrinfragent_config_file | default((ansible_os_family == 'windows') | ternary('%ProgramFiles%\New Relic\newrelic-infra\newrelic-infra.yml', '/etc/newrelic-infra.yml'), true) }}"
+
+nrinfragent_config_path: >-
+  {%- if nrinfragent_os_name == "windows" -%}
+    %ProgramFiles%\New Relic\newrelic-infra\newrelic-infra.yml
+  {%- elif nrinfragent_os_name == "darwin" -%}
+    /usr/local/etc/newrelic-infra/newrelic-infra.yml
+  {%- else -%}
+    /etc/newrelic-infra.yml
+  {%- endif -%}
