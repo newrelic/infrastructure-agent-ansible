@@ -51,7 +51,7 @@
 
 - name: setup agent repo reference
   yum_repository:
-    baseurl: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/{{ (ansible_service_mgr == 'upstart') | ternary('6', '7') }}/x86_64"
+    baseurl: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/{{ (ansible_service_mgr == 'upstart') | ternary('6', '7') }}/{{ ansible_architecture }}"
     gpgcheck: "yes"
     gpgkey: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     name: 'newrelic-infra'
@@ -63,7 +63,7 @@
 
 - name: setup agent repo reference
   yum_repository:
-    baseurl: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/{{ nrinfragent_os_version }}/x86_64"
+    baseurl: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/{{ nrinfragent_os_version }}/{{ ansible_architecture }}"
     gpgcheck: "yes"
     gpgkey: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     name: 'newrelic-infra'
