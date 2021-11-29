@@ -110,7 +110,7 @@ To use a local tarball instead of downloading it from the web you need to set
       vars:
         nrinfragent_tarball_version: 1.18.0
         nrinfragent_tarball_download_dir: /opt/newrelic/
-        nrinfragent_tarball_local_file_path: /download/newrelic-infra_linux_1.18.0_amd64.tar.gz
+        nrinfragent_tarball_from_local: yes
         nrinfragent_config:
           log_file: /opt/logs/newrelic-infra.log
           verbose: 0
