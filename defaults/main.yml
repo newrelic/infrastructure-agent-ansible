@@ -87,6 +87,13 @@ nrinfragent_integrations: []
 #  nrinfragent_tarball_agent_dir: /opt/nri-agent
 #nrinfragent_tarball_agent_dir: ""
 
+# Agent bundled file do not download from the web
+# Use local tarball instead
+#
+# Example:
+#  nrinfragent_tarball_from_local: yes
+#nrinfragent_tarball_from_local: ""
+
 # Agent binary directory path: NRIA_BIN_DIR
 # 
 # Example:
