@@ -5,5 +5,5 @@ runs:
   steps:
     - name: Run linter
       id: linter
-      run: ansible-lint tasks/* -x role-name,risky-file-permissions -c .yamllint
+      run: ansible-lint tasks/* -x role-name,risky-file-permissions,literal-compare -c .yamllint
       shell: bash
