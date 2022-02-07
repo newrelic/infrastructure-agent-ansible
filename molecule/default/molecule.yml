@@ -8,6 +8,7 @@ lint: |
 platforms:
   - name: centos-7
     image: centos:7
+    dockerfile: Dockerfile.centos7
     privileged: true
     volume_mounts:
      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
@@ -15,6 +16,7 @@ platforms:
     environment: { container: docker }
   - name: centos-8
     image: centos:8
+    dockerfile: Dockerfile.centos8
     privileged: true
     volume_mounts:
       - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
@@ -22,6 +24,7 @@ platforms:
     environment: { container: docker }
   - name: ubuntu-1604
     image: ubuntu:16.04
+    dockerfile: Dockerfile.ub1604
     privileged: true
     volume_mounts:
       - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
