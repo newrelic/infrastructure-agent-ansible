@@ -14,6 +14,10 @@ platforms:
      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
     command: "/usr/sbin/init"
     environment: { container: docker }
+  - name: rockylinux-8
+    image: rockylinux:8
+    dockerfile: Dockerfile.rockylinux8
+    command: "/usr/sbin/init"
   - name: ubuntu-1804
     image: ubuntu:18.04
     dockerfile: Dockerfile.ub1804
