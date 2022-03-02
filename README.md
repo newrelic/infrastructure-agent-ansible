@@ -100,7 +100,7 @@ specified.
 #### Tarball installation "offline"
 
 To use a local tarball instead of downloading it from the web you need to set
-`nrinfragent_tarball_local_file_path` variable to a local path of the tarball from 
+`nrinfragent_tarball_local_file_path` variable to a local path of the tarball from
 `http://download.newrelic.com/infrastructure_agent/binaries/linux/{{ architecture }}/newrelic-infra_linux_{{ version }}_{{ architecture }}.tar.gz`.
 
 ```yaml
@@ -255,7 +255,7 @@ Defaults to `/usr/local/bin/`.
 ##### nrinfragent_tarball_log_file (Optional, Tarball Installation Only)
 
 Specifies the agent log file path on the target hosts. Same as the
-`NRIA_LOG_FILE` [parameter] (https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent/linux-installation/tarball-assisted-install-infrastructure-agent-linux/#parameters). 
+`NRIA_LOG_FILE` [parameter] (https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent/linux-installation/tarball-assisted-install-infrastructure-agent-linux/#parameters).
 Defaults to `/var/run/newrelic-infra/newrelic-infra.log`.
 
 ##### nrinfragent_tarball_mode (Optional, Tarball Installation Only)
@@ -273,13 +273,13 @@ Defaults to `/var/run/newrelic-infra/newrelic-infra.pid`.
 ##### nrinfragent_tarball_plugin_dir (Optional, Tarball Installation Only)
 
 Specifies the agent plugin directory path on the target hosts. Same as the
-`NRIA_PLUGIN_DIR` [parameter] (https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent/linux-installation/tarball-assisted-install-infrastructure-agent-linux/#parameters). 
+`NRIA_PLUGIN_DIR` [parameter] (https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent/linux-installation/tarball-assisted-install-infrastructure-agent-linux/#parameters).
 Defaults to `/etc/newrelic-infra/integrations.d/`.
 
 ##### nrinfragent_tarball_user (Optional, Tarball Installation Only)
 
 Specifies the user the agent binary will be run ason the target hosts. Same as
-the `NRIA_USER` [parameter] (https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent/linux-installation/tarball-assisted-install-infrastructure-agent-linux/#parameters). 
+the `NRIA_USER` [parameter] (https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent/linux-installation/tarball-assisted-install-infrastructure-agent-linux/#parameters).
 Defaults to `root`.
 
 ##### `nrinfragent_os_name` (Optional)
@@ -323,7 +323,7 @@ vars:
       source_type: type of the logs you want to forward - file/systemd/syslog/tcp/winlog [required]
       source_value: ONLY FILE/SYSTEMD - value of the source type https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/#log-source-required
       syslog: [required if source_type is syslog]
-        uri: Syslog socket. Format varies depending on the protocol 
+        uri: Syslog socket. Format varies depending on the protocol
         TCP/UDP network sockets - [tcp/udp]://LISTEN_ADDRESS:PORT
         Unix domain sockets unix_[tcp/udp]:// + /socket/path
         parser: Syslog parser. Default is rfc3164. Use rfc5424 if your messages include fractional seconds. Note - rfc3164 currently does not work on SuSE.
@@ -341,7 +341,7 @@ vars:
       fluentbit: External Fluent Bit configuration and parser files.
         config_file: path to an existing Fluent Bit configuration file. Note that any overlapping source results in duplicate messages in New Relic Logs.
         parser_file: path to an existing Fluent Bit parsers file. The following parser names are reserved: rfc3164, rfc3164-local and rfc5424.
-      custom_attributes: List of custom attributes as key-value pairs that can be used to send additional data with the logs which you can then query. Add attributes to any log source. Expects data in the following format - 
+      custom_attributes: List of custom attributes as key-value pairs that can be used to send additional data with the logs which you can then query. Add attributes to any log source. Expects data in the following format -
       "
       custom_attributes: [
         { 'key': 'value'},
@@ -424,7 +424,7 @@ To release a new version to [Ansible Galaxy][3] follow this steps:
   * 12
 * Windows
   * All
-  * _Disclaimer_: Windows support depends on the third-party 
+  * _Disclaimer_: Windows support depends on the third-party
     [newrelic-infra Chocolatey package](https://chocolatey.org/packages/newrelic-infra)
     which is maintained by @ripclawffb and @xandrellas. It is distributed
     without any guarantee or support from New Relic.
