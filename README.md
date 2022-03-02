@@ -383,7 +383,7 @@ For example, to configure the nginx integration [after installing it](#nrinfrage
 ```yaml
 nrinfragent_integration_config:
   - filename: nginx-config.yml
-    config:
+    content:
       integrations:
         - name: nri-nginx
           env:
@@ -402,7 +402,7 @@ nrinfragent_integration_config:
           inventory_source: config/nginx
 ```
 
-This will write the yaml shown under the `config` key to `/etc/newrelic-infra/integrations.d/nginx-config.yml`.
+This will write the yaml shown under the `content` key to `/etc/newrelic-infra/integrations.d/nginx-config.yml`.
 
 ## Testing
 
