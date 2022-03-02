@@ -49,7 +49,7 @@ logs:
     max_line_kb: {{ nrinfragent_logging[log].max_line_kb -}}
   {% endif -%}
   {% if nrinfragent_logging[log].pattern is defined %}
-    pattern: {{ nrinfragent_logging[log].pattern -}}
+    pattern: {{ nrinfragent_logging[log].pattern | quote -}}
   {% endif -%}
   {% if nrinfragent_logging[log].custom_attributes is defined %}
     attributes:
