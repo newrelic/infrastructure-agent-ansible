@@ -5,6 +5,12 @@
 An Ansible role that can be used to install and/or configure the New Relic
 Infrastructure Agent and install New Relic Infrastructure OHIs.
 
+## Installation
+
+Use the following command to download the latest version of the New Relic role:
+
+`ansible-galaxy install newrelic.newrelic-infra`
+
 ## Getting Started
 
 To use the `newrelic.newrelic-infra` role directly in a playbook, simply
