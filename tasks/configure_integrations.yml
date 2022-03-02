@@ -1,0 +1,10 @@
+---
+- name: Configure Infrastructure Agent Integrations
+  copy:
+    content: "{{ item.content | to_nice_yaml }}"
+    dest: "{{ nrinfragent_tarball_plugin_dir | default('/etc/newrelic-infra/integrations.d') }}/{{ item.filename }}"
+  with_items: '{{ nrinfragent_integration_config }}'
+  notify: restart newrelic-infra
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name != 'windows'

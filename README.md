@@ -370,6 +370,40 @@ nrinfragent_integrations:
     state: "absent"
 ```
 
+### Integration Configuration
+
+#### Variables
+
+##### `nrinfragent_integration_config` (Optional)
+
+Configure this with a list of filenames and their YAML contents to render into the `integrations.d` folder.
+
+For example, to configure the nginx integration [after installing it](#nrinfragent_integrations-optional):
+
+```yaml
+nrinfragent_integration_config:
+  - filename: nginx-config.yml
+    config:
+      integrations:
+        - name: nri-nginx
+          env:
+            METRICS: "true"
+            STATUS_URL: http://127.0.0.1/nginx_status
+            STATUS_MODULE: discover
+            REMOTE_MONITORING: true
+          interval: 30s
+        - name: nri-nginx
+          env:
+            INVENTORY: "true"
+            STATUS_URL: http://127.0.0.1/nginx_status
+            CONFIG_PATH: /etc/nginx/nginx.conf
+            REMOTE_MONITORING: true #new users should leave remote_monitoring = true
+          interval: 60s
+          inventory_source: config/nginx
+```
+
+This will write the yaml shown under the `config` key to `/etc/newrelic-infra/integrations.d/nginx-config.yml`.
+
 ## Testing
 
 The `infrastructure-agent-ansible` role uses [molecule](https://github.com/ansible-community/molecule)
