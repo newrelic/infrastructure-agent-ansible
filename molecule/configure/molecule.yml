@@ -7,7 +7,7 @@ driver:
   name: docker
 platforms:
   - name: centos-7
-  - name: rockylinux-8
+  - name: oraclelinux-8
   - name: ubuntu-1804
   - name: ubuntu-2004
 provisioner:

@@ -10,9 +10,9 @@ platforms:
     image: centos:7
     dockerfile: Dockerfile.centos7
     command: "/usr/sbin/init"
-  - name: rockylinux-8
-    image: rockylinux:8
-    dockerfile: Dockerfile.rockylinux8
+  - name: oraclelinux-8
+    image: oraclelinux:8
+    dockerfile: Dockerfile.oraclelinux8
     command: "/usr/sbin/init"
   - name: ubuntu-1804
     image: ubuntu:18.04
