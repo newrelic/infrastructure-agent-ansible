@@ -7,6 +7,7 @@
     - nrinfragent_state != "absent"
     - nrinfragent_os_name != 'windows'
     - ansible_python_version is version('3.0', '<')
+    - ansible_facts['os_family'] == 'Debian'
 
 - name: ensure python3-yaml is installed
   package:
@@ -16,6 +17,17 @@
     - nrinfragent_state != "absent"
     - nrinfragent_os_name != 'windows'
     - ansible_python_version is version('3.0', '>=')
+    - ansible_facts['os_family'] == 'Debian
+
+- name: ensure python3-yaml is installed on rpm based systems
+  package:
+    name: pyYaml
+    state: "{{ nrinfragent_state }}"
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name != 'windows'
+    - ansible_python_version is version('3.0', '>=')
+    - ansible_facts['os_family'] == 'Redhat
 
 - name: Stat newrelic-infra.yml config file
   stat:
