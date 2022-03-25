@@ -17,7 +17,7 @@
     - nrinfragent_state != "absent"
     - nrinfragent_os_name != 'windows'
     - ansible_python_version is version('3.0', '>=')
-    - ansible_facts['os_family'] == 'Debian
+    - ansible_facts['os_family'] == 'Debian'
 
 - name: ensure pyYAML is installed
   package:
