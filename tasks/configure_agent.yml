@@ -21,6 +21,8 @@
   stat:
     path: "{{ nrinfragent_config_path }}"
   register: nrinfragent_config_stat
+  when:
+    - nrinfragent_os_name != 'windows'
 
 - name: Ensure newrelic-infra.yml exists
   file:
