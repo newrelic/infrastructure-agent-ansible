@@ -7,7 +7,6 @@
     - nrinfragent_state != "absent"
     - nrinfragent_os_name != 'windows'
     - ansible_python_version is version('3.0', '<')
-    - ansible_facts['os_family'] == 'Debian'
 
 - name: ensure python3-yaml is installed
   package:
@@ -18,16 +17,6 @@
     - nrinfragent_os_name != 'windows'
     - ansible_python_version is version('3.0', '>=')
     - ansible_facts['os_family'] == 'Debian'
-
-- name: ensure pyYAML is installed
-  package:
-    name: pyYAML
-    state: "{{ nrinfragent_state }}"
-  when:
-    - nrinfragent_state != "absent"
-    - nrinfragent_os_name != 'windows'
-    - ansible_python_version is version('3.0', '<')
-    - ansible_facts['os_family'] == 'RedHat'
 
 - name: ensure pyYAML is installed via pip
   pip:
@@ -42,6 +31,8 @@
   stat:
     path: "{{ nrinfragent_config_path }}"
   register: nrinfragent_config_stat
+  when:
+    - nrinfragent_os_name != 'windows'
 
 - name: Ensure newrelic-infra.yml exists
   file:
