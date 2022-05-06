@@ -1,22 +1,4 @@
 ---
-- name: ensure python-yaml is installed
-  package:
-    name: python-yaml
-    state: "{{ nrinfragent_state }}"
-  when:
-    - nrinfragent_state != "absent"
-    - nrinfragent_os_name != 'windows'
-    - ansible_python_version is version('3.0', '<')
-
-- name: ensure python3-yaml is installed
-  package:
-    name: python3-yaml
-    state: "{{ nrinfragent_state }}"
-  when:
-    - nrinfragent_state != "absent"
-    - nrinfragent_os_name != 'windows'
-    - ansible_python_version is version('3.0', '>=')
-
 - name: Stat newrelic-infra.yml config file
   stat:
     path: "{{ nrinfragent_config_path }}"
