@@ -75,8 +75,8 @@ init service.
         verbose: 0
         nrinfragent_config:
           license_key: 12345
-        custom_attributes:
-          environment: dev
+          custom_attributes:
+            environment: dev
 ```
 
 ### Tarball Installation (Linux Only)
