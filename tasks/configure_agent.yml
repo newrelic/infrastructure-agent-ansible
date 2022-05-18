@@ -16,6 +16,16 @@
     - nrinfragent_state != "absent"
     - nrinfragent_os_name != 'windows'
     - ansible_python_version is version('3.0', '>=')
+    - ansible_facts['os_family'] == 'Debian'
+
+- name: ensure pyYAML is installed via pip
+  pip:
+    name: PyYAML
+  when:
+    - nrinfragent_state != "absent"
+    - nrinfragent_os_name != "windows"
+    - ansible_python_version is version('3.0', '>=')
+    - ansible_facts['os_family'] == 'RedHat'
 
 - name: Stat newrelic-infra.yml config file
   stat:
