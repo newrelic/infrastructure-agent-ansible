@@ -28,7 +28,7 @@ nrinfragent_service_state: "started"
 # log_file: /tmp/logs.log
 # verbose: 1
 nrinfragent_config:
-  license_key: YOUR_LICENSE_KEY
+  license_key: "{{ nrinfragent_license_key | default('YOUR_LICENSE_KEY') }}"
   proxy: ""
 
 # A variable to prevent config values from being displayed
