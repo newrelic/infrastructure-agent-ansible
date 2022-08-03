@@ -147,5 +147,6 @@
     name: newrelic-infra
     state: "{{ nrinfragent_state }}"
     version: "{{ nrinfragent_choco_version | default(omit) }}"
+    proxy_url: "{{ nrinfragent_choco_proxy | default('') }}"
   when:
     - nrinfragent_os_name == 'windows'
