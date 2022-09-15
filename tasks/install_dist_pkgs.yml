@@ -12,11 +12,16 @@
     lock_timeout: "{{ nrinfragent_yum_lock_timeout }}"
   when: nrinfragent_os_name == 'redhat' and ansible_version.full >= "2.8.0"
 
+- name: confirm lsb-release is present
+  package:
+    name: "lsb-release"
+    state: present
+  when: nrinfragent_os_name == 'debian'
+
 - name: reread ansible_lsb facts
   setup:
     filter: ansible_lsb*
-  when: nrinfragent_os_name == 'redhat'
-
+  when: nrinfragent_os_name == 'redhat' or nrinfragent_os_name == 'debian'
 - name: setup agent repo keys
   apt_key:
     url: https://download.newrelic.com/infrastructure_agent/keys/newrelic_apt_key_current.gpg
