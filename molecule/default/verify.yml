@@ -29,6 +29,31 @@
     assert:
       that: result.failed != true
 
+  - name: stat logging.yml
+    stat:
+      path: /etc/newrelic-infra/logging.d/logging.yml
+    register: result
+
+  - name: assert logging.yml exists as file
+    assert:
+      that:
+      - result.stat.exists and result.stat.isreg
+  
+  - name: put logging.yml fixture
+    copy:
+      src: ./fixtures/logging-expected.yml
+      dest: /tmp/logging-expected.yml
+      force: yes
+
+  - name: diff logging.yml and fixture
+    command: 'diff /tmp/logging-expected.yml /etc/newrelic-infra/logging.d/logging.yml'
+    register: result
+    ignore_errors: true
+
+  - name: assert logging.yml matches fixture
+    assert:
+      that: result.failed != true
+
   - name: look for newrelic procs
     shell: ps -e -o command | tr -s ' ' | cut -d ' ' -f 1 | grep newrelic
     register: cmd_result
