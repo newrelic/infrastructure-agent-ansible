@@ -5,6 +5,12 @@
 An Ansible role that can be used to install and/or configure the New Relic
 Infrastructure Agent and install New Relic Infrastructure OHIs.
 
+## Installation
+
+Use the following command to download the latest version of the New Relic role:
+
+`ansible-galaxy install newrelic.newrelic-infra`
+
 ## Getting Started
 
 To use the `newrelic.newrelic-infra` role directly in a playbook, simply
@@ -69,8 +75,8 @@ init service.
         verbose: 0
         nrinfragent_config:
           license_key: 12345
-        custom_attributes:
-          environment: dev
+          custom_attributes:
+            environment: dev
 ```
 
 ### Tarball Installation (Linux Only)
@@ -320,7 +326,7 @@ Used to generate logging file. At a minimum you must provide
 vars:
   nrinfragent_logging:
     - name: Name of the logs that you want to forward to newrelic one [required]
-      source_type: type of the logs you want to forward - file/systemd/syslog/tcp/winlog [required]
+      source_type: type of the logs you want to forward - file/systemd/syslog/tcp/winlog/winevtlog [required]
       source_value: ONLY FILE/SYSTEMD - value of the source type https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/#log-source-required
       syslog: [required if source_type is syslog]
         uri: Syslog socket. Format varies depending on the protocol
@@ -332,6 +338,10 @@ vars:
         uri: TCP/IP socket to listen for incoming data. The URI format is tcp://LISTEN_ADDRESS:PORT
         format: format of the data. It can be json or none.
         separator: If format - none is used, you can define a separator string for splitting records (default - \n).
+      winevtlog: [required if source_type is winevtlog]
+        channel: name of the channel logs will be collected from.
+        collect_eventids: a list of Windows Event IDs to be collected and forwarded to New Relic. Event ID ranges are supported.
+        exclude_eventids: a list of Windows Event IDs to be excluded from collection. Event ID ranges are supported.
       winlog: [required if source_type is winlog]
         channel: name of the channel logs will be collected from.
         collect_eventids: a list of Windows Event IDs to be collected and forwarded to New Relic. Event ID ranges are supported.

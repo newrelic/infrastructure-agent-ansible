@@ -24,12 +24,25 @@ logs:
       {% endif -%}
   {% elif nrinfragent_logging[log].source_type == 'winlog' and nrinfragent_logging[log].winlog is defined %}
     winlog:
+      {% if nrinfragent_logging[log].winlog.channel is defined -%}
       channel: {{ nrinfragent_logging[log].winlog.channel }}
+      {% endif -%}
       {% if nrinfragent_logging[log].winlog.collect_eventids is defined -%}
       collect-eventids: {{ nrinfragent_logging[log].winlog.collect_eventids }}
       {% endif -%}
       {% if nrinfragent_logging[log].winlog.exclude_eventids is defined -%}
       exclude-eventids: {{ nrinfragent_logging[log].winlog.exclude_eventids -}}
+      {% endif -%}
+  {% elif nrinfragent_logging[log].source_type == 'winevtlog' and nrinfragent_logging[log].winevtlog is defined %}
+    winevtlog:
+      {% if nrinfragent_logging[log].winevtlog.channel is defined -%}
+      channel: {{ nrinfragent_logging[log].winevtlog.channel }}
+      {% endif -%}
+      {% if nrinfragent_logging[log].winevtlog.collect_eventids is defined -%}
+      collect-eventids: {{ nrinfragent_logging[log].winevtlog.collect_eventids }}
+      {% endif -%}
+      {% if nrinfragent_logging[log].winevtlog.exclude_eventids is defined -%}
+      exclude-eventids: {{ nrinfragent_logging[log].winevtlog.exclude_eventids -}}
       {% endif -%}
   {% endif -%}
   {% if nrinfragent_logging[log].max_line_kb is defined %}
