@@ -5,5 +5,5 @@ runs:
   steps:
     - name: Run molecule
       id: Molecule
-      run: molecule converge
+      run: MOLECULE_NO_LOG="false" molecule converge
       shell: bash
