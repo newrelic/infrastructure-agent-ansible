@@ -312,6 +312,13 @@ For a list of supported operating systems, see the
 
 Specifies the version of the Chocolatey package to install `newrelic-infra`
 on Windows. Can be used to pin the version or upgrade the agent.
+
+##### `nrinfragent_choco_proxy` (Optional, Windows only)
+
+Specifies a proxy to use for Chocolatey package download `newrelic-infra`
+on Windows. 
+
+
 ##### `nrinfragent_yum_lock_timeout` (Optional)
 
 Used to set lock_timeout value for ansible yum module. When it's not set this value defaults to 30. Works only for ansible version >= 2.8.0
