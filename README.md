@@ -318,50 +318,50 @@ Used to set lock_timeout value for ansible yum module. When it's not set this va
 
 ##### `nrinfragent_logging` (optional)
 
-Used to generate logging file. At a minimum you must provide
-`name`, `source_type`, `source_value`. For current configuration options, see the
+Used to generate logging file. For current configuration options, see the
 [New Relic documentation](https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/#parameters). To create multiple log blocks enter additional - name lists. For example:
 
 ```yml
 vars:
   nrinfragent_logging:
-    - name: Name of the logs that you want to forward to newrelic one [required]
-      source_type: type of the logs you want to forward - file/systemd/syslog/tcp/winlog/winevtlog [required]
-      source_value: ONLY FILE/SYSTEMD - value of the source type https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/#log-source-required
-      syslog: [required if source_type is syslog]
-        uri: Syslog socket. Format varies depending on the protocol
-        TCP/UDP network sockets - [tcp/udp]://LISTEN_ADDRESS:PORT
-        Unix domain sockets unix_[tcp/udp]:// + /socket/path
-        parser: Syslog parser. Default is rfc3164. Use rfc5424 if your messages include fractional seconds. Note - rfc3164 currently does not work on SuSE.
-        permissions: default is 0644 for domain sockets; this limits entries to processes running as root. You can use 0666 to listen for non-root processes, at your own risk.
-      tcp: [required if source_type is tcp]
-        uri: TCP/IP socket to listen for incoming data. The URI format is tcp://LISTEN_ADDRESS:PORT
-        format: format of the data. It can be json or none.
-        separator: If format - none is used, you can define a separator string for splitting records (default - \n).
-      winevtlog: [required if source_type is winevtlog]
-        channel: name of the channel logs will be collected from.
-        collect_eventids: a list of Windows Event IDs to be collected and forwarded to New Relic. Event ID ranges are supported.
-        exclude_eventids: a list of Windows Event IDs to be excluded from collection. Event ID ranges are supported.
-      winlog: [required if source_type is winlog]
-        channel: name of the channel logs will be collected from.
-        collect_eventids: a list of Windows Event IDs to be collected and forwarded to New Relic. Event ID ranges are supported.
-        exclude_eventids: a list of Windows Event IDs to be excluded from collection. Event ID ranges are supported.
-      pattern: Regular expression for filtering records. Only supported for the tail, systemd, syslog, and tcp (only with format none) sources.
-      max_line_kb: Maximum size of log entries/lines in KB. If log entries exceed the limit, they are skipped. Default is 128.
-      fluentbit: External Fluent Bit configuration and parser files.
-        config_file: path to an existing Fluent Bit configuration file. Note that any overlapping source results in duplicate messages in New Relic Logs.
-        parser_file: path to an existing Fluent Bit parsers file. The following parser names are reserved: rfc3164, rfc3164-local and rfc5424.
-      custom_attributes: List of custom attributes as key-value pairs that can be used to send additional data with the logs which you can then query. Add attributes to any log source. Expects data in the following format -
-      "
-      custom_attributes: [
-        { 'key': 'value'},
-        { 'key2': 'value2'},
-        ...
-      ]
-      "
-    - name: Name of the logs that you want to forward to newrelic one [required]
-      source_type: type of the logs you want to forward - file/systemd/syslog/tcp/winlog [required]
-      source_value: ONLY FILE/SYSTEMD - value of the source type https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/#log-source-required
+    - name: example-log
+      file: /var/log/example.log # Path to a single log file
+
+    - name: docker-logs
+      file: /var/lib/docker/containers/*/*.log # Path to multiple folders and files
+
+    - name: systemd-example
+      systemd: cupsd
+
+    # TCP network socket
+    - name: syslog-tcp-test
+      syslog:
+        uri: tcp://0.0.0.0:5140 # Use the tcp://LISTEN_ADDRESS:PORT format
+        parser: rfc5424 # Default syslog parser is rfc3164
+
+    # Unix TCP domain socket
+    - name: syslog-unix-tcp-test
+      syslog:
+        uri: unix_tcp:///var/unix-tcp-socket-test
+        unix_permissions: 0666 # Default is 0644. Change at your own risk
+
+    # Unix UDP domain socket
+    - name: syslog-unix-udp-test
+      syslog:
+        uri: unix_udp:///var/unix-udp-socket-test
+        parser: rfc5424
+
+    - name: tcp-simple-test
+      tcp:
+        uri: tcp://0.0.0.0:1234 # Use the tcp://LISTEN_ADDRESS:PORT format
+        format: none # Raw text - this is default for 'tcp'
+        separator: \t # String for separating raw text entries
+      max_line_kb: 32
+
+    - name: tcp-json-test
+      tcp:
+        uri: tcp://0.0.0.0:2345 # Use the tcp://LISTEN_ADDRESS:PORT format
+        format: json
 ```
 
 #### Removing the `newrelic-infra-integrations` package and its bundled integrations
