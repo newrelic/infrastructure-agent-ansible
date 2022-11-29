@@ -89,8 +89,6 @@
   when: nrinfragent_os_name == 'redhat' and (setup_agent_repo_amazon.changed or setup_agent_repo_redhat.changed)
   tags:
     - skip_ansible_lint
-  args:
-    warn: false
 
 - name: create log destination directory
   file:
