@@ -1,4 +1,5 @@
 custom_attributes:
   business_unit: engineering
+  nr_deployed_by: ansible.infra
   team: newrelic
 license_key: Q000000000000000000000000000000000000000
