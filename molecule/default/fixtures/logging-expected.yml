@@ -1,0 +1,16 @@
+logs:
+  - name: file test
+    file: /var/log/messages
+  - name: syslog udp test
+    syslog:
+      uri: udp://0.0.0.0:6140
+      parser: rfc5424
+    max_line_kb: 35
+  - name: syslog-unix-tcp-test
+    syslog:
+      uri: unix_tcp:///var/unix-tcp-socket-test
+      unix_permissions: 438
+  - name: tcp-json-test
+    tcp:
+      uri: tcp://0.0.0.0:2345
+      format: json

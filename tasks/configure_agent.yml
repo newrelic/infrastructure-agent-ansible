@@ -43,10 +43,18 @@
     - nrinfragent_os_name != 'windows'
     - nrinfragent_config_stat.stat.exists == false or nrinfragent_config_stat.stat.mode != '0600'
 
+- name: Add nr_deployed_by to custom attributes list
+  set_fact:
+    custom_attributes: "{{ nrinfragent_config['custom_attributes'] | default({}) | combine({'nr_deployed_by': 'ansible.infra'}, recursive=true) }}"
+
+- name: Combine new custom_attributes with existing values in nrinfragent_config
+  set_fact:
+    nrinfragent_config_adapted: "{{ nrinfragent_config | default({}) | combine({'custom_attributes': custom_attributes}, recursive=true) }}"
+
 - name: Setup agent config *NIX
   merge_yaml:
     src: "{{ nrinfragent_config_path }}"
-    value: "{{ nrinfragent_config }}"
+    value: "{{ nrinfragent_config_adapted }}"
   no_log: "{{ nrinfragent_hide_config_values }}"
   notify: restart newrelic-infra
   when:

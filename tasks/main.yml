@@ -28,3 +28,8 @@
   import_tasks: setup_agent_service.yml
   tags:
     - nria_setup_service
+
+- name: setup logging
+  import_tasks: setup_logging.yml
+  tags:
+    - nria_setup_logging
