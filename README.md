@@ -1,5 +1,8 @@
 [![New Relic Community Plus header](https://raw.githubusercontent.com/newrelic/open-source-office/master/examples/categories/images/Community_Plus.png)](https://opensource.newrelic.com/oss-category/#community-plus)
 
+|:warning:| New Relic offers a new [Ansible solution](https://github.com/newrelic/ansible-install) that simplifies scaling your New Relic Observability efforts. Please consider using this solution going forward. |
+|---------------|:------------------------|
+
 # Ansible role for the New Relic infrastructure agent ![test_ansible](https://github.com/newrelic/infrastructure-agent-ansible/actions/workflows/main.yml/badge.svg?branch=master) ![release_ansible](https://github.com/newrelic/infrastructure-agent-ansible/actions/workflows/release.yml/badge.svg)
 
 An Ansible role that can be used to install and/or configure the New Relic
