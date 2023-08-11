@@ -14,6 +14,10 @@ platforms:
     image: centos:8
     dockerfile: Dockerfile.centos8
     command: "/usr/sbin/init"
+  - name: al-2
+    image: al:2
+    dockerfile: Dockerfile.al2
+    command: "/usr/sbin/init"
   - name: oraclelinux-8
     image: oraclelinux:8
     dockerfile: Dockerfile.oraclelinux8
