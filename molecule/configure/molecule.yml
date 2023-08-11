@@ -11,6 +11,7 @@ platforms:
   - name: oraclelinux-8
   - name: ubuntu-1804
   - name: ubuntu-2004
+  - name: debian-bullseye
 provisioner:
   name: ansible
   lint: |

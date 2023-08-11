@@ -429,6 +429,7 @@ To release a new version to [Ansible Galaxy][3] follow this steps:
   * 14 Trusty
   * 12 Precise
 * Debian
+  * 11 Bullseye
   * 10 Buster
   * 9 Stretch
   * 8 Jessie

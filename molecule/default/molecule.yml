@@ -26,6 +26,10 @@ platforms:
     image: ubuntu:20.04
     dockerfile: Dockerfile.ub2004
     command: "/usr/sbin/init"
+  - name: debian-bullseye
+    image: debian:bullseye
+    dockerfile: Dockerfile.debian-bullseye
+    command: "/sbin/init"
 provisioner:
   name: ansible
   lint: |
