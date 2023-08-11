@@ -24,6 +24,11 @@
   tags:
     - nria_configure
 
+- name: configure the infrastructure agent integrations
+  import_tasks: configure_integrations.yml
+  tags:
+    - nria_configure_integrations
+
 - name: setup agent init service
   import_tasks: setup_agent_service.yml
   tags:
