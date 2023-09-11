@@ -10,7 +10,7 @@
     name: redhat-lsb-core
     state: present
     lock_timeout: "{{ nrinfragent_yum_lock_timeout }}"
-  when: nrinfragent_os_name == 'redhat' and ansible_version.full is version("2.8.0", '>=')
+  when: nrinfragent_os_name == 'redhat' and ansible_version.full is version("2.8.0", '>=') and ansible_distribution_major_version < '9'
 
 - name: reread ansible_lsb facts
   setup:
