@@ -1,6 +1,6 @@
 ---
 nrinfragent_os_name: "{{ ansible_os_family|lower }}"
-nrinfragent_os_version: "{{ distribution_major_version }}"
+nrinfragent_os_version: "{{ ansible_distribution_major_version }}"
 nrinfragent_os_codename: "{{ ansible_lsb.codename }}"
 nrinfragent_distribution: "{{ ansible_distribution|lower }}"
 nrinfragent_architecture: "{{ {'x86_64': 'amd64', 'i386': '386'}[ansible_architecture] | default(ansible_architecture) }}"
