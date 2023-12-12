@@ -83,6 +83,8 @@
     NRIA_PROXY: "{{ nrinfragent_config['proxy'] | default('') }}"
   become: true
   when: archive_contents is defined and archive_contents.changed
+  tags:
+    - skip_ansible_lint
 
 - name: Start newrelic-infra
   service:
