@@ -1,0 +1,9 @@
+enable_list:
+  - yaml
+
+skip_list:
+  - role-name
+  - risky-file-permissions
+  - literal-compare
+  - fqcn
+  - name[casing]
