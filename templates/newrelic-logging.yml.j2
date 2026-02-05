@@ -1,9 +1,4 @@
-{% if nrinfragent_logging is defined -%}
+{% if nrinfragent_logging is defined and nrinfragent_logging %}
 logs:
-{%- set log_config = nrinfragent_logging | to_nice_yaml(indent=2, sort_keys=False) %}
-{%- for entry in log_config.split("\n") %}
-{%- if entry != "" %}
-  {{ entry }}
-{%- endif -%}
-{%- endfor -%}
+{{ nrinfragent_logging | to_nice_yaml(indent=2) | indent(2, first=True) }}
 {% endif %}

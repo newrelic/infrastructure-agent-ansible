@@ -2,7 +2,7 @@
 - name: ensure python-yaml is installed
   package:
     name: python-yaml
-    state: "{{ nrinfragent_state }}"
+    state: "{{ (nrinfragent_state in ['absent', 'removed']) | ternary(nrinfragent_state, 'present') }}"
   when:
     - nrinfragent_state != "absent"
     - nrinfragent_os_name != 'windows'
@@ -11,21 +11,38 @@
 - name: ensure python3-yaml is installed
   package:
     name: python3-yaml
-    state: "{{ nrinfragent_state }}"
+    state: "{{ (nrinfragent_state in ['absent', 'removed']) | ternary(nrinfragent_state, 'present') }}"
   when:
     - nrinfragent_state != "absent"
     - nrinfragent_os_name != 'windows'
     - ansible_python_version is version('3.0', '>=')
     - ansible_facts['os_family'] == 'Debian'
 
+- name: confirm python-pip is present
+  package:
+    name: >-
+      {{ ( (ansible_distribution == 'Amazon' and ansible_distribution_major_version | string == '2023') or 
+           (ansible_os_family == 'RedHat' and ansible_distribution_major_version | int >= 8) ) 
+         | ternary('python3-pip', 'python-pip') }}
+    state: present
+  when: 
+    - nrinfragent_manage_repository | default(true)
+    - nrinfragent_state != "absent"
+    - ansible_facts['os_family'] == 'RedHat'
+  register: pip_install_result
+  ignore_errors: yes
+
 - name: ensure pyYAML is installed via pip
   pip:
     name: PyYAML
-  when:
+    state: present
+  when: 
     - nrinfragent_state != "absent"
-    - nrinfragent_os_name != "windows"
-    - ansible_python_version is version('3.0', '>=')
+    - nrinfragent_os_name != 'windows'
     - ansible_facts['os_family'] == 'RedHat'
+    - ansible_python_version is version('3.0', '>=')
+    - not pip_install_result.failed | default(false)
+  ignore_errors: yes
 
 - name: Stat newrelic-infra.yml config file
   stat:

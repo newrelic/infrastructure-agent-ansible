@@ -3,14 +3,20 @@
   yum:
     name: redhat-lsb-core
     state: present
-  when: nrinfragent_os_name == 'redhat' and ansible_version.full is version("2.8.0", '<')
+  when: 
+    - nrinfragent_os_name == 'redhat'
+    - ansible_version.full is version("2.8.0", '<')
+    - not (ansible_distribution == 'Amazon' and ansible_distribution_major_version | string == '2023')
 
 - name: confirm redhat lsb util is present post2.8.0
   yum:
     name: redhat-lsb-core
     state: present
     lock_timeout: "{{ nrinfragent_yum_lock_timeout }}"
-  when: nrinfragent_os_name == 'redhat' and ansible_version.full is version("2.8.0", '>=')
+  when: 
+    - nrinfragent_os_name == 'redhat'
+    - ansible_version.full is version("2.8.0", '>=')
+    - not (ansible_distribution == 'Amazon' and ansible_distribution_major_version | string == '2023')
 
 - name: reread ansible_lsb facts
   setup:
@@ -51,14 +57,16 @@
 
 - name: setup agent repo reference
   yum_repository:
-    baseurl: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/{{ (ansible_service_mgr == 'upstart') | ternary('6', '7') }}/{{ ansible_architecture }}"
-    gpgcheck: "yes"
-    gpgkey: https://download.newrelic.com/infrastructure_agent/keys/newrelic_rpm_key_current.gpg
     name: 'newrelic-infra'
-    repo_gpgcheck: 'yes'
-    state: present
     description: New Relic Infrastructure
-  when: nrinfragent_distribution == 'amazon'
+    baseurl: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/{{ repo_version }}/$basearch"
+    gpgcheck: yes
+    repo_gpgcheck: "{{ (ansible_distribution == 'Amazon' and ansible_distribution_major_version | string == '2023') | ternary('no', 'yes') }}"
+    gpgkey: https://download.newrelic.com/infrastructure_agent/keys/newrelic_rpm_key_current.gpg
+    state: present
+  vars:
+    repo_version: "{{ (ansible_distribution == 'Amazon' and ansible_distribution_major_version | string == '2023') | ternary('8', (ansible_service_mgr == 'upstart') | ternary('6', '7')) }}"
+  when: ansible_distribution | lower == 'amazon' or nrinfragent_distribution == 'amazon'
   register: setup_agent_repo_amazon
 
 - name: setup agent repo reference
@@ -113,10 +121,18 @@
 
 - name: Install agent yum
   yum:
-    name: "newrelic-infra"
-    state: "{{ nrinfragent_state }}"
+    name: >-
+      {% if nrinfragent_state not in ['present', 'latest', 'absent', 'installed', 'removed'] %}
+      newrelic-infra-{{ nrinfragent_state }}
+      {% else %}
+      newrelic-infra
+      {% endif %}
+    state: "{{ (nrinfragent_state not in ['present', 'latest', 'absent', 'installed', 'removed']) | ternary('present', nrinfragent_state) }}"
+    allow_downgrade: yes 
     lock_timeout: "{{ nrinfragent_yum_lock_timeout }}"
-  when: (nrinfragent_os_name == 'redhat' or nrinfragent_os_name == 'amazon') and ansible_version.full is version("2.8.0", '>=')
+  when: 
+    - (nrinfragent_os_name == 'redhat' or nrinfragent_os_name == 'amazon' or ansible_os_family == 'RedHat')
+    - ansible_version.full is version("2.8.0", '>=')
 
 - name: install integrations pre2.8.0
   package:
